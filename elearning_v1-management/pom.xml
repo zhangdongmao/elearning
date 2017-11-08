@@ -1,0 +1,33 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+  	 <groupId>com.cms</groupId>
+	  <artifactId>elearning_v1-dependencies</artifactId>
+	  <version>0.0.1-SNAPSHOT</version>
+	  <relativePath>../elearning_v1-dependencies/pom.xml</relativePath>
+  </parent>
+  <artifactId>elearning_v1-management</artifactId>
+  <packaging>pom</packaging>
+  
+  
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <modules>
+  	<module>../elearning_v1-web</module>
+  	<module>../elearning_v1-dependencies</module>
+  	<module>../elearning_v1-plugins</module>
+  	<module>../elearning_v1-config</module>
+  	<module>../elearning_v1-beans</module>
+  	<module>../elearning_v1-dao</module>
+  	<module>../elearning_v1-services</module>
+  </modules>
+</project>
