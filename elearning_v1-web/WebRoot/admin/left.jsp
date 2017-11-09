@@ -39,9 +39,9 @@ body{overflow-x:hidden; background:url(images/main/leftbg.jpg) left top repeat-y
         <a href="main_menu.html" target="mainFrame" onFocus="this.blur()">栏目管理</a>
       </div>
       <div>
-        <span>系统设置</span>
-        <a href="main.html" target="mainFrame" onFocus="this.blur()">分组权限</a>
-        <a href="main_list.html" target="mainFrame" onFocus="this.blur()">级别权限</a>
+        <span>资讯管理</span>
+        <a href="<%=path %>/informationType/toList" target="mainFrame" onFocus="this.blur()">资讯类型</a>
+        <a href="<%=path %>/information/toList" target="mainFrame" onFocus="this.blur()">资讯</a>
         <a href="main_info.html" target="mainFrame" onFocus="this.blur()">角色管理</a>
         <a href="main.html" target="mainFrame" onFocus="this.blur()">自定义权限</a>
       </div>
