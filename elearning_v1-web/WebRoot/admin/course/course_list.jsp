@@ -50,7 +50,7 @@
 <body>
 	<h2>课程管理-课程列表</h2>
 
-<c:forEach items="${courseDto}" var="cu">
+
 	<div class="container">
 		<div class="row">
 			<div class="col-md-2 col-md-offset-1">
@@ -69,7 +69,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				
+				<c:forEach items="${courseDto}" var="cu">
 					<tr>
 						<td>${cu.id}</td>
 						<td>${cu.code}</td>

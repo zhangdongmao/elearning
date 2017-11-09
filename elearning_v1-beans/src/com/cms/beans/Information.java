@@ -21,10 +21,11 @@ public class Information implements java.io.Serializable {
 
 	private Integer id;
 	private InformationType informationType;
-	private String informationTitle;
-	private String informationReleaseTime;
-	private String informationPhoto;
-	private String informationInfo;
+	private String title;
+	private String contents;
+	private String releaseTime;
+	private String photo;
+	private String attachment;
 
 	// Constructors
 
@@ -33,19 +34,21 @@ public class Information implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public Information(InformationType informationType, String informationTitle) {
+	public Information(InformationType informationType, String title, String releaseTime) {
 		this.informationType = informationType;
-		this.informationTitle = informationTitle;
+		this.title = title;
+		this.releaseTime = releaseTime;
 	}
 
 	/** full constructor */
-	public Information(InformationType informationType, String informationTitle, String informationReleaseTime,
-			String informationPhoto, String informationInfo) {
+	public Information(InformationType informationType, String title, String contents, String releaseTime, String photo,
+			String attachment) {
 		this.informationType = informationType;
-		this.informationTitle = informationTitle;
-		this.informationReleaseTime = informationReleaseTime;
-		this.informationPhoto = informationPhoto;
-		this.informationInfo = informationInfo;
+		this.title = title;
+		this.contents = contents;
+		this.releaseTime = releaseTime;
+		this.photo = photo;
+		this.attachment = attachment;
 	}
 
 	// Property accessors
@@ -73,44 +76,54 @@ public class Information implements java.io.Serializable {
 		this.informationType = informationType;
 	}
 
-	@Column(name = "information_title", nullable = false, length = 50)
+	@Column(name = "title", nullable = false, length = 50)
 
-	public String getInformationTitle() {
-		return this.informationTitle;
+	public String getTitle() {
+		return this.title;
 	}
 
-	public void setInformationTitle(String informationTitle) {
-		this.informationTitle = informationTitle;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
-	@Column(name = "information_release_time", length = 50)
+	@Column(name = "contents", length = 65535)
 
-	public String getInformationReleaseTime() {
-		return this.informationReleaseTime;
+	public String getContents() {
+		return this.contents;
 	}
 
-	public void setInformationReleaseTime(String informationReleaseTime) {
-		this.informationReleaseTime = informationReleaseTime;
+	public void setContents(String contents) {
+		this.contents = contents;
 	}
 
-	@Column(name = "information_photo", length = 50)
+	@Column(name = "release_time", nullable = false, length = 50)
 
-	public String getInformationPhoto() {
-		return this.informationPhoto;
+	public String getReleaseTime() {
+		return this.releaseTime;
 	}
 
-	public void setInformationPhoto(String informationPhoto) {
-		this.informationPhoto = informationPhoto;
+	public void setReleaseTime(String releaseTime) {
+		this.releaseTime = releaseTime;
 	}
 
-	@Column(name = "information_info", length = 50)
+	@Column(name = "photo", length = 50)
 
-	public String getInformationInfo() {
-		return this.informationInfo;
+	public String getPhoto() {
+		return this.photo;
 	}
 
-	public void setInformationInfo(String informationInfo) {
-		this.informationInfo = informationInfo;
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+
+	@Column(name = "attachment", length = 50)
+
+	public String getAttachment() {
+		return this.attachment;
+	}
+
+	public void setAttachment(String attachment) {
+		this.attachment = attachment;
 	}
 
 }

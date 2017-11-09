@@ -153,33 +153,29 @@ public class CourseController {
 	@ResponseBody // 返回json数据
 	public ResponseDto saveCourse(CurCourseDto course,String teacherName,String courseType){
 		ResponseDto response = new ResponseDto();
-		Session session=courseService.getSession();
+
 		try {
-			Criteria teacherCriteria = session.createCriteria(CurTeacher.class);
-			teacherCriteria.add(Restrictions.like("name", teacherName, MatchMode.ANYWHERE));
-			Criteria typeCriteria = session.createCriteria(CurTeacher.class);
-			typeCriteria.add(Restrictions.like("name", courseType, MatchMode.ANYWHERE));
-			CurTeacher curTeacher = (CurTeacher)teacherCriteria.setResultTransformer(Transformers.aliasToBean(CurTeacher.class));
-			CurType curType = (CurType)teacherCriteria.setResultTransformer(Transformers.aliasToBean(CurType.class));
-			System.out.println(curTeacher.getName()+curType.getName());
+
+			String teacherHsql="from CurTeacher t where t.name=?";
+			String typeHsql="from CurType c where c.name=?";
+			List<CurTeacher> curTeachers = courseTeacherService.find(teacherHsql,teacherName);
+			List<CurType> curTypes = courseTypeService.find(typeHsql,courseType);
+			CurTeacher curTeacher = curTeachers.get(0);
+			CurType curType = curTypes.get(0);
+			System.out.println(curTeacher.getName());
+			System.out.println(curType.getName());
 			CurCourse curCourse = new CurCourse();
 			BeanUtils.copyProperties(course, curCourse);
 			curCourse.setCurType(curType);
 			curCourse.setCurTeacher(curTeacher);
 			courseService.save(curCourse);
-			if(course.equals(null)){
-				System.out.println("-----------------null--------------------");
-			}
-
 			response.setCode("200");
 			response.setMessage("保存成功");
 		} catch (Exception e) {
+			e.printStackTrace();
 			response.setCode("422");
 			response.setMessage("保存失败:"+e.getMessage());
-		} finally {
-			session.close();
-		}
-
+		} 
 		return response;
 	}
 }

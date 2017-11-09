@@ -32,11 +32,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
 <script type="text/javascript">
-$(function(){
-        $("#switch").cyswitch({changeEvent:function(checked){
-            alert(checked==undefined ? false : true);
-        }});
-    });
 
     //边栏菜单链接
     function aClick(href) {

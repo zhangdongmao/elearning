@@ -60,11 +60,11 @@
 
 							<form action="<%=path%>/course/edit" method="get"
 								class="form-horizontal" enctype="multipart/form-data">
+								<input type="text" name="curPhoto" id="curPhoto">
+								<input type="text" name="recommend" id="recommend">
 								<input type="hidden" name="id" value="${cur.getId() }">
-								<input type="hidden" name="curPhoto"
-									value="${cur.getCurPhoto() }"> <input type="hidden"
-									name="teacherId" value="${teacher.getId() }"> <input
-									type="hidden" name="typeId" value="${type.getId() }">
+								 <input type="hidden"name="teacherId" value="${teacher.getId() }"> 
+								 <input type="hidden" name="typeId" value="${type.getId() }">
 
 
 								<div class="box-body">
@@ -153,13 +153,16 @@
 
 									</div>
 									<div class="form-group">
-										<label class="col-xs-1 control-label">推荐课程：</label> 
-										<div class="switch" data-on="primary" data-off="info">
-										<input type="checkbox" data-size="mini"
-										
-										data-on="primary" data-off="warning">
+										<label class="col-xs-1 control-label">推荐课程：</label>
+										<div id="mySwitchA" class="switch has-switch switch-mini">
+											<div class="switch-on switch-animate">
+												<input id="switchA" type="checkbox" 
+												 ${cur.getRecommend() eq 'true'?"checked":""}
+												data-on-color="primary"data-off-color="warning"
+												data-on-text="已推荐" data-off-text="未推荐" 
+												 data-size="mini">
+											</div>
 										</div>
-
 									</div>
 
 									<div class="form-group">
@@ -178,19 +181,23 @@
 										</div>
 									</div>
 
-
-
+									
+									
 
 									<div class="form-group">
 										<label class="col-xs-1 control-label">课程图片：</label>
 										<div class="col-xs-6 input-group">
 											<div class="row">
 												<div class="col-xs-6">
-													<div class="switch switch-mini">
-													<input type="checkbox" data-size="mini" id="switchB" data-on-text="确认" data-off-text="不确认"
-														name="isPhoto"data-on-color="primary" data-off-color="warning">确认修改图片 
-													<input id="selectImg" name="photo" type="file"class="form-control" placeholder="0">
+													<div id="mySwitchB" class="switch has-switch switch-mini">
+														<input type="checkbox" data-size="mini" id="switchB"
+														${cur.getCurPhoto() eq 'true'?"checked":""}
+															 data-on-color="primary"data-on-text="已确认" data-off-text="未确认"
+															data-off-color="warning">确认修改图片
 													</div>
+													 <input
+															id="selectImg" name="photo" type="file"
+															class="form-control" placeholder="0">
 												</div>
 												<div class="col-xs-6">
 													<img style="width: 180px;height: 135px" id="selectImgView"
@@ -232,12 +239,23 @@
 	</div>
 	<!-- ./wrapper -->
 	<jsp:include page="/admin/js.jsp"></jsp:include>
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="<%=basePath%>admin/js/highlight.js"></script>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="https://unpkg.com/bootstrap-switch"></script>
 	<script src="<%=basePath%>admin/js/main.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
 
 	<script
 		src="<%=basePath%>res/bootstrap-datetimepicker/js/moment.min.js"></script>
@@ -262,31 +280,63 @@
 </html>
 
 
-<script>
-	
+<script type="text/javascript">
+
 
 	$(function() {
-	/* $('switch').bootstrapSwitch('setState',false); */
-		$('input.switch').bootstrapSwitch({
-					
-                    "onColor" : "success",
-                    "offColor" : "success",
-                    "onText" : "展示",
-                    "offText" : "关闭",
-                    "size" : "mini"
-                });
 		
-		/* $('#switchA.switch').bootstrapSwitch({  
-				alert(1);
-                onText:'打开',  
-                offText:'关闭'  
-            });  */
+		
+	
+		$('#mySwitchA input').on('switchChange.bootstrapSwitch', function(event, state) {
+			var a=$('#recommend').val(state);
+			
+		});
+		$('#mySwitchB input').on('switchChange.bootstrapSwitch', function(event, state) {
+			var a=$('#curPhoto').val(state);
+			
+		});
+		/* $('#mySwitchB input').on('switchChange.bootstrapSwitch', function(event, state) {
+			var dataObjB = {};
+			dataObjB['id'] = this.id;
+			dataObjB['name'] = this.name;
+			dataObj['recommend'] = this.recommend;
+		}); */
+
+		/* $('#mySwitch').on('switch-change', function (e, data) {
+    var $el = $(data.el)
+      , value = data.value;
+    console.log(e, $el, value);
+}); */
+		/* $('input.switch').on('switchChange.bootstrapSwitch', function(event, state) {
+                    var dataObj ={};
+                    dataObj['id'] = this.id;
+                    dataObj['name'] = this.name;
+                    dataObj['level'] = state;
+                     $.get("/business/news/ajaxupdatelevel", dataObj, function (data) {
+                        data=JSON.parse(data);
+                        layer.msg(data.message,{time:1000});
+                    });
+                }); */
+
+		/* 	$('#switchB').on('switch-change', function (e, data) {
+		    var $el = $(data.el)
+		      , value = data.value;
+		      alert(e);
+		      alert($el);
+		      alert(value);
+		    console.log(e, $el, value); 
+		});*/
+
+
 		//设置日期插件
 		$('#datetimepicker1').datetimepicker({
 			format : 'YYYY-MM-DD',
 			locale : moment.locale('zh-cn')
 		});
-
+		$('#datetimepicker2').datetimepicker({
+			format : 'YYYY-MM-DD',
+			locale : moment.locale('zh-cn')
+		});
 
 		//        选择图片
 		$('#selectImg').bind('change', function() {
@@ -315,7 +365,5 @@
 				'| horizontal print preview', 'drafts', 'formula'
 			]
 		});
-
-
 	});
 </script>

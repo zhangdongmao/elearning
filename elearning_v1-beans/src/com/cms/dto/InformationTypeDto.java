@@ -2,18 +2,19 @@ package com.cms.dto;
 
 public class InformationTypeDto {
 	private Integer id;
-	private String informationType;
+	private String name;
 	public Integer getId() {
 		return id;
 	}
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getInformationType() {
-		return informationType;
+	
+	public String getName() {
+		return name;
 	}
-	public void setInformationType(String informationType) {
-		this.informationType = informationType;
+	public void setName(String name) {
+		this.name = name;
 	}
 	@Override
 	public String toString() {

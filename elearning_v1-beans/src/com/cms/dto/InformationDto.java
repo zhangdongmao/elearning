@@ -4,39 +4,46 @@ import com.cms.beans.InformationType;
 
 public class InformationDto {
 	private Integer id;
-	private String informationTitle;
-	private String informationReleaseTime;
-	private String informationPhoto;
-	private String informationInfo;
+	private String title;
+	private String contents;
+	private String releaseTime;
+	private String photo;
+	private String attachment;
 	public Integer getId() {
 		return id;
 	}
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getInformationTitle() {
-		return informationTitle;
+	public String getTitle() {
+		return title;
 	}
-	public void setInformationTitle(String informationTitle) {
-		this.informationTitle = informationTitle;
+	public void setTitle(String title) {
+		this.title = title;
 	}
-	public String getInformationReleaseTime() {
-		return informationReleaseTime;
+	public String getContents() {
+		return contents;
 	}
-	public void setInformationReleaseTime(String informationReleaseTime) {
-		this.informationReleaseTime = informationReleaseTime;
+	public void setContents(String contents) {
+		this.contents = contents;
 	}
-	public String getInformationPhoto() {
-		return informationPhoto;
+	public String getReleaseTime() {
+		return releaseTime;
 	}
-	public void setInformationPhoto(String informationPhoto) {
-		this.informationPhoto = informationPhoto;
+	public void setReleaseTime(String releaseTime) {
+		this.releaseTime = releaseTime;
 	}
-	public String getInformationInfo() {
-		return informationInfo;
+	public String getPhoto() {
+		return photo;
 	}
-	public void setInformationInfo(String informationInfo) {
-		this.informationInfo = informationInfo;
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+	public String getAttachment() {
+		return attachment;
+	}
+	public void setAttachment(String attachment) {
+		this.attachment = attachment;
 	}
 	@Override
 	public String toString() {

@@ -22,7 +22,7 @@ public class InformationType implements java.io.Serializable {
 	// Fields
 
 	private Integer id;
-	private String informationType;
+	private String name;
 	private Set<Information> informations = new HashSet<Information>(0);
 
 	// Constructors
@@ -32,13 +32,13 @@ public class InformationType implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public InformationType(String informationType) {
-		this.informationType = informationType;
+	public InformationType(String name) {
+		this.name = name;
 	}
 
 	/** full constructor */
-	public InformationType(String informationType, Set<Information> informations) {
-		this.informationType = informationType;
+	public InformationType(String name, Set<Information> informations) {
+		this.name = name;
 		this.informations = informations;
 	}
 
@@ -56,14 +56,14 @@ public class InformationType implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@Column(name = "information_type", nullable = false, length = 50)
+	@Column(name = "name", nullable = false, length = 50)
 
-	public String getInformationType() {
-		return this.informationType;
+	public String getName() {
+		return this.name;
 	}
 
-	public void setInformationType(String informationType) {
-		this.informationType = informationType;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "informationType")

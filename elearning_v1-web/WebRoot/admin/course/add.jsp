@@ -277,8 +277,6 @@
 	$(function(){
 		
 			$("#btnSave").click(function(){
-			alert($("#select1 option:selected").val());
-			alert($("#select2 option:selected").val());
 				var formDataStr =  $("#formSave").serialize();
 				var teacherName = $("#select2 option:selected")
 				var typeName = $("#select1 option:selected")
