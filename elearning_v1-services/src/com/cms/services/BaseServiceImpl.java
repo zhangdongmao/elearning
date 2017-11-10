@@ -19,6 +19,7 @@ public class BaseServiceImpl<T> implements IBaseService<T>{
 		@Override
 		@Transactional(propagation=Propagation.REQUIRED)
 		public void delete(T entity) {
+			System.out.println("delete");
 			baseDao.delete(entity);
 		}
 
