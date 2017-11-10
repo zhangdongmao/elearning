@@ -154,9 +154,6 @@
 										</div>
 									</div>
 
-
-
-
 									<div class="form-group">
 										<label class="col-xs-1 control-label">课程图片：</label>
 										<div class="col-xs-6 input-group">
@@ -269,10 +266,7 @@
 				'| horizontal print preview', 'drafts', 'formula'
 			]
 		});
-
-
 	});
-	
 	
 	$(function(){
 		
@@ -289,8 +283,6 @@
 						listCourse();
 					}else
 						alert("保存失败!失败原因:"+data.message);//先有，后改进
-						
-					
 				});
 			});
 		})
