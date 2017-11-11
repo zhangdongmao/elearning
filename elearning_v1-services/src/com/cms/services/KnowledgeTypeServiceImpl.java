@@ -6,19 +6,20 @@ import java.util.List;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.cms.beans.KnowledgeType;
 import com.cms.dao.IKnowledgeTypeDao;
 import com.cms.dto.KnowledgeTypeDto;
 
 @Service
-public class KnowledgeTypeService extends BaseServiceImpl<KnowledgeType> implements IKnowledgeTypeService {
+public class KnowledgeTypeServiceImpl extends BaseServiceImpl<KnowledgeType> implements IKnowledgeTypeService {
 
-	private IKnowledgeTypeDao KnowledgeType;
+	private IKnowledgeTypeDao KnowledgeTypeDao;
 
 	@Autowired
 	public void setKnowledgeTypeDao(IKnowledgeTypeDao TypeDao) {
-		this.KnowledgeType = TypeDao;
+		this.KnowledgeTypeDao = TypeDao;
 		this.setBaseDao(TypeDao);
 	}
 
@@ -39,8 +40,18 @@ public class KnowledgeTypeService extends BaseServiceImpl<KnowledgeType> impleme
 			BeanUtils.copyProperties(type.get(i), knowledgeTypeDto);
 			typeDtos.add(knowledgeTypeDto);
 		}
-		System.out.println(typeDtos);
 		return typeDtos;
 	}
 
+	
+	
+	//===============后面还没写==================
+		@Override
+		@Transactional
+		public void save(KnowledgeTypeDto knowledgeTypeDto) {
+			KnowledgeType knowledgeType = new KnowledgeType();
+			BeanUtils.copyProperties(knowledgeTypeDto, knowledgeType);
+			this.save(knowledgeType);
+		}
+	
 }

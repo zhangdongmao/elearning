@@ -1,11 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -13,7 +9,7 @@
 <head>
 <base href="<%=basePath%>">
 
-<title>My JSP 'knowledgeType_list.jsp' starting page</title>
+<title>My JSP 'knowledge_list.jsp' starting page</title>
 
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
@@ -33,22 +29,23 @@ $(function(){
 	listCourse();
 	alert(1);
 	function edit(cu_id){
-		window.location.href = "<%=path%>/knowledgrType/edit/list?knowledgrTypeId="+knowledgrType_id;
+		window.location.href = "<%=path%>/knowledge/edit/list?knowledgeId="+knowledge_id;
 	}
 	
 	function del(){
-	window.location.href = "<%=path%>/knowledgrType/del?knowledgrTypeId="+knowledgrType_id;
+	window.location.href = "<%=path%>/knowledge/del?knowledgeId="+knowledge_id;
 	};
 	
 	function listCourse(){
-				$.getJSON("<%=path%>/knowledgeType/list",function(data){
+				$.getJSON("<%=path%>/knowledge/list",function(data){
 					var courseData = $("#courseData");
 					/* courseData.empty(); */
 					for(var i=0; i<data.length;i++){
 						var tr = "<tr>"+
 		    				"<td>"+data[i].id+"</td>"+
 		    				"<td>"+data[i].name+"</td>"+
-		    				"<td>"+data[i].code+"</td>"+
+		    				"<td>"+data[i].updateTime+"</td>"+
+		    				"<td>"+data[i].browserCount+"</td>"+
 		    				
 		    				"</tr>";
 		    			courseData.append(tr);
@@ -62,7 +59,7 @@ $(function(){
 </head>
 
 <body>
-	<h2>知识管理-知识类型列表</h2>
+	<h2>知识管理-知识列表</h2>
 
 
 	<div class="container">
@@ -75,8 +72,9 @@ $(function(){
 			<thead>
 				<tr>
 					<td>id</td>
-					<td>知识类型名称</td>
-					<td>知识类型编码</td>
+					<td>知识名称</td>
+					<td>更新时间</td>
+					<td>点击量</td>
 				</tr>
 			</thead>
 			<tbody id="courseData">

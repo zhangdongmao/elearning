@@ -7,4 +7,6 @@ import com.cms.dto.KnowledgeTypeDto;
 
 public interface IKnowledgeTypeService extends IBaseService<KnowledgeType>{
 	List<KnowledgeTypeDto> list();
+	
+	void save (KnowledgeTypeDto knowledgeTypeDto);
 }

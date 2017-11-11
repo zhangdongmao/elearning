@@ -1,7 +1,11 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -9,7 +13,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
 <base href="<%=basePath%>">
 
-<title>My JSP 'knowledge_list.jsp' starting page</title>
+<title>My JSP 'knowledgeType_list.jsp' starting page</title>
 
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
@@ -27,39 +31,42 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript">
 $(function(){
 	listCourse();
+	function edit(kt_id){
+		window.location.href = "<%=path%>/course/edit/list?knowledgeTypeId="+kt_id;
+	}
+	function del(ktid){
 	alert(1);
-	function edit(cu_id){
-		window.location.href = "<%=path%>/knowledgr/edit/list?knowledgrId="+knowledgr_id;
+		window.location.href = "<%=path%>/knowledgeType/del?ktid="+ktid;
+	}
+	function add(kt_id){
+		
+		window.location.href = "<%=path%>/course/add/list?ktid="+kt_id;
 	}
 	
-	function del(){
-	window.location.href = "<%=path%>/knowledgr/del?knowledgrId="+knowledgr_id;
-	};
-	
 	function listCourse(){
-				$.getJSON("<%=path%>/knowledge/list",function(data){
-					var courseData = $("#courseData");
+				$.getJSON("<%=path%>/knowledgeType/list",function(data){
+					var knowledgeTypeData = $("#knowledgeTypeData");
 					/* courseData.empty(); */
 					for(var i=0; i<data.length;i++){
 						var tr = "<tr>"+
 		    				"<td>"+data[i].id+"</td>"+
 		    				"<td>"+data[i].name+"</td>"+
-		    				"<td>"+data[i].updateTime+"</td>"+
-		    				"<td>"+data[i].browserCount+"</td>"+
-		    				
+		    				"<td>"+data[i].code+"</td>"+
+		    				"<td><a href='<%=path%>/knowledgeType/del?ktid='"+data[i].id+"><button type='button'>删除</button></a> &nbsp;&nbsp;"+
+		    				"<a href='<%=path%>/knowledgeType/edit?ktid='"+data[i].id+"><button type='button'>编辑</button></a></td>"+
 		    				"</tr>";
-		    			courseData.append(tr);
+		    				
+		    			knowledgeTypeData.append(tr);
 					}
 				});
 			}
 	})
 	
 </script>
-
 </head>
 
 <body>
-	<h2>知识管理-知识列表</h2>
+	<h2>知识管理-知识类型列表</h2>
 
 
 	<div class="container">
@@ -72,29 +79,13 @@ $(function(){
 			<thead>
 				<tr>
 					<td>id</td>
-					<td>知识名称</td>
-					<td>更新时间</td>
-					<td>点击量</td>
+					<td>知识类型名称</td>
+					<td>知识类型编码</td>
+					<td>操作</td>
 				</tr>
 			</thead>
-			<tbody id="courseData">
-				<%-- <c:forEach items="${courses}" var="cu">--%>
-					<%-- <input type="hidden" name="id" value="${cu.curType.id}"> 
-					<tr>
-						<td id="cuId">${cu.id}</td>
-						<td>${cu.code}</td>
-						<td>${cu.curName}</td>
-						<td>
-
-							<button type="button" onclick="edit(${cu.id })"
-								class="btn  btn-default ">编辑</button> &nbsp;&nbsp;
-
-							<button type="button" onclick="del(${cu.id })"
-								class="btn  btn-default ">删除</button>
-
-						</td>
-					</tr> --%>
-				<%-- </c:forEach> --%>
+			<tbody id="knowledgeTypeData">
+				
 			</tbody>
 		</table>
 
