@@ -1,11 +1,14 @@
 package com.cms.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import org.springframework.beans.BeanUtils;
@@ -13,7 +16,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.cms.beans.CurCourse;
 import com.cms.beans.CurTeacher;
@@ -112,61 +120,74 @@ public class CourseController {
 		return "/admin/result";
 	}
 
+	// 3.ajax请求
+		@RequestMapping("/upload3")
+		@ResponseBody
+		//MultipartHttpServletRequest -- 封装以后的request对象，包含了上传的文件的内容
+		public String upload3(HttpServletRequest request, HttpSession session) throws IllegalStateException, IOException {
+			if (request instanceof MultipartHttpServletRequest) {
+				MultipartHttpServletRequest mulRequest = (MultipartHttpServletRequest) request;
 
+				// 普通表单数据
+				Map<String, String[]> dataMap = mulRequest.getParameterMap();
+				String[] userName = dataMap.get("userName");
+				System.out.println("----userName----" + userName);
+
+				// 文件表单数据 -- 不管多少个文件，都通过次对象获取。key是表单的名字
+				Map<String, MultipartFile> fileMap = mulRequest.getFileMap();
+				
+				MultipartFile file1 = fileMap.get("curPhoto");
+				MultipartFile file2 = fileMap.get("file2");
+
+				// 文件保存路径
+				String realPath = request.getServletContext().getRealPath("/upload");
+				File fileSave = new File(realPath, file1.getOriginalFilename());
+
+				file1.transferTo(fileSave);
+
+				String imgePath = "upload/" + file1.getOriginalFilename();
+
+				return "{\"resultCode\":\"1\",\"imgePath\":\"" + imgePath + "\"}";
+			}
+			return "{\"resultCode\":\"-11\"}";
+		}
 	//保存课程功能
 	@RequestMapping("/saveCourse")
 	@ResponseBody // 返回json数据
-	public ResponseDto saveCourse(HttpServletRequest req, CurCourseDto course,String teacherName,String courseType) throws IOException, ServletException{
-		Part part = req.getPart("photo");
+	public ResponseDto saveCourse(HttpServletRequest request, HttpSession session, CurCourseDto course,String teacherName,String courseType) throws Exception{
+		System.out.println("-----------------pass-----------------------");
+		
 		ResponseDto response = new ResponseDto();
-		String fileName = "";
-		try {
+		
+		
+		if (request instanceof MultipartHttpServletRequest) {
+			System.out.println("-----------------pass2-----------------------");
+			MultipartHttpServletRequest mulRequest = (MultipartHttpServletRequest) request;
 
-			// 重建文件名称
-			// 1:根据不同的文件类型组装出一个全新的文件名，且不能重复UUID
-			fileName = UUID.randomUUID().toString();
-			// 2:上传的是什么类型的文件
-			String fileExtension = part.getHeader("Content-Type");
-			if (fileExtension.equalsIgnoreCase("image/tiff")) {
-				fileName += ".tif";
-			}
-			if (fileExtension.equalsIgnoreCase("image/fax")) {
-				fileName += ".fax";
-			}
-			if (fileExtension.equalsIgnoreCase("image/gif")) {
-				fileName += ".gif";
-			}
-			if (fileExtension.equalsIgnoreCase("image/x-icon")) {
-				fileName += ".ico";
-			}
-			if (fileExtension.equalsIgnoreCase("image/jpeg")) {
-				fileName += ".jpg";
-			}
-			if (fileExtension.equalsIgnoreCase("image/pnetvue")) {
-				fileName += ".net";
-			}
-			if (fileExtension.equalsIgnoreCase("image/png")) {
-				fileName += ".png";
-			}
-			if (fileExtension.equalsIgnoreCase("image/vnd.rn-realpix")) {
-				fileName += ".rp";
-			}
-			if (fileExtension.equalsIgnoreCase("image/vnd.wap.wbmp")) {
-				fileName += ".wbmp";
-			}
+			// 普通表单数据
+			Map<String, String[]> dataMap = mulRequest.getParameterMap();
+			String[] userName = dataMap.get("userName");
+			System.out.println("----userName----" + userName);
 
-			if (fileExtension.equalsIgnoreCase("image/bmp")) {
-				fileName += ".bmp";
-			}
-			//3:文件存哪里
-			String savePath = req.getServletContext().getRealPath("/upload");
-			part.write(savePath + "/" + fileName);
-		} catch (Exception e) {
-			e.printStackTrace();
-			response.setCode("422");
-			response.setMessage("图片上传失败!");
+			// 文件表单数据 -- 不管多少个文件，都通过次对象获取。key是表单的名字
+			Map<String, MultipartFile> fileMap = mulRequest.getFileMap();
+			
+			MultipartFile file1 = fileMap.get("curPhoto");
+			MultipartFile file2 = fileMap.get("file2");
+
+			// 文件保存路径
+			String realPath = request.getServletContext().getRealPath("/upload");
+			File fileSave = new File(realPath, file1.getOriginalFilename());
+
+			file1.transferTo(fileSave);
+
+			String imgePath = "upload/" + file1.getOriginalFilename();
+
+			
 		}
-
+		
+		
+		// 获取文件保存路径
 		try {
 			String teacherHsql="from CurTeacher t where t.name=?";
 			String typeHsql="from CurType c where c.name=?";
@@ -180,7 +201,7 @@ public class CourseController {
 			BeanUtils.copyProperties(course, curCourse);
 			curCourse.setCurType(curType);
 			curCourse.setCurTeacher(curTeacher);
-			curCourse.setCurPhoto(fileName);
+		//	curCourse.setCurPhoto(photoName);
 			courseService.save(curCourse);
 			response.setCode("200");
 			response.setMessage("保存成功");
@@ -189,7 +210,7 @@ public class CourseController {
 			response.setCode("422");
 			response.setMessage("保存失败:");
 		} 
-		
+
 		return response;
 	}
 }

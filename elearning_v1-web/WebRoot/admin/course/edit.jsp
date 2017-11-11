@@ -60,11 +60,11 @@
 
 							<form action="<%=path%>/course/edit" method="get"
 								class="form-horizontal" enctype="multipart/form-data">
-								<input type="text" name="curPhoto" id="curPhoto">
+								<input type="text" name="isPhoto" id="isPhoto">
 								<input type="text" name="recommend" id="recommend">
 								<input type="hidden" name="id" value="${cur.getId() }">
-								 <input type="hidden"name="teacherId" value="${teacher.getId() }"> 
-								 <input type="hidden" name="typeId" value="${type.getId() }">
+								<input type="hidden"name="teacherId" value="${teacher.getId() }"> 
+								<input type="hidden" name="typeId" value="${type.getId() }">
 
 
 								<div class="box-body">
@@ -191,13 +191,12 @@
 												<div class="col-xs-6">
 													<div id="mySwitchB" class="switch has-switch switch-mini">
 														<input type="checkbox" data-size="mini" id="switchB"
-														${cur.getCurPhoto() eq 'true'?"checked":""}
 															 data-on-color="primary"data-on-text="已确认" data-off-text="未确认"
 															data-off-color="warning">确认修改图片
 													</div>
-													 <input
-															id="selectImg" name="photo" type="file"
-															class="form-control" placeholder="0">
+														
+													 <input id="curPhoto" name="curPhoto" type="file"
+															class="form-control" placeholder="">
 												</div>
 												<div class="col-xs-6">
 													<img style="width: 180px;height: 135px" id="selectImgView"
@@ -292,42 +291,10 @@
 			
 		});
 		$('#mySwitchB input').on('switchChange.bootstrapSwitch', function(event, state) {
-			var a=$('#curPhoto').val(state);
+			var a=$('#isPhoto').val(state);
 			
 		});
-		/* $('#mySwitchB input').on('switchChange.bootstrapSwitch', function(event, state) {
-			var dataObjB = {};
-			dataObjB['id'] = this.id;
-			dataObjB['name'] = this.name;
-			dataObj['recommend'] = this.recommend;
-		}); */
-
-		/* $('#mySwitch').on('switch-change', function (e, data) {
-    var $el = $(data.el)
-      , value = data.value;
-    console.log(e, $el, value);
-}); */
-		/* $('input.switch').on('switchChange.bootstrapSwitch', function(event, state) {
-                    var dataObj ={};
-                    dataObj['id'] = this.id;
-                    dataObj['name'] = this.name;
-                    dataObj['level'] = state;
-                     $.get("/business/news/ajaxupdatelevel", dataObj, function (data) {
-                        data=JSON.parse(data);
-                        layer.msg(data.message,{time:1000});
-                    });
-                }); */
-
-		/* 	$('#switchB').on('switch-change', function (e, data) {
-		    var $el = $(data.el)
-		      , value = data.value;
-		      alert(e);
-		      alert($el);
-		      alert(value);
-		    console.log(e, $el, value); 
-		});*/
-
-
+		
 		//设置日期插件
 		$('#datetimepicker1').datetimepicker({
 			format : 'YYYY-MM-DD',
@@ -338,7 +305,7 @@
 			locale : moment.locale('zh-cn')
 		});
 
-		//        选择图片
+		/* //        选择图片
 		$('#selectImg').bind('change', function() {
 			//兼容性
 			var $file = $(this);
@@ -352,7 +319,7 @@
 			}
 			//返回结果
 			$('#selectImgView').attr('src', dataURL);
-		});
+		}); */
 
 		//初始化富文本
 		var ue = UM.getEditor('UMeditor', {

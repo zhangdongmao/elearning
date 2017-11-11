@@ -23,6 +23,14 @@
 		<property name="paramName" value="action"></property>
 		<property name="defaultMethodName" value="view"></property>
 	</bean>
+	<!-- 文件上传resolver -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="utf-8" />
+		<property name="maxUploadSize" value="100485760" />
+		<!-- 异常处理，需要设置 resolveLazily 为true -->
+		 <property name="resolveLazily" value="true" /> 
+	</bean>
 
 	<!-- 配置视图处理器 -->
 	<bean
@@ -34,6 +42,7 @@
 			<value>.jsp</value>
 		</property>
 	</bean>
+	
 
 	<!-- -配置注解的启动 在实际开发，使用注解方式，可以大量减少配置 -->
 	<!-- 配置json的支持 -->
@@ -58,7 +67,18 @@
 		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
 	</bean>
 
-
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<bean class="com.cms.interceptor.FileUploadInterceptor">
+				<!-- 1M 
+				设置上传文件的大小限制，为了不跟multipartResolver的限制冲突，
+				将multipartResolver大小限制设置的很大
+				-->
+				<property name="maxSize" value="1048576" />
+			</bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
 	<!-- 增加控制器的包的扫描 -->
 	<context:component-scan base-package="com.cms.controller"></context:component-scan>
 	

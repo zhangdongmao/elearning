@@ -22,11 +22,17 @@
 <link
 	href="<%=basePath%>res/bootstrap-datetimepicker/css/bootstrap-datetimepicker-standalone.css"
 	rel="stylesheet">
+<link href="<%=basePath%>admin/css/highlight.css" rel="stylesheet">
+
+<link
+	href="https://unpkg.com/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.css"
+	rel="stylesheet">
+<link href="https://getbootstrap.com/assets/css/docs.min.css"
+	rel="stylesheet">
+<link href="<%=basePath%>admin/css/main.css" rel="stylesheet">
 
 
-	
-		
-	
+
 
 
 </head>
@@ -53,8 +59,10 @@
 						</div>
 						<!-- /.box-header -->
 						<div class="box-body">
-						<form class="form-horizontal" id="formSave" enctype="multipart/form-data">
-							
+							<form class="form-horizontal" id="formSave"
+								enctype="multipart/form-data">
+								<input type="text" name="isPhoto" id="isPhoto"> <input
+									type="text" name="recommend" id="recommend">
 								<div class="box-body">
 									<div class="form-group">
 										<label class="col-xs-1 control-label">课程编号：</label>
@@ -134,8 +142,12 @@
 									</div>
 									<div class="form-group">
 										<label class="col-xs-1 control-label">推荐课程：</label>
-										<div class="switch" data-on="primary" data-off="info">
-											
+										<div id="mySwitchA" class="switch has-switch switch-mini">
+											<div class="switch-on switch-animate">
+												<input id="switchA" type="checkbox" data-on-color="primary"
+													data-off-color="warning" data-on-text="已推荐"
+													data-off-text="未推荐" data-size="mini">
+											</div>
 										</div>
 									</div>
 									<div class="form-group">
@@ -159,13 +171,16 @@
 										<div class="col-xs-6 input-group">
 											<div class="row">
 												<div class="col-xs-6">
-													<input type="checkbox" name="isPhoto" value="true">确认修改图片
-													<input id="selectImg" name="photo" type="file"
-														class="form-control" placeholder="0">
+													<div id="mySwitchB" class="switch has-switch switch-mini">
+														<input type="checkbox" data-size="mini" id="switchB"
+															data-on-color="primary" data-on-text="已确认"
+															data-off-text="未确认" data-off-color="warning">确认修改图片
+													</div>
+													<input id="curPhoto" name="curPhoto" type="file"
+														class="form-control" placeholder="">
 												</div>
 												<div class="col-xs-6">
-													<img style="width: 180px;height: 135px" id="selectImgView"
-														src="<%=basePath %>upload/${cu.getCurPhoto()}">
+													<img width="150px" id="myPhoto">
 												</div>
 											</div>
 										</div>
@@ -178,15 +193,12 @@
 												name="introduce" type="text/plain">${cur.getCurIntroduce()}</script>
 										</div>
 									</div>
-
 								</div>
 								<!-- /.box-body -->
 								<div class="box-footer">
 									<button id="btnSave" type="button" class="btn btn-default">添加数据</button>
 								</div>
 								<!-- /.box-footer -->
-							</form>
-
 						</div>
 						<!-- /.box-body -->
 					</div>
@@ -203,7 +215,10 @@
 	</div>
 	<!-- ./wrapper -->
 	<jsp:include page="/admin/js.jsp"></jsp:include>
-
+	<script src="<%=basePath%>admin/js/highlight.js"></script>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="https://unpkg.com/bootstrap-switch"></script>
+	<script src="<%=basePath%>admin/js/main.js"></script>
 	<script
 		src="<%=basePath%>res/bootstrap-datetimepicker/js/moment.min.js"></script>
 	<script
@@ -231,28 +246,18 @@
 
 
 	$(function() {
-
+	$('#mySwitchA input').on('switchChange.bootstrapSwitch', function(event, state) {
+			var a=$('#recommend').val(state);
+			
+		});
+		$('#mySwitchB input').on('switchChange.bootstrapSwitch', function(event, state) {
+			var a=$('#isPhoto').val(state);
+			
+		});
 		//设置日期插件
 		$('#datetimepicker1').datetimepicker({
 			format : 'YYYY-MM-DD',
 			locale : moment.locale('zh-cn')
-		});
-
-
-		//        选择图片
-		$('#selectImg').bind('change', function() {
-			//兼容性
-			var $file = $(this);
-			var fileObj = $file[0];
-			var windowURL = window.URL || window.webkitURL;
-			dataURL = windowURL.createObjectURL(fileObj.files[0]);
-			if (fileObj && fileObj.files && fileObj.files[0]) {
-				dataURL = windowURL.createObjectURL(fileObj.files[0]);
-			} else {
-				dataURL = $file.val();
-			}
-			//返回结果
-			$('#selectImgView').attr('src', dataURL);
 		});
 
 		//初始化富文本
@@ -267,23 +272,42 @@
 			]
 		});
 	});
-	
-	$(function(){
-		
-			$("#btnSave").click(function(){
-				var formDataStr =  $("#formSave").serialize();
-				var teacherName = $("#select2 option:selected")
-				var typeName = $("#select1 option:selected")
-				$.getJSON("<%=path%>/course/saveCourse?"+formDataStr,function(data){
-					/* $('#myModal').modal("hide");//隐藏模态框. */
-					if(data.code=='200'){
-						alert("保存成功!");//先有，后改进
-						
-						//刷新页面列表
-						listCourse();
-					}else
-						alert("保存失败!失败原因:"+data.message);//先有，后改进
-				});
+
+	$(function() {
+
+		$("#btnSave").click(function() {
+
+			var formDataStr = $("#formSave").serialize();
+			var teacherName = $("#select2 option:selected")
+			var typeName = $("#select1 option:selected")
+			var formData = $("#formSave")[0]; //获取jq对象对应的dom对象
+			var formData1 = new FormData(formData);
+			//提交图片 
+			$.ajax({
+				url : "<%=path%>/upload/upload3",
+				data : formData1,
+				type : "post",
+				processData : false,
+				contentType : false,
+				async : false,
+				cache : false,
+				success : function(data) {
+					console.log(data);
+					var jsoObj = JSON.parse(data);
+					$("#myPhoto").attr("src", "<%=path%>/" + jsoObj.imgePath)
+					$('#curPhoto').val(jsoObj.imgePath)
+				}
 			});
-		})
+
+			$.getJSON("<%=path%>/course/saveCourse?" + formDataStr, function(data) {
+				/* $('#myModal').modal("hide");//隐藏模态框. */
+				if (data.code == '200') {
+					alert("保存成功!"); //先有，后改进
+					//刷新页面列表
+					listCourse();
+				} else
+					alert("保存失败!失败原因:" + data.message); //先有，后改进
+			});
+		});
+	})
 </script>
