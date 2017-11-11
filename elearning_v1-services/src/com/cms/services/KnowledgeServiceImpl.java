@@ -12,7 +12,7 @@ import com.cms.dao.IKnowledgeDao;
 import com.cms.dto.KnowledgeDto;
 
 @Service
-public class KnowledgeService extends BaseServiceImpl<Knowledge> implements IKnowledgeService {
+public class KnowledgeServiceImpl extends BaseServiceImpl<Knowledge> implements IKnowledgeService {
 
 	private IKnowledgeDao Knowledge;
 

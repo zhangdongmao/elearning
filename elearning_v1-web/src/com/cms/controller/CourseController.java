@@ -106,8 +106,8 @@ public class CourseController {
 	public String delete(Integer curId,Model model){
 
 		courseService.deleteById(curId);
-		model.addAttribute("message", "你的课程信息删除成功！");
-		model.addAttribute("nextPageName", "课程管理功能");
+		model.addAttribute("message", "你的知识类型删除成功！");
+		model.addAttribute("nextPageName", "知识类型管理功能");
 		model.addAttribute("nextUrl", "/course/list");
 		return "/admin/result";
 	}
