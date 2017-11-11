@@ -36,38 +36,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div class="container">
     <div class="panel panel-primary">
         <div class="panel-heading text-center">
-            <h1>å­¦çä¿¡æ¯æ·»å </h1>
+            <h1>资讯类型添加</h1>
         </div>
-        <!--é¢æ¿åå®¹-->
-        <div class="panel-body">
-            <!--æ¥è¯¢é¨å-->
-            <div class="page-header">
-                <h3>è¯·è¾å¥å­¦ççä¿¡æ¯</h3>
-            </div>
-            <form class="form-horizontal">
+        	<div class="panel-body">
+            <form class="form-horizontal" id="formSave">
                 <div class="form-group">
-                    <label class="col-xs-2 control-label">å§åï¼</label>
+                    <label class="col-xs-2 control-label">名称</label>
                     <div class="input-group col-xs-6">
-                        <input type="text" name="name" class="form-control" placeholder="è¾å¥å­¦çå§å">
+                        <input type="text" name="name" class="form-control" placeholder="资讯类型名称">
                     </div>
                 </div>
 
-                </div>
-                </div>
-                <div class="form-group">
-                    <div class="input-group col-xs-offset-2 col-xs-6">
-                        <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span>æ·»å æ°æ®
-                        </button>
+         	</div>
+     </div>
+     <div class="form-group">
+          <div class="input-group col-xs-offset-2 col-xs-6">
+             <button id="btnSave" type="submit" class="btn btn-success" data-target="#myModal"><span class="glyphicon glyphicon-plus"></span>添加
+             </button>
 
-                        &nbsp;&nbsp;&nbsp;&nbsp;
-                        <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-log-out"></span>è¿å
-                        </button>
-                    </div>
-                </div>
-            </form>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+             <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-log-out"></span>返回
+             </button>
+          </div>
+      </div>
+           </form>
 
-        </div>
-    </div>
 </div>
 
 
