@@ -12,9 +12,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.cms.beans.CurCourse;
 import com.cms.beans.CurTeacher;
 import com.cms.beans.CurType;
+import com.cms.beans.UacRole;
+import com.cms.beans.UacUserinfor;
+import com.cms.dao.IUacRoleDao;
 import com.cms.dto.CurCourseDto;
 import com.cms.dto.CurTeacherDto;
 import com.cms.services.ICurTeacherService;
+import com.cms.services.IUacRoleService;
+import com.cms.services.IUacUserinforService;
 
 @Controller
 @RequestMapping(value="/teacher")
@@ -22,7 +27,10 @@ public class TeacherController {
 	//controller如果能够得到service实例，就表明spring的MVC和service已经集成成功.
 	@Autowired
 	private ICurTeacherService teacherService;
-	
+	@Autowired
+	private IUacRoleService uacRoleService;
+	@Autowired
+	private IUacUserinforService uacUserinforService;
 	
 
 //..................教师表查询................
@@ -43,7 +51,7 @@ public class TeacherController {
 		return "/admin/teacher/teacher_list";
 	}
 	
-	//添加数据
+	/*//.............................添加数据.......................
 	@RequestMapping("/saveTeacher")
 	@ResponseBody // 返回json数据
 	public CurTeacherDto saveTeacher(CurTeacher teacher){
@@ -59,7 +67,7 @@ public class TeacherController {
 		return response;
 		
 		
-	}
+	}*/
 	
 	//...............删除............................
 	@RequestMapping(value="/del")
@@ -73,6 +81,54 @@ public class TeacherController {
 	}
 	
 	
+	//....................编辑..............................
+	@RequestMapping(value="/edit/list")
+	public String editList(Model model,Integer curId){
+		
+		
+		String uacRoleHsql="from UacRole";
+		String teacherHsql = "from CurTeacher";
+		String uacUserinforHsql = "from UacUserinfor";
+
+		CurTeacher curTeacher=teacherService.get(curId);
+		
+		UacRole uacRole=uacRoleService.get(curTeacher.getUacRole().getId());
+		
+		UacUserinfor Userinfor=uacUserinforService.get(curTeacher.getUacUserinfor().getId());
+	   System.out.println(curTeacher.getPassword());
+		List<UacRole> roles = uacRoleService.list(uacRoleHsql);
+		List<UacUserinfor> user = uacUserinforService.list(uacUserinforHsql);
+			
+		model.addAttribute("cur", curTeacher);
+		model.addAttribute("role",uacRole);
+		model.addAttribute("user",Userinfor);
+		model.addAttribute("roles",roles);
+		model.addAttribute("users",user);
+		return "/admin/teacher/edit";
+	
+		
+	}
+	
+	@RequestMapping(value="/edit")
+	public String edit(CurTeacherDto curTeacherDto,Integer roleId,Integer userId,Model model){
+		
+		System.out.println(roleId+","+userId);
+		System.out.println(curTeacherDto.getId());
+		System.out.println(curTeacherDto.getPassword());
+		CurTeacher curTeacher = new CurTeacher();
+		BeanUtils.copyProperties(curTeacherDto, curTeacher);
+		UacRole uacRole=uacRoleService.get(roleId);
+		UacUserinfor uacUserinfor= uacUserinforService.get(userId);
+		curTeacher.setUacRole(uacRole);
+		curTeacher.setUacUserinfor(uacUserinfor);
+		teacherService.update(curTeacher);
+	
+		model.addAttribute("message", "你的课程信息修改成功！");
+		model.addAttribute("nextPageName", "课程管理功能");
+		model.addAttribute("nextUrl", "/teacher/list");
+		return "/admin/result";
+	}
+
 	
 	
 }
