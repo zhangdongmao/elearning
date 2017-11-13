@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>知识</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="../public_css/public.css">
+    <link rel="stylesheet" href="../public_css/headerAndFooter.css">
+    <link rel="stylesheet" href="css/knowledge.css">
+
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script src="js/knowledge.js"></script>
+
+</head>
+<body>
+<!--头部开始-->
+<header class="header">
+
+    <div class="nav navbar-default navbar-static-top">
+        <div class="container navContainer">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle " data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../index.html"><img class="logoImg" src="../assets/img/logo.png"></a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-left">
+                    <li class=" headerNav"><a href="../index.html">首页</a></li>
+                    <li class=" headerNav"><a href="../wkCourse/course.html">课程</a></li>
+                    <li class=" headerNav"><a href="../wkPlan/plan.html">计划</a></li>
+                    <li class=" headerNav"><a href="../wkTrain/train.html">培训</a></li>
+                    <li class="active headerNav"><a href="../wkKnowledge/knowledge.html">知识</a></li>
+                    <li class=" headerNav"><a href="../wkLecturer/lectuer.html">讲师</a></li>
+                    <li class=" headerNav"><a href="../wkInformation/information.html">资讯</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">我的课堂</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">
+                            <span class="headerDropdownImg"><img src="../assets/img/avatar.jpg"
+                                                                 class="img-circle headerDropdownImg"></span>
+                            普通学员
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">个人中心</a></li>
+                            <li><a href="#">账号设置</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">退出</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="glyphicon glyphicon-bullhorn hidden-lt-ie8"></span>
+                            <span class="badge badge-important">19</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="glyphicon glyphicon-envelope hidden-lt-ie8"></span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</header>
+<!--头部结束-->
+
+<!--内容区开始-->
+<div class="content">
+    <div class="container navContainer">
+        <div class="outerRowBox">
+            <div class="row">
+                <!--左边列内容-->
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <div class="well well-sm">
+                        <form action="" class="form formSearch">
+                            <!--<input type="text" id="s" name="s">-->
+                            <div class="input-group">
+                                <input type="text" name="keyword" class="form-control" placeholder="标题/内容">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="submit">
+                                        <i class="fa faSearch"></i>
+                                        搜索
+                                    </button>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.well -->
+                    <div class="clearfix"></div>
+                    <button class="btn  btn-block btn-primary" type="button" onclick="">
+                        <i class="icon-share"></i>
+                        我 要 分 享
+                    </button>
+                    <!--树形列表-->
+                    <ul id="tree" class="tree">
+                        <li id="tree_1">
+                            <button type="button" id="tree_1_switch" class="switch_root_minus"
+                                    onfocus="this.blur();"></button>
+                            <a id="tree_1_a" onclick="" href="#" target="mainFrame">
+                                <button type="button" id="tree_1_ico" title="" onfocus="this.blur();"
+                                        class=" ico_open"
+                                        style="background:url(../assets/img/folder_Close.gif) 0 0 no-repeat;"></button>
+                                <span id="tree_1_span">知识库分类</span>
+                            </a>
+                            <ul id="tree_1_ul" class="displayBlock">
+
+                                <li id="tree_2">
+                                    <button type="button" id="tree_2_switch" title="" class="switch_center_docu"
+                                            onfocus="this.blur();"></button>
+                                    <a id="tree_2_a" onclick="" href="#" target="mainFrame">
+                                        <button type="button" id="tree_2_ico" onfocus="this.blur();" class=" ico_docu"
+                                                style="background:url(../assets/img/folder_Close.gif) 0 0 no-repeat;"></button>
+                                        <span id="tree_2_span">IT前沿 (6)</span>
+                                    </a>
+                                    <ul id="tree_2_ul" class="line" style="display:none"></ul>
+                                </li>
+
+                                <li id="tree_3">
+                                    <button type="button" id="tree_3_switch" title="" class="switch_center_open"
+                                            onfocus="this.blur();"></button>
+                                    <a id="tree_3_a" onclick="" href="#" target="mainFrame" style="">
+                                        <button type="button" id="tree_3_ico" onfocus="this.blur();" class=" ico_close"
+                                                style="background:url(../assets/img/folder_Close.gif) 0 0 no-repeat;"></button>
+                                        <span id="tree_3_span">IT开发 (2)</span>
+                                    </a>
+                                    <ul id="tree_3_ul" class="line displayNone">
+                                        <li id="tree_4">
+                                            <button type="button" id="tree_4_switch" class="switch_bottom_docu"
+                                                    onfocus="this.blur();"></button>
+                                            <a id="tree_4_a" href="#" target="mainFrame">
+                                                <button type="button" id="tree_4_ico" onfocus="this.blur();"
+                                                        class=" ico_docu"
+                                                        style="background:url(../assets/img/folder_Close.gif) 0 0 no-repeat;"></button>
+                                                <span id="tree_4_span">互联网 (4)</span>
+                                            </a>
+                                            <ul id="tree_4_ul" class="" style="display:block"></ul>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li id="tree_5">
+                                    <button type="button" id="tree_5_switch" title="" class="switch_center_open"
+                                            onfocus="this.blur();"></button>
+                                    <a id="tree_5_a" href="#" target="mainFrame" style="">
+                                        <button type="button" id="tree_5_ico" onfocus="this.blur();" class="ico_close"
+                                                style="background:url(../assets/img/folder_Close.gif) 0 0 no-repeat;"></button>
+                                        <span id="tree_5_span">WEB前端课程 (1)</span>
+                                    </a>
+                                    <ul id="tree_5_ul" class="line displayNone">
+                                        <li id="tree_6">
+                                            <button type="button" id="tree_6_switch" title="" class="switch_center_docu"
+                                                    onfocus="this.blur();"></button>
+                                            <a id="tree_6_a" onclick="" href="#" target="mainFrame">
+                                                <button type="button" id="tree_6_ico" onfocus="this.blur();"
+                                                        class=" ico_docu"
+                                                        style="background:url(../assets/img/folder_Close.gif) 0 0 no-repeat;"></button>
+                                                <span id="tree_6_span">精通JavaScript (3)</span></a>
+                                            <ul id="tree_6_ul" class="line" style="display:block"></ul>
+                                        </li>
+                                        <li id="tree_7">
+                                            <button type="button" id="tree_7_switch" title="" class="switch_bottom_docu"
+                                                    onfocus="this.blur();"></button>
+                                            <a id="tree_7_a" href="#" target="mainFrame">
+                                                <button type="button" id="tree_7_ico" onfocus="this.blur();"
+                                                        class=" ico_docu"
+                                                        style="background:url(../assets/img/folder_Close.gif) 0 0 no-repeat;"></button>
+                                                <span id="tree_7_span">网页布局 (2)</span></a>
+                                            <ul id="tree_7_ul" class="" style="display:block"></ul>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li id="tree_8">
+                                    <button type="button" id="tree_8_switch" title="" class="switch_center_open"
+                                            onfocus="this.blur();"></button>
+                                    <a id="tree_8_a" href="#" target="mainFrame">
+                                        <button type="button" id="tree_8_ico" onfocus="this.blur();" class=" ico_close"
+                                                style="background:url(../assets/img/folder_Close.gif) 0 0 no-repeat;"></button>
+                                        <span id="tree_8_span">职业素质课程</span></a>
+                                    <ul id="tree_8_ul" class="line displayNone">
+                                        <li id="tree_9">
+                                            <button type="button" id="tree_9_switch" title="" class="switch_center_docu"
+                                                    onfocus="this.blur();"></button>
+                                            <a id="tree_9_a" onclick="" href="#" target="mainFrame" style="">
+                                                <button type="button" id="tree_9_ico" onfocus="this.blur();"
+                                                        class=" ico_docu"
+                                                        style="background:url(../assets/img/folder_Close.gif) 0 0 no-repeat;"></button>
+                                                <span id="tree_9_span">入职基本技能</span></a>
+                                            <ul id="tree_9_ul" class="line" style="display:block"></ul>
+                                        </li>
+                                        <li id="tree_10">
+                                            <button type="button" id="tree_10_switch" class="switch_bottom_docu"
+                                                    onfocus="this.blur();"></button>
+                                            <a id="tree_10_a" onclick="" href="#" target="mainFrame" style="">
+                                                <button type="button" id="tree_10_ico" onfocus="this.blur();"
+                                                        class=" ico_docu"
+                                                        style="background:url(../assets/img/folder_Close.gif) 0 0 no-repeat;"></button>
+                                                <span id="tree_10_span">职场礼仪</span></a>
+                                            <ul id="tree_10_ul" class="" style="display:block"></ul>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li id="tree_11">
+                                    <button type="button" id="tree_11_switch" title="" class="switch_center_open"
+                                            onfocus="this.blur();"></button>
+                                    <a id="tree_11_a" href="#" target="mainFrame" style="">
+                                        <button type="button" id="tree_11_ico" onfocus="this.blur();" class=" ico_close"
+                                                style="background:url(../assets/img/folder_Close.gif) 0 0 no-repeat;"></button>
+                                        <span id="tree_11_span">数据库学习</span></a>
+                                    <ul id="tree_11_ul" class="line displayNone">
+                                        <li id="tree_12">
+                                            <button type="button" id="tree_12_switch" class="switch_center_docu"
+                                                    onfocus="this.blur();"></button>
+                                            <a id="tree_12_a" href="#" target="mainFrame" style="">
+                                                <button type="button" id="tree_12_ico" onfocus="this.blur();"
+                                                        class=" ico_docu"
+                                                        style="background:url(../assets/img/folder_Close.gif) 0 0 no-repeat;"></button>
+                                                <span id="tree_12_span">MySQL</span></a>
+                                            <ul id="tree_12_ul" class="line" style="display:block"></ul>
+                                        </li>
+                                        <li id="tree_13">
+                                            <button type="button" id="tree_13_switch" title=""
+                                                    class="switch_center_docu"
+                                                    onfocus="this.blur();"></button>
+                                            <a id="tree_13_a" onclick="" href="#" target="mainFrame">
+                                                <button type="button" id="tree_13_ico" onfocus="this.blur();"
+                                                        class=" ico_docu"
+                                                        style="background:url(../assets/img/folder_Close.gif) 0 0 no-repeat;"></button>
+                                                <span id="tree_13_span">SQLServer</span></a>
+                                            <ul id="tree_13_ul" class="line" style="display:block"></ul>
+                                        </li>
+                                        <li id="tree_14">
+                                            <button type="button" id="tree_14_switch" class="switch_bottom_docu"
+                                                    onfocus="this.blur();"></button>
+                                            <a id="tree_14_a" href="#" target="mainFrame">
+                                                <button type="button" id="tree_14_ico" onfocus="this.blur();"
+                                                        class=" ico_docu"
+                                                        style="background:url(../assets/img/folder_Close.gif) 0 0 no-repeat;"></button>
+                                                <span id="tree_14_span">Oracle</span></a>
+                                            <ul id="tree_14_ul" class="" style="display:block"></ul>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li id="tree_15">
+                                    <button type="button" id="tree_15_switch" class="switch_center_open"
+                                            onfocus="this.blur();"></button>
+                                    <a id="tree_15_a" href="#" target="mainFrame">
+                                        <button type="button" id="tree_15_ico" onfocus="this.blur();" class=" ico_close"
+                                                style="background:url(../assets/img/folder_Close.gif) 0 0 no-repeat;"></button>
+                                        <span id="tree_15_span">Bug处理</span></a>
+                                    <ul id="tree_15_ul" class="line displayNone">
+                                        <li id="tree_16">
+                                            <button type="button" id="tree_16_switch" title=""
+                                                    class="switch_bottom_docu"
+                                                    onfocus="this.blur();"></button>
+                                            <a id="tree_16_a" onclick="" href="#" target="mainFrame" style="">
+                                                <button type="button" id="tree_16_ico" onfocus="this.blur();"
+                                                        class=" ico_docu"
+                                                        style="background:url(../assets/img/folder_Close.gif) 0 0 no-repeat;"></button>
+                                                <span id="tree_16_span">JS常见问题</span></a>
+                                            <ul id="tree_16_ul" class="" style="display:block"></ul>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li id="tree_17">
+                                    <button type="button" id="tree_17_switch" title="" class="switch_center_docu"
+                                            onfocus="this.blur();"></button>
+                                    <a id="tree_17_a" href="#" target="mainFrame" style="">
+                                        <button type="button" id="tree_17_ico" onfocus="this.blur();" class=" ico_docu"
+                                                style="background:url(../assets/img/folder_Close.gif) 0 0 no-repeat;"></button>
+                                        <span id="tree_17_span">PS学习视频</span></a>
+                                    <ul id="tree_17_ul" class="line" style="display:none"></ul>
+                                </li>
+
+                                <li id="tree_18">
+                                    <button type="button" id="tree_18_switch" title="" class="switch_center_open"
+                                            onfocus="this.blur();"></button>
+                                    <a id="tree_18_a" href="#" target="mainFrame" style="">
+                                        <button type="button" id="tree_18_ico" onfocus="this.blur();" class=" ico_close"
+                                                style="background:url(../assets/img/folder_Close.gif) 0 0 no-repeat;"></button>
+                                        <span id="tree_18_span">Java学习视频</span></a>
+                                    <ul id="tree_18_ul" class="line displayNone">
+                                        <li id="tree_19">
+                                            <button type="button" id="tree_19_switch" title=""
+                                                    class="switch_center_docu"
+                                                    onfocus="this.blur();"></button>
+                                            <a id="tree_19_a"
+                                               href="#"
+                                               target="mainFrame" style="">
+                                                <button type="button" id="tree_19_ico"
+                                                        onfocus="this.blur();" class=" ico_docu"
+                                                        style="background:url(../assets/img/folder_Close.gif) 0 0 no-repeat;"></button>
+                                                <span id="tree_19_span">JavaSE</span></a>
+                                            <ul id="tree_19_ul" class="line" style="display:block"></ul>
+                                        </li>
+                                        <li id="tree_20">
+                                            <button type="button" id="tree_20_switch" class="switch_center_docu"
+                                                    onfocus="this.blur();"></button>
+                                            <a id="tree_20_a" href="#" target="mainFrame">
+                                                <button type="button" id="tree_20_ico" onfocus="this.blur();"
+                                                        class=" ico_docu"
+                                                        style="background:url(../assets/img/folder_Close.gif) 0 0 no-repeat;"></button>
+                                                <span id="tree_20_span">JavaEE</span></a>
+                                            <ul id="tree_20_ul" class="line" style="display:block"></ul>
+                                        </li>
+                                        <li id="tree_21">
+                                            <button type="button" id="tree_21_switch" title=""
+                                                    class="switch_center_docu" onfocus="this.blur();"></button>
+                                            <a id="tree_21_a" onclick="" href="#" target="mainFrame" style="">
+                                                <button type="button" id="tree_21_ico" onfocus="this.blur();"
+                                                        class=" ico_docu"
+                                                        style="background:url(../assets/img/folder_Close.gif) 0 0 no-repeat;"></button>
+                                                <span id="tree_21_span">框架学习</span></a>
+                                            <ul id="tree_21_ul" class="line" style="display:block"></ul>
+                                        </li>
+                                        <li id="tree_22">
+                                            <button type="button" id="tree_22_switch" title=""
+                                                    class="switch_bottom_docu" onfocus="this.blur();"></button>
+                                            <a id="tree_22_a" onclick="" href="#" target="mainFrame" style="">
+                                                <button type="button" id="tree_22_ico" onfocus="this.blur();"
+                                                        class=" ico_docu"
+                                                        style="background:url(../assets/img/folder_Close.gif) 0 0 no-repeat;"></button>
+                                                <span id="tree_22_span">项目开发</span></a>
+                                            <ul id="tree_22_ul" class="" style="display:block"></ul>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li id="tree_23">
+                                    <button type="button" id="tree_23_switch" title="" class="switch_center_open"
+                                            onfocus="this.blur();"></button>
+                                    <a id="tree_23_a" href="#" target="mainFrame" style="">
+                                        <button type="button" id="tree_23_ico" onfocus="this.blur();" class=" ico_close"
+                                                style="background:url(../assets/img/folder_Close.gif) 0 0 no-repeat;"></button>
+                                        <span id="tree_23_span">开发与设计</span></a>
+                                    <ul id="tree_23_ul" class="line displayNone">
+                                        <li id="tree_24">
+                                            <button type="button" id="tree_24_switch" title=""
+                                                    class="switch_center_docu" onfocus="this.blur();"></button>
+                                            <a id="tree_24_a" onclick="" href="#" target="mainFrame" style="">
+                                                <button type="button" id="tree_24_ico" onfocus="this.blur();"
+                                                        class=" ico_docu"
+                                                        style="background:url(../assets/img/folder_Close.gif) 0 0 no-repeat;"></button>
+                                                <span id="tree_24_span">设计模式 (2)</span></a>
+                                            <ul id="tree_24_ul" class="line" style="display:block"></ul>
+                                        </li>
+                                        <li id="tree_25">
+                                            <button type="button" id="tree_25_switch" title=""
+                                                    class="switch_bottom_docu" onfocus="this.blur();"></button>
+                                            <a id="tree_25_a" onclick="" href="#" target="mainFrame" style="">
+                                                <button type="button" id="tree_25_ico" onfocus="this.blur();"
+                                                        class=" ico_docu"
+                                                        style="background:url(../assets/img/folder_Close.gif) 0 0 no-repeat;"></button>
+                                                <span id="tree_25_span">项目经验分享</span></a>
+                                            <ul id="tree_25_ul" class="" style="display:block"></ul>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li id="tree_26">
+                                    <button type="button" id="tree_26_switch" class="switch_bottom_open"
+                                            onfocus="this.blur();"></button>
+                                    <a id="tree_26_a" href="#" target="mainFrame" style="">
+                                        <button type="button" id="tree_26_ico" onfocus="this.blur();" class=" ico_close"
+                                                style="background:url(../assets/img/folder_Close.gif) 0 0 no-repeat;"></button>
+                                        <span id="tree_26_span">公司动态</span></a>
+                                    <ul id="tree_26_ul" class="displayNone">
+                                        <li id="tree_27">
+                                            <button type="button" id="tree_27_switch" title=""
+                                                    class="switch_center_docu"
+                                                    onfocus="this.blur();"></button>
+                                            <a id="tree_27_a" href="#" target="mainFrame" style="">
+                                                <button type="button" id="tree_27_ico" onfocus="this.blur();"
+                                                        class=" ico_docu"
+                                                        style="background:url(../assets/img/folder_Close.gif) 0 0 no-repeat;"></button>
+                                                <span id="tree_27_span">大事件</span></a>
+                                            <ul id="tree_27_ul" class="line" style="display:block"></ul>
+                                        </li>
+                                        <li id="tree_28">
+                                            <button type="button" id="tree_28_switch" class="switch_bottom_docu"
+                                                    onfocus="this.blur();"></button>
+                                            <a id="tree_28_a" href="#" target="mainFrame" style="">
+                                                <button type="button" id="tree_28_ico" onfocus="this.blur();"
+                                                        class=" ico_docu"
+                                                        style="background:url(../assets/img/folder_Close.gif) 0 0 no-repeat;"></button>
+                                                <span id="tree_28_span">部门动态</span></a>
+                                            <ul id="tree_28_ul" class="" style="display:block"></ul>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <!--右边列内容-->
+                <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                    <!--列表开始-->
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th style="width: 45px">类型</th>
+                                <th>名称</th>
+                                <th style="width: 110px">更新时间</th>
+                                <th style="width: 80px">发布者</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td valign="top"><img src="../assets/img/file_html.gif" style="vertical-align:middle"></td>
+                                <td>
+                                    <a href="#" title="我们为什么需要动效设计">
+                                        我们为什么需要动效设计
+                                    </a>
+                                </td>
+                                <td style="text-align: center">2015-06-14</td>
+                                <td style="text-align: center">Mike</td>
+                            </tr>
+
+                            <tr>
+                                <td valign="top"><img src="../assets/img/file_html.gif" style="vertical-align:middle" hspace="3"></td>
+                                <td>
+                                    <a href="#" target="_blank" title="Keynote  快速制作动效">Keynote 快速制作动效</a>
+                                </td>
+                                <td style="text-align: center">2015-06-25</td>
+                                <td style="text-align: center">管理员</td>
+                            </tr>
+
+                            <tr>
+                                <td valign="top"><img src="../assets/img/file_html.gif" style="vertical-align:middle" hspace="3"></td>
+                                <td>
+                                    <a href="#" target="_blank" title="师资+内容+平台，职业教育在线化生态的三板斧">
+                                        师资+内容+平台，职业教育在线化生态的三板斧
+                                    </a>
+                                </td>
+                                <td style="text-align: center">2015-06-16</td>
+                                <td style="text-align: center">root</td>
+                            </tr>
+
+                            <tr>
+                                <td valign="top"><img src="../assets/img/file_flash.gif" style="vertical-align:middle" hspace="3"></td>
+                                <td><a href="#" title="用户操作指南">用户操作指南</a>
+                                </td>
+                                <td style="text-align: center">2015-07-16</td>
+                                <td style="text-align: center">root</td>
+                            </tr>
+
+                            <tr>
+                                <td valign="top"><img src="../assets/img/file_flash.gif" style="vertical-align:middle" hspace="3"></td>
+                                <td><a href="#" title="数学知识库">数学知识库</a>
+                                </td>
+                                <td style="text-align: center">2015-07-17</td>
+                                <td style="text-align: center">root</td>
+                            </tr>
+
+                            <tr>
+                                <td valign="top"><img src="../assets/img/file_html.gif" style="vertical-align:middle" hspace="3"></td>
+                                <td>
+                                    <a href="#" class="kb_item" data-toggle="popover" title="浅谈产品界面视觉上的轻设计（文章）" data-content="什么是轻设计？没有具体答案，也不是新鲜定义。轻设计已经被相关设计人士提起并运用有2年左右了，但是轻设计一直到现在仍然被常常提起，...">
+                                        浅谈产品界面视觉上的轻设计（文章）
+                                    </a>
+                                </td>
+                                <td style="text-align: center">2013-12-06</td>
+                                <td style="text-align: center">root</td>
+                            </tr>
+
+                            <tr>
+                                <td valign="top"><img src="../assets/img/file_html.gif" style="vertical-align:middle" hspace="3"></td>
+                                <td><a href="#" target="_blank" title="崛起中的九大HTML5开发工具（图文 ）">
+                                    崛起中的九大HTML5开发工具（图文 ）
+                                </a>
+                                </td>
+                                <td style="text-align: center">2012-08-30</td>
+                                <td style="text-align: center">root</td>
+                            </tr>
+
+                            <tr>
+                                <td valign="top"><img src="../assets/img/file_html.gif" style="vertical-align:middle" hspace="3"></td>
+                                <td><a href="#" title="APP设计中便捷的单手操作">APP设计中便捷的单手操作</a>
+                                </td>
+                                <td style="text-align: center">2014-05-19</td>
+                                <td style="text-align: center">admin</td>
+                            </tr>
+
+                            <tr>
+                                <td valign="top"><img src="../assets/img/file_html.gif" style="vertical-align:middle" hspace="3"></td>
+                                <td><a href="#" class="kb_item" data-toggle="popover" title="超平面的触觉设计（文档附件）" data-content="超平面的触觉设计">超平面的触觉设计（文档附件）</a>
+                                </td>
+                                <td style="text-align: center">2014-05-18</td>
+                                <td style="text-align: center">root</td>
+                            </tr>
+
+                            <tr>
+                                <td valign="top"><img src="../assets/img/file_html.gif" style="vertical-align:middle" hspace="3"></td>
+                                <td><a href="#" target="_blank"
+                                       title="牛人绘制巨型超逼真3D立体画 （视频）">牛人绘制巨型超逼真3D立体画 （视频）</a>
+                                </td>
+                                <td style="text-align: center">2014-05-18</td>
+                                <td style="text-align: center">admin</td>
+                            </tr>
+
+                            <tr>
+                                <td valign="top"><img src="../assets/img/file_html.gif" style="vertical-align:middle" hspace="3"></td>
+                                <td><a href="#" target="_blank" title="安卓视频第三期更新视频">安卓视频第三期更新视频</a>
+                                </td>
+                                <td style="text-align: center">2015-06-25</td>
+                                <td style="text-align: center">root</td>
+                            </tr>
+
+                            <tr>
+                                <td valign="top"><img src="../assets/img/file_html.gif" style="vertical-align:middle" hspace="3"></td>
+                                <td><a href="#" target="_blank" title="视频课件">视频课件</a>
+                                </td>
+                                <td style="text-align: center">2015-07-17</td>
+                                <td style="text-align: center">root</td>
+                            </tr>
+
+                            <tr>
+                                <td valign="top"><img src="../assets/img/file_html.gif" style="vertical-align:middle" hspace="3"></td>
+                                <td><a href="#" title="云计算未来发展">云计算未来发展</a>
+                                </td>
+                                <td style="text-align: center">2015-07-17</td>
+                                <td style="text-align: center">root</td>
+                            </tr>
+
+                            <tr>
+                                <td valign="top"><img src="../assets/img/file_html.gif" style="vertical-align:middle" hspace="3"></td>
+                                <td><a href="#" title="JS学习课件">JS学习课件</a>
+                                </td>
+                                <td style="text-align: center">2015-07-17</td>
+                                <td style="text-align: center">root</td>
+                            </tr>
+
+                            <tr>
+                                <td valign="top"><img src="../assets/img/file_html.gif" style="vertical-align:middle" hspace="3"></td>
+                                <td><a href="#" target="_blank" title="一段直接录入信息">一段直接录入信息</a>
+                                </td>
+                                <td style="text-align: center">2015-07-17</td>
+                                <td style="text-align: center">root</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                    <!--列表结束-->
+                    <div class="clearfix"></div>
+                    <!--分页按钮-->
+                    <div class="bottomBtn">
+                        <ul class="pagination">
+                            <li class="active"><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">下一页</a></li>
+                        </ul>
+						<span>
+                            记录总数:
+                            <b>20</b>
+                        </span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--内容区结束-->
+
+<!--脚注部分开始-->
+<div class="footer">
+    <div class="container navContainer">
+        <div class="footer-links">
+            <ul class="site-footer-links">
+                <li><a href="#">关于我们</a></li>
+                <li><a href="#">联系我们</a></li>
+                <li><a href="#">帮助</a></li>
+                <li>
+                    <a href="#">
+                        下载客户端
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!--清除浮动-->
+        <div class="clearfix"></div>
+        <div class="footer-copyright">
+            Powered by
+            <a href="http://www.jingjichang.com.cn" target="_blank">在线学习平台</a>
+            ©2013-2017 &nbsp;
+        </div>
+    </div>
+</div>
+<!--脚注部分结束-->
+
+
+</body>
+</html>

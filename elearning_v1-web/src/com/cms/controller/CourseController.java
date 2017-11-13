@@ -3,7 +3,6 @@ package com.cms.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.ServletException;
@@ -18,9 +17,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MaxUploadSizeExceededException;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.cms.beans.CurCourse;
@@ -114,80 +110,20 @@ public class CourseController {
 	public String delete(Integer curId,Model model){
 
 		courseService.deleteById(curId);
-		model.addAttribute("message", "你的知识类型删除成功！");
-		model.addAttribute("nextPageName", "知识类型管理功能");
+		model.addAttribute("message", "你的课程信息删除成功！");
+		model.addAttribute("nextPageName", "课程管理功能");
 		model.addAttribute("nextUrl", "/course/list");
 		return "/admin/result";
 	}
 
-	// 3.ajax请求
-		@RequestMapping("/upload3")
-		@ResponseBody
-		//MultipartHttpServletRequest -- 封装以后的request对象，包含了上传的文件的内容
-		public String upload3(HttpServletRequest request, HttpSession session) throws IllegalStateException, IOException {
-			if (request instanceof MultipartHttpServletRequest) {
-				MultipartHttpServletRequest mulRequest = (MultipartHttpServletRequest) request;
 
-				// 普通表单数据
-				Map<String, String[]> dataMap = mulRequest.getParameterMap();
-				String[] userName = dataMap.get("userName");
-				System.out.println("----userName----" + userName);
-
-				// 文件表单数据 -- 不管多少个文件，都通过次对象获取。key是表单的名字
-				Map<String, MultipartFile> fileMap = mulRequest.getFileMap();
-				
-				MultipartFile file1 = fileMap.get("curPhoto");
-				MultipartFile file2 = fileMap.get("file2");
-
-				// 文件保存路径
-				String realPath = request.getServletContext().getRealPath("/upload");
-				File fileSave = new File(realPath, file1.getOriginalFilename());
-
-				file1.transferTo(fileSave);
-
-				String imgePath = "upload/" + file1.getOriginalFilename();
-
-				return "{\"resultCode\":\"1\",\"imgePath\":\"" + imgePath + "\"}";
-			}
-			return "{\"resultCode\":\"-11\"}";
-		}
 	//保存课程功能
 	@RequestMapping("/saveCourse")
 	@ResponseBody // 返回json数据
-	public ResponseDto saveCourse(HttpServletRequest request, HttpSession session, CurCourseDto course,String teacherName,String courseType) throws Exception{
-		System.out.println("-----------------pass-----------------------");
-		
+	public ResponseDto saveCourse(CurCourseDto course,String teacherName,String courseType){
+	
 		ResponseDto response = new ResponseDto();
 		
-		
-		if (request instanceof MultipartHttpServletRequest) {
-			System.out.println("-----------------pass2-----------------------");
-			MultipartHttpServletRequest mulRequest = (MultipartHttpServletRequest) request;
-
-			// 普通表单数据
-			Map<String, String[]> dataMap = mulRequest.getParameterMap();
-			String[] userName = dataMap.get("userName");
-			System.out.println("----userName----" + userName);
-
-			// 文件表单数据 -- 不管多少个文件，都通过次对象获取。key是表单的名字
-			Map<String, MultipartFile> fileMap = mulRequest.getFileMap();
-			
-			MultipartFile file1 = fileMap.get("curPhoto");
-			MultipartFile file2 = fileMap.get("file2");
-
-			// 文件保存路径
-			String realPath = request.getServletContext().getRealPath("/upload");
-			File fileSave = new File(realPath, file1.getOriginalFilename());
-
-			file1.transferTo(fileSave);
-
-			String imgePath = "upload/" + file1.getOriginalFilename();
-
-			
-		}
-		
-		
-		// 获取文件保存路径
 		try {
 			String teacherHsql="from CurTeacher t where t.name=?";
 			String typeHsql="from CurType c where c.name=?";
@@ -197,11 +133,12 @@ public class CourseController {
 			CurType curType = curTypes.get(0);
 			System.out.println(curTeacher.getName());
 			System.out.println(curType.getName());
+			System.out.println(course.getCurIntroduce());
 			CurCourse curCourse = new CurCourse();
 			BeanUtils.copyProperties(course, curCourse);
 			curCourse.setCurType(curType);
 			curCourse.setCurTeacher(curTeacher);
-		//	curCourse.setCurPhoto(photoName);
+			
 			courseService.save(curCourse);
 			response.setCode("200");
 			response.setMessage("保存成功");
@@ -210,7 +147,7 @@ public class CourseController {
 			response.setCode("422");
 			response.setMessage("保存失败:");
 		} 
-
+		
 		return response;
 	}
 }

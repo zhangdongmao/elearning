@@ -14,14 +14,12 @@
 
 	<!-- 配置依赖 -->
 	<dependencies>
-		<dependency>
-			<groupId>commons-fileupload</groupId>
-			<artifactId>commons-fileupload</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-		</dependency>
+<dependency>
+    <groupId>commons-fileupload</groupId>
+    <artifactId>commons-fileupload</artifactId>
+    
+</dependency>
+	
 		<dependency>
 			<groupId>com.cms</groupId>
 			<artifactId>elearning_v1-services</artifactId>

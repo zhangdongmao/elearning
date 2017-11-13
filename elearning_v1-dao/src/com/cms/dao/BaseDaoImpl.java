@@ -11,6 +11,8 @@ import org.hibernate.Session;
 import org.springframework.orm.hibernate4.HibernateCallback;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 
+import com.cms.beans.CurCourse;
+
 public class BaseDaoImpl<T> extends HibernateDaoSupport implements IBaseDao<T>  {
 	private Class<T> entityClass;
 	
@@ -62,7 +64,7 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements IBaseDao<T>  
 
 			@Override
 			public List<T> doInHibernate(Session session) throws HibernateException {
-				
+				System.out.println("-----pass-----------");
 				Query query = session.createQuery(hsql);
 				
 				//设置hql参数
