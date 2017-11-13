@@ -98,10 +98,9 @@
 									<div class="form-group">
 											<label class="col-xs-1 control-label">资讯内容：</label>
 											<div class="col-xs-10 input-group">
-												<script style="height:400px;width:1000px" id="UMeditor" name="contents"
-													type="text/plain">
-        											这里写你的初始化内容
-                                            </script>
+												<script style="height:400px;width:1000px" id="UMeditor" 
+												name="contents" type="text/plain">
+                                            	</script>
 											</div>
 										</div>
 
