@@ -36,9 +36,9 @@ public class InformationServiceImpl extends BaseServiceImpl<Information> impleme
 		
 		List<InformationDto> informationDtos=new ArrayList();
 		for (Information information : informations) {
-			InformationDto informationDto=new InformationDto();
-			BeanUtils.copyProperties(informations, informationDto);
-			informationDtos.add(informationDto);
+			InformationDto ifDto=new InformationDto();
+			BeanUtils.copyProperties(informations, ifDto);
+			informationDtos.add(ifDto);
 		}
 		return informationDtos;
 	}
