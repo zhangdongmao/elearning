@@ -41,7 +41,7 @@ body{overflow-x:hidden; background:url(images/main/leftbg.jpg) left top repeat-y
       <div>
         <span>资讯管理</span>
         <a href="<%=path %>/informationType/toList" target="mainFrame" onFocus="this.blur()">资讯类型</a>
-        <a href="<%=path %>/information/toList" target="mainFrame" onFocus="this.blur()">资讯</a>
+        <a href="<%=path %>/information/list" target="mainFrame" onFocus="this.blur()">资讯</a>
         <a href="main_info.html" target="mainFrame" onFocus="this.blur()">角色管理</a>
         <a href="main.html" target="mainFrame" onFocus="this.blur()">自定义权限</a>
       </div>
