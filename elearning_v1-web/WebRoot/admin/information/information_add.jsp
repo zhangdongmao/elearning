@@ -36,7 +36,7 @@
 									<div class="form-group">
 										<label class="col-xs-1 control-label">资讯类型：</label>
 										<div class="col-xs-6 input-group">
-											<select id="select1" name="courseType" class="form-control">
+											<select id="select1" name="informationType" class="form-control">
 												<c:forEach items="${itDtos }" var="itDtos">
 													<option id="typeName">${itDtos.name}</option>
 												</c:forEach>
@@ -107,7 +107,7 @@
 								</div>
 								<!-- /.box-body -->
 								<div class="box-footer">
-									<button id="btnSave" type="button" class="btn btn-default">添加数据</button>
+									<button id="btnSavke" type="button" class="btn btn-default">添加数据</button>
 								</div>
 								<!-- /.box-footer -->
 							</form>
@@ -191,7 +191,7 @@
 			$("#btnSave").click(function(){
 				var formDataStr =  $("#formSave").serialize();
 				var typeName = $("#select1 option:selected")
-				$.getJSON("<%=path%>/course/save?"+formDataStr,function(data){
+				$.getJSON("<%=path%>/information/save?"+formDataStr,function(data){
 					/* $('#myModal').modal("hide");//隐藏模态框. */
 					if(data.code=='200'){
 						alert("保存成功!");//先有，后改进
