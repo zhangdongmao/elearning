@@ -81,12 +81,6 @@ public class BaseServiceImpl<T> implements IBaseService<T>{
 			baseDao.closeSession();
 		}
 
-		@Override
-		public List<T> queryPage(String hsql, int pageNo, int pageSize, Object... params) {
-			
-			return baseDao.queryPage(hsql, pageNo, pageSize, params);
-		}
-
 		
 
 	

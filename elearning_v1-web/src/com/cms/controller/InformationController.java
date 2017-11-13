@@ -7,27 +7,27 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.cms.dto.InformationDto;
+import com.cms.beans.Information;
 import com.cms.services.IInformationService;
-import com.cms.services.IInformationTypeService;
 
 @Controller
-@RequestMapping(value = "/information")
+@RequestMapping(value="/information")
 public class InformationController {
 
 	@Autowired
 	private IInformationService informationService;
 	
-	@Autowired
-	private IInformationTypeService itService;
-
-	@RequestMapping("/list")
-	public String listInformation(Model model) {
-
-		List<InformationDto> ifDto = informationService.list();
-
-		model.addAttribute("ifDto", ifDto);
+	@RequestMapping(value="/toList")
+	public String listInformation(Model model){
+		String hsql="from Information";
+		List<Information> informations=informationService.list(hsql);
+		
+		for (Information information : informations) {
+			System.out.println(information);
+		}
+		
+		model.addAttribute("informations",informations);
+		
 		return "/admin/information/information_list";
 	}
-
 }

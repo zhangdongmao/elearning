@@ -7,14 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cms.beans.CurTeacher;
 import com.cms.beans.UacRole;
 import com.cms.beans.UacUserinfor;
 import com.cms.dto.CurTeacherDto;
-import com.cms.dto.UacRoleDto;
-import com.cms.dto.UacUserinforDto;
 import com.cms.services.ICurTeacherService;
+import com.cms.services.IUacRoleService;
+import com.cms.services.IUacUserinforService;
 
 @Controller
 @RequestMapping(value="/teacher")
@@ -46,15 +47,25 @@ public class TeacherController {
 		return "/admin/teacher/teacher_list";
 	}
 	
+
 	//.............................添加数据.......................
-	@RequestMapping(value="/add/list")
-	public String addList(Model model){
-		List<UacRoleDto> roles = uacRoleService.list();
-		List<UacUserinforDto> user = uacUserinforService.list();
-		model.addAttribute("role",roles);
-		model.addAttribute("users",user);
-		return "/admin/teacher/add";
+	@RequestMapping("/saveTeacher")
+  	@ResponseBody // 返回json数据
+	public CurTeacherDto saveTeacher(CurTeacher teacher){
+		CurTeacherDto response = new CurTeacherDto();
+		try {
+			teacherService.save(teacher);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return response;
+		
+		
 	}
+
 	
 	//...............删除............................
 	@RequestMapping(value="/del")
