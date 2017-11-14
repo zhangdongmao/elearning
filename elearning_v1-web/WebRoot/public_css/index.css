@@ -1,0 +1,233 @@
+
+/*导航*/
+#carousel{
+    max-width: 1070px;
+    max-height: 300px;
+   margin-bottom: 20px;
+
+}
+.course-content{
+    max-width: 1070px;
+}
+.title-more{
+    display: block;
+    color: #ccc !important;
+    font-size: 13px;
+}
+.recommend-title{
+    display: block;
+    border-left:5px solid cornflowerblue;
+}
+.course-img{
+    display: block;
+    position: relative;
+}
+.course-img img{
+    width: 100%;
+}
+.course-img h3{
+    /*display: block;*/
+    position: absolute;
+    bottom: 0;
+    background: rgba(0,0,0,0.4);
+    width: 100%;
+    color: white;
+    font-size: 17px;
+    text-align: center;
+    padding: 3px 0 3px 0;
+    margin: 0;
+}
+
+
+
+
+.course-main{
+    margin-bottom: 20px;
+}
+.course-box{
+    border: 1px solid #ccc;
+    padding: 5px 5px 5px 5px;
+    border-radius: 4px;
+
+
+}
+
+.course-box:hover {
+    box-shadow: black 0 0 10px;
+}
+
+.course-box .course-des{
+    padding: 10px 0 10px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    /*display: inline-block !important;*/
+    height: 80px;
+
+    width:100%;
+
+
+
+}
+.course-box .course-des>p{
+    height:100px
+}
+
+.course-box .evaluate{
+    display: block;
+    padding: 8px 0 8px 0;
+}
+
+.course-box .evaluate .course-icon{
+    opacity: 0.6;
+
+}
+.course-box .evaluate .star{
+    display: inline-block;
+    background: url("../assets/img/stars.png");
+    width: 80px;
+    height: 16px;
+}
+.course-box .evaluate .star-1{
+    background-position-y:-64px;
+}
+.course-box .evaluate .star-2{
+    background-position-y:-48px;
+}
+.course-box .evaluate .star-3{
+    background-position-y:-32px;
+}
+.course-box .evaluate .star-4{
+    background-position-y:-16px;
+}
+.course-box .evaluate .star-5{
+    background-position-y:0;
+}
+
+.course-box .evaluate .evaluate-count{
+    display: inline-block;
+    position: absolute;
+    right: 20px;
+    opacity: 0.7;
+}
+
+.course-box .teacher-des{
+    display: inline-block;
+    position: absolute;
+    right: 20px;
+
+
+}
+
+
+.footer{
+    background: #f4f4f4;
+    padding:50px 0 50px 0;
+    text-align: center;
+}
+
+.footer li{
+    display: inline-block;
+    margin-right: 20px;
+}
+
+a{
+    text-decoration: none !important;
+
+}
+li{
+    list-style-type: none
+}
+
+
+/*课程页面样式*/
+
+.course-title{
+    text-align: center;
+}
+
+.padding-top{
+    padding-top:15px;
+}
+
+.box-tips{
+    box-shadow: rgba(0,0,0,0.4) 0 0 5px;
+    border-radius:4px;
+    max-width: 96.5%;
+    margin-bottom:-10px;
+}
+
+.box-tips>ul>li>a{
+    padding:5px;
+    color: black;
+}
+
+.box-course{
+    max-width:100%;
+    padding:10px 0 0 0;
+}
+
+.box-course .course-box{
+    margin-top:10px;
+    margin-bottom:20px;
+}
+
+/*课程详细*/
+
+
+.teacher{
+    width: 100%;
+    height:100%;
+
+    padding:0;
+}
+
+.teacher-img{
+    display: inline-block;
+    width: 50%;
+    height:100%;
+
+}
+
+.teacher img{
+    width: 100%;
+    height: 100%;
+}
+
+.teacher-name{
+    display: inline-block;
+    width: 47%;
+    height: 100%;
+
+}
+
+.teacher-detail{
+    margin-top:15px;
+    border-top:1px solid rgba(0,0,0,0.2);
+    padding-top:15px;
+}
+
+.afterclass{
+    display: block;
+
+}
+
+.media-list .media {
+    border-bottom: 1px solid #eee;
+    padding: 0 15px 15px 15px
+}
+.media-list .media:last-child{
+    border-bottom: transparent;
+}
+
+.btn-mini{
+    font-size: 12px;
+    padding: 2px 8px;
+}
+
+.table-hover tbody tr:hover{
+    background: rgba(204, 204, 204, 0.2);
+
+}
+
+
+
+

@@ -88,22 +88,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					var tr = "<tr>"+
 	    				"<td>"+data[i].id+"</td>"+
 	    				"<td>"+data[i].name+"</td>"+
-	    				"<td><button  class='btn btn-primary' type='button' onclick='javascript:editIT("+data[i].id+")'>编辑</button>&nbsp"+
-	    				"<button  class='btn btn-primary' type='button' onclick='javascript:deleteIT("+data[i].id+")'>删除</button>"+
+	    				"<td><a href='javascript:editIT("+data[i].id+")'><button class='btn btn-primary'>编辑</button></a>&nbsp;&nbsp"+
+	    				"<a href='javascript:deleteIT("+data[i].id+")'><button class='btn btn-primary'>删除</button></a></td>"+
 	    				"</td>"+
 	    				"</tr>";
 	    			itData.append(tr);
-	    		/* 	<button type="button" onclick="del(${i.id })"
-						class="btn  btn-primary ">删除
-					</button>
- */				}
+				}
 			});
 		}
 		
 		//删除课程,需要注意，函数名称不能叫 delete
 		function deleteIT(it_id){
 			$.getJSON("<%=path%>/informationType/del",{it_id:it_id},function(data){
-				alert(it_id);
 				if(data.code=='200'){
 					alert("删除成功!");
 					//刷新页面列表
@@ -123,8 +119,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="container">
     	<div class="row">
     		<div class="col-md-2 col-md-offset-1">
-    			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-				  添加
+    			<button type="button" class="btn btn-link" data-toggle="modal" data-target="#myModal">
+				  添加资讯类型
 				</button>
     		</div>
     	</div>

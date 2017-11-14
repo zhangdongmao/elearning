@@ -1,0 +1,37 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+ul,ol,li{
+    list-style: none;
+}
+body{
+    font-size: 13px;
+    background-color: #ececec;
+    max-width: 1903px;
+    /*box-sizing: border-box;*/
+}
+
+/*当屏幕大于768px时*/
+@media (min-width: 768px) {
+    .container{
+        width: 750px !important;
+    }
+    body{
+        font-size: 14px;
+    }
+}
+
+/*当屏幕大于992px时*/
+@media (min-width: 992px) {
+    .container{
+        width: 970px !important;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container{
+        width: 1070px !important;
+    }
+}
+

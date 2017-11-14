@@ -22,37 +22,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
   </head>
   
-  <script type="text/javascript"> 
-	function countDown(secs,surl){ 
- 	//alert(surl); 
- 		var jumpTo = document.getElementById('jumpTo');
- 		jumpTo.innerHTML=secs; 
- 		if(--secs>0){ 
- 		 setTimeout("countDown("+secs+",'"+surl+"')",1000); 
-	 	}else{  
-  		 location.href=surl; 
- 		} 
-	} 
-	
-	/* 点击跳转按钮方法 */
-	function tp(){
-		window.location.href = "<%=path%>${nextUrl}";
-	}
-  </script>
-
   <body>
    <h3>信息提示</h3>
    <div>${message }</div>
-   <br/>
    
-   <div>你可以直接点击此处<button onclick=tp()>Click</button>
-   		进入${nextPageName }页面 
-   </div>
-   <br/>
+   <div>你可以直接点击进入${nextPageName }页面 <a href="<%=path%>${nextUrl}">链接</a></div>
+   <br />
    
-   <span id="jumpTo">5</span>秒后自动跳转到 &nbsp;&nbsp;${nextPageName}
-		<script type="text/javascript">countDown(5,'<%=path%>${nextUrl}');
-		</script> 
+   10秒后自动跳转到${nextPageName}
    
   </body>
 </html>

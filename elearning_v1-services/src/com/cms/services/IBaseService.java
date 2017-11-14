@@ -16,4 +16,5 @@ public interface IBaseService<T> {
 	public List<T> list(String hql);	
 	public List<T> find(String hql,Object ... params);
 	public void deleteById(Serializable id);
+	public List<T> queryPage(String hsql,int pageNo,int pageSize,Object ... params);
 }

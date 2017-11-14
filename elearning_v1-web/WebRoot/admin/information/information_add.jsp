@@ -107,7 +107,7 @@
 								</div>
 								<!-- /.box-body -->
 								<div class="box-footer">
-									<button id="btnSavke" type="button" class="btn btn-default">添加数据</button>
+									<button id="btnSave" type="button" class="btn btn-default">添加数据</button>
 								</div>
 								<!-- /.box-footer -->
 							</form>
@@ -186,21 +186,7 @@
 		});
 	});
 	
-	$(function(){
-		
-			$("#btnSave").click(function(){
-				var formDataStr =  $("#formSave").serialize();
-				var typeName = $("#select1 option:selected")
-				$.getJSON("<%=path%>/information/save?"+formDataStr,function(data){
-					/* $('#myModal').modal("hide");//隐藏模态框. */
-					if(data.code=='200'){
-						alert("保存成功!");//先有，后改进
-						
-						//刷新页面列表
-						listInformation();
-					}else
-						alert("保存失败!失败原因:"+data.message);//先有，后改进
-				});
-			});
-		})
+	$("#btnSave").click(function(){
+		window.location.href = "<%=path%>/result.jsp";
+	});
 </script>

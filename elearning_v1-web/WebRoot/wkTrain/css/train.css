@@ -1,0 +1,72 @@
+
+
+.content{
+    padding: 20px 0 15px 15px;
+}
+.outerRowBox{
+    border: 1px solid #e1e1e1;
+    border-radius: 4px;
+    padding-top: 20px;
+    background-color: white;
+}
+.outerRowBox .row{
+    margin: 0 5px;
+}
+.nav>li>a:hover{
+    background-color: #eee;
+    color: #83BB36;
+}
+
+
+.courseList .courseItem{
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+.itemLogo{
+    width: 190px;
+    height: 120px;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+.itemBottomText{
+    margin-top: 10px;
+}
+
+.itemBody{
+    padding: 10px 0px 15px 30px;
+}
+
+table{
+    background-color: transparent;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+tbody{
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+tr{
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+td{
+    padding: 0;
+    display: table-cell;
+    vertical-align: inherit;
+}
+
+/*分页按钮样式*/
+.bottomBtn .pagination {
+    display: inline-block;
+    padding-left: 0;
+    margin: 20px 0;
+    border-radius: 4px;
+}
+.bottomBtn>span{
+    margin-right: 10px;
+    float: right;
+}

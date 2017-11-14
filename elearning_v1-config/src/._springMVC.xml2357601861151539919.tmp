@@ -1,0 +1,74 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" 
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+  http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+  http://www.springframework.org/schema/context
+  http://www.springframework.org/schema/context/spring-context.xsd
+  http://www.springframework.org/schema/mvc
+  http://www.springframework.org/schema/mvc/spring-mvc.xsd
+  http://www.springframework.org/schema/util
+  http://www.springframework.org/schema/util/spring-util.xsd"
+	default-autowire="byName">
+	
+	<!-- 配置默认的处理servlet，解决静态的资源访问问题. -->
+	<mvc:default-servlet-handler />
+	
+	<!-- 增加多个方法调用的配置处理器(resover) -->
+	<bean id="methodNameResolver"
+		class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+		<!-- paramName请求使用的方法参数名 ?action=方法名 -->
+		<property name="paramName" value="action"></property>
+		<property name="defaultMethodName" value="view"></property>
+	</bean>
+	<!-- 文件上传resolver -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="utf-8" />
+		<property name="maxUploadSize" value="100485760" />
+		<!-- 异常处理，需要设置 resolveLazily 为true -->
+		 <property name="resolveLazily" value="true" /> 
+	</bean>
+
+	<!-- 配置视图处理器 -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+
+		<!-- /WEB-INF/ 下面的jsp是不能直接访问的，必须是通过请求转发来访问. 有些项目组，基于安全的考虑，会将jsp，放在/WEB-INF/ -->
+		<!-- <property name="prefix"> <value>/WEB-INF/jsp/</value> </property> -->
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+	</bean>
+	
+
+	<!-- -配置注解的启动 在实际开发，使用注解方式，可以大量减少配置 -->
+	<!-- 配置json的支持 -->
+	<mvc:annotation-driven>
+	    <mvc:message-converters>
+	    	<!-- 字符串的json转换使用的是StringHttpMessageConverter
+	    		如果是对象使用MappingJackson2HttpMessageConverter进行转换-->
+	        <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+	        	<!-- 增加构造函数参数，解决中文乱码问题. -->
+	        	<constructor-arg value="UTF-8"></constructor-arg>
+	        </bean>
+	        <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+	   </mvc:message-converters>
+	</mvc:annotation-driven>
+	
+	<!-- conversionService 负责数据类型的转换 -->
+	<bean id="conversionService"
+		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+	</bean>
+	<!-- AnnotationMethodHandlerAdapter 替换methodNameResolver的工作，解析注解，将请求转发到对应的注解的方法中 -->
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+	</bean>
+
+	
+	<!-- 增加控制器的包的扫描 -->
+	<context:component-scan base-package="com.cms.controller"></context:component-scan>
+	
+</beans>
