@@ -48,7 +48,7 @@ body {
         <span>课程管理</span>
         <a href="<%=path %>/course/list" target="mainFrame" onFocus="this.blur()">课程列表</a>
         <a href="main_list.html" target="mainFrame" onFocus="this.blur()">列表页</a>
-        <a href="main_info.html" target="mainFrame" onFocus="this.blur()">列表详细页</a>
+         <a href="<%=path %>/teacher/list" target="mainFrame" onFocus="this.blur()">教师列表</a>
         <a href="main_message.html" target="mainFrame" onFocus="this.blur()">留言页</a>
         <a href="main_menu.html" target="mainFrame" onFocus="this.blur()">栏目管理</a>
       </div>

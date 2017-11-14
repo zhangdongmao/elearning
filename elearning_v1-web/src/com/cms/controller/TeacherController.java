@@ -1,6 +1,12 @@
 ﻿package com.cms.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,11 +14,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.cms.beans.CurTeacher;
 import com.cms.beans.UacRole;
 import com.cms.beans.UacUserinfor;
 import com.cms.dto.CurTeacherDto;
+import com.cms.dto.ResponseDto;
+import com.cms.dto.UacRoleDto;
+import com.cms.dto.UacUserinforDto;
 import com.cms.services.ICurTeacherService;
 import com.cms.services.IUacRoleService;
 import com.cms.services.IUacUserinforService;
@@ -47,25 +58,85 @@ public class TeacherController {
 		return "/admin/teacher/teacher_list";
 	}
 	
-
 	//.............................添加数据.......................
-	@RequestMapping("/saveTeacher")
-  	@ResponseBody // 返回json数据
-	public CurTeacherDto saveTeacher(CurTeacher teacher){
-		CurTeacherDto response = new CurTeacherDto();
-		try {
-			teacherService.save(teacher);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
+	@RequestMapping(value="/add/list")
+	public String addList(Model model){
+		List<UacRoleDto> roles = uacRoleService.list();
+		List<UacUserinforDto> user = uacUserinforService.list();
+		for (UacUserinforDto uacUserinforDto : user) {
+			System.out.println(uacUserinforDto.getNickname());
 		}
 		
-		
-		return response;
-		
-		
+		model.addAttribute("role",roles);
+		model.addAttribute("users",user);
+		return "/admin/teacher/add";
 	}
+	
+	
+	
+	//保存讲师信息功能
+		@RequestMapping("/saveTeacher")
+		@ResponseBody // 返回json数据
+		public ResponseDto saveCourse(HttpServletRequest request, HttpSession session, CurTeacherDto teacher,String roleName,String userType) throws Exception{
+			System.out.println("-----------------pass-----------------------");
+			
+			ResponseDto response = new ResponseDto();
+			
+			
+			if (request instanceof MultipartHttpServletRequest) {
+				System.out.println("-----------------pass2-----------------------");
+				MultipartHttpServletRequest mulRequest = (MultipartHttpServletRequest) request;
 
+				// 普通表单数据
+				Map<String, String[]> dataMap = mulRequest.getParameterMap();
+				String[] userName = dataMap.get("userName");
+				System.out.println("----userName----" + userName);
+
+				// 文件表单数据 -- 不管多少个文件，都通过次对象获取。key是表单的名字
+				Map<String, MultipartFile> fileMap = mulRequest.getFileMap();
+				
+				MultipartFile file1 = fileMap.get("teacherPhoto");
+				MultipartFile file2 = fileMap.get("file2");
+
+				// 文件保存路径
+				String realPath = request.getServletContext().getRealPath("/upload");
+				File fileSave = new File(realPath, file1.getOriginalFilename());
+
+				file1.transferTo(fileSave);
+
+				String imgePath = "upload/" + file1.getOriginalFilename();
+
+				
+			}
+			
+			
+			// 获取文件保存路径
+			try {
+				String roleHsql="from UacRole t where t.name=?";
+				String userHsql="from UacUserinfor c where c.nickname=?";
+				List<UacRole> roles = uacRoleService.find(roleHsql,roleName);
+				List<UacUserinfor> users = uacUserinforService.find(userHsql,userType);
+				UacRole uacRole = roles.get(0);
+				UacUserinfor uacUserinfor = users.get(0);
+				System.out.println(uacRole.getName());
+				System.out.println(uacUserinfor.getNickname());
+				CurTeacher curTeacher= new CurTeacher();
+				BeanUtils.copyProperties(teacher, curTeacher);
+				curTeacher.setUacRole(uacRole);
+				curTeacher.setUacUserinfor(uacUserinfor);
+			//	curCourse.setCurPhoto(photoName);
+				teacherService.save(curTeacher);
+				response.setCode("200");
+				response.setMessage("保存成功");
+			} catch (Exception e) {
+				e.printStackTrace();
+				response.setCode("422");
+				response.setMessage("保存失败:");
+			} 
+
+			return response;
+		}
+	
 	
 	//...............删除............................
 	@RequestMapping(value="/del")
