@@ -30,16 +30,16 @@
 
 <script type="text/javascript">
 
-	function edit(inforId){
-		window.location.href = "<%=path%>/information/edit?infor_id="+inforId;
+	function edit(cu_id){
+		window.location.href = "<%=path%>/course/edit/list?curId="+cu_id;
 	}
 	
-	function del(inforId){
-		window.location.href = "<%=path%>/information/del?infor_id="+inforId;
+	function del(cu_id){
+		window.location.href = "<%=path%>/course/del?curId="+cu_id;
 	}; 
-	function add(inforId){
+	function add(cu_id){
 		
-		window.location.href = "<%=path%>/information/add?infor_id="+inforId;
+		window.location.href = "<%=path%>/course/add/list?curId="+cu_id;
 	};
 	
 	
@@ -54,8 +54,8 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-2 col-md-offset-1">
-				<button type="button" onclick="add(${i.id})"
-					class="btn btn-primary ">添加</button>
+				<button type="button" onclick="add()"
+								class="btn btn-primary ">添加</button>
 			</div>
 		</div>
 		&nbsp;
@@ -73,10 +73,10 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${infor}" var="i">
+				<c:forEach items="${ifDto}" var="i">
 					<tr>
 						<td>${i.id}</td>
-						<td>${itName}</td>
+						<td>${i.informationType.name}</td>
 						<td>${i.title}</td>
 						<td>${i.contents}</td>
 						<td>${i.releaseTime}</td>
@@ -85,11 +85,14 @@
 						<td>
 
 							<button type="button" onclick="edit(${i.id })"
-								class="btn  btn-primary ">编辑
+								class="btn  btn-primary ">
+								编辑
+								
 							</button> &nbsp;&nbsp;
 
 							<button type="button" onclick="del(${i.id })"
-								class="btn  btn-primary ">删除
+								class="btn  btn-primary ">
+								删除
 							</button>
 
 						</td>

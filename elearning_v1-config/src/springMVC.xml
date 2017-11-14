@@ -66,20 +66,9 @@
 	<bean
 		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
 	</bean>
-
-	<mvc:interceptors>
-		<mvc:interceptor>
-			<mvc:mapping path="/**" />
-			<bean class="com.cms.interceptor.FileUploadInterceptor">
-				<!-- 1M 
-				设置上传文件的大小限制，为了不跟multipartResolver的限制冲突，
-				将multipartResolver大小限制设置的很大
-				-->
-				<property name="maxSize" value="1048576" />
-			</bean>
-		</mvc:interceptor>
-	</mvc:interceptors>
+	
+	
 	<!-- 增加控制器的包的扫描 -->
 	<context:component-scan base-package="com.cms.controller"></context:component-scan>
-	
+	<context:component-scan base-package="com.cms.index.controller"></context:component-scan>
 </beans>
