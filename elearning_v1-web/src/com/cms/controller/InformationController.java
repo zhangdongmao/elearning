@@ -58,8 +58,7 @@ public class InformationController {
 	
 	//保存课程功能
 	@RequestMapping("/save")
-	@ResponseBody // 返回json数据
-	public ResponseDto saveCourse(HttpServletRequest req, InformationDto ifDtos,String itName/*,String it*/) throws IOException, ServletException{
+	public String save(HttpServletRequest req, InformationDto ifDtos,String itName,Model model) throws IOException, ServletException{
 		Part part = req.getPart("photo");
 		ResponseDto response = new ResponseDto();
 		String fileName = "";
@@ -110,7 +109,6 @@ public class InformationController {
 			response.setMessage("图片上传失败!");
 		}
 
-		try {
 			String itHsql="from InformationType it where it.name=?";
 //			String inforHsql="from Information infor where infor.title=?";
 			List<InformationType> its = itService.find(itHsql,itName);
@@ -125,15 +123,12 @@ public class InformationController {
 			infor.setInformationType(it);
 			infor.setPhoto(fileName);
 			inforService.save(infor);
-			response.setCode("200");
-			response.setMessage("保存成功");
-		} catch (Exception e) {
-			e.printStackTrace();
-			response.setCode("422");
-			response.setMessage("保存失败:");
-		} 
 		
-		return response;
+		model.addAttribute("message","添加成功!");
+		model.addAttribute("nextPageName","资讯表");
+		model.addAttribute("nextUrl","/information/list");
+		
+		return "/admin/result";
 	}
 	
 	@RequestMapping("/del")

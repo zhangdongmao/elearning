@@ -88,8 +88,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					var tr = "<tr>"+
 	    				"<td>"+data[i].id+"</td>"+
 	    				"<td>"+data[i].name+"</td>"+
-	    				"<td><a href='javascript:editIT("+data[i].id+")'>编辑</a> | "+
-	    				"<a href='javascript:deleteIT("+data[i].id+")'>删除</a></td>"+
+	    				"<td><a href='javascript:editIT("+data[i].id+")'><button class='btn btn-primary'>编辑</button></a>&nbsp;&nbsp"+
+	    				"<a href='javascript:deleteIT("+data[i].id+")'><button class='btn btn-primary'>删除</button></a></td>"+
+	    				"</td>"+
 	    				"</tr>";
 	    			itData.append(tr);
 				}
@@ -99,7 +100,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		//删除课程,需要注意，函数名称不能叫 delete
 		function deleteIT(it_id){
 			$.getJSON("<%=path%>/informationType/del",{it_id:it_id},function(data){
-				alert(it_id);
 				if(data.code=='200'){
 					alert("删除成功!");
 					//刷新页面列表
