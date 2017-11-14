@@ -1,0 +1,168 @@
+
+/*内容区样式开始*/
+.content{
+    padding: 20px 0 15px 15px;
+}
+.outerRowBox{
+    border: 1px solid #e1e1e1;
+    border-radius: 4px;
+    padding-top: 20px;
+    background-color: white;
+}
+.outerRowBox .row{
+    margin: 0 5px;
+}
+.nav>li>a:hover{
+    background-color: #eee;
+    color: #83BB36;
+}
+    /*树形列表样式开始*/
+.tree {
+    width:90%;
+    overflow: auto;
+    float: left;
+    margin: 0;
+    padding: 5px;
+    color: #333;
+    font-size: 12px;
+    font-family: Verdana, Arial, Helvetica, AppleGothic, sans-serif;
+}
+.tree li {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    line-height: 18px;
+    text-align: left;
+    white-space: nowrap;
+}
+.tree li button.switch_root_minus {
+    background: url(../../assets/img/minus_root.gif);
+}
+.tree li button.switch_root_open {
+    background: url(../../assets/img/plus_root.gif);
+}
+.tree li button.switch_center_docu {
+    background: url(../../assets/img/line_center.gif);
+}
+.tree li button.switch_center_open {
+    background: url(../../assets/img/plus_center.gif);
+}
+.tree li button.switch_center_close {
+    background: url(../../assets/img/minus_center.gif);
+}
+.tree li button.switch_bottom_open {
+    background: url(../../assets/img/plus_bottom.gif);
+}
+.tree li button.switch_bottom_close {
+    background: url(../../assets/img/minus_bottom.gif);
+}
+.tree li button.switch_bottom_docu {
+    background: url(../../assets/img/line_bottom.gif);
+}
+.tree li ul.line {
+    background: url(../../assets/img/line_conn.gif) 0 0 repeat-y;
+}
+.tree li button {
+    width: 18px;
+    height: 18px;
+    padding: 0;
+    margin: 0;
+    vertical-align: middle;
+    border: 0 none;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    cursor: pointer;
+}
+.tree li a.curSelectedNode {
+    background-color: #FFE6B0;
+    color: black;
+    border: 1px #FFB951 solid;
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+}
+.tree li a {
+    padding: 0;
+    margin: 0 10px 0 0;
+    cursor: pointer;
+    color: #333;
+    text-decoration: none;
+}
+.tree li ul {
+    margin: 0;
+    padding: 0 0 0 18px;
+}
+.displayNone{
+    display: none;
+}
+.displayBlock{
+    display: block;
+}
+    /*树形列表样式结束*/
+    /*右侧table样式开始*/
+.table {
+    max-width: 100%;
+    background-color: transparent;
+    border-collapse: collapse;
+    border-spacing: 0;
+    /*width: 100%;*/
+    margin-bottom: 20px;
+}
+thead {
+    display: table-header-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+.table thead th {
+    background-color: #F5F5F5;
+}
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+.table tbody td {
+    border-top-width: 0px;
+    border-bottom: 1px solid #ddd;
+}
+.table th, .table td {
+    padding: 8px;
+    line-height: 20px;
+    text-align: left;
+    vertical-align: middle;
+    border-top: 1px solid #dddddd;
+}
+.table td a{
+    color: #0f0f0f;
+}
+.table td a:hover{
+    color:#064ca1;
+    text-decoration: none;
+}
+    /*右侧table样式结束*/
+
+
+
+
+
+
+    /*分页按钮样式开始*/
+.bottomBtn .pagination {
+    display: inline-block;
+    padding-left: 0;
+    margin: 20px 0;
+    border-radius: 4px;
+}
+.bottomBtn>span{
+    margin-right: 10px;
+    float: right;
+}
+    /*分页按钮样式结束*/
+/*内容区样式结束*/
+
+

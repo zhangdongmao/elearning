@@ -1,0 +1,163 @@
+body{
+    font-size: 13px;
+    font-family: 'Microsoft YaHei', Arial
+}
+#context .container .inner_box .row1{
+    padding: 20px;
+}
+#context .container .inner_box{
+    /*border: 1px solid red;*/
+    padding-top: 23px;
+}
+#context .container .inner_box .row1 .col-lg-7 h2{
+        font-size: 28px;
+    font-family: 'Microsoft YaHei', Arial;
+       margin: 12px 0 0 0;
+}
+#context .container .inner_box .row1 .col-lg-7 p{
+    font-size: 13px;
+    padding: 5px 0;
+}
+#context .container .inner_box .row1 .inner_box1 {
+    padding: 12px 0 8px 0;
+}
+#context .container .inner_box .row1 .evaluate .course-icon{
+    opacity: 0.6;
+    padding: 10px 0 10px 0px;
+    text-align: left;
+    vertical-align: middle;
+}
+#context .container .inner_box .row1 .evaluate .star{
+    display: inline-block;
+    background: url("../../assets/img/stars.png");
+    width: 80px;
+    height: 16px;
+    vertical-align: middle;
+}
+#context .container .inner_box .row1 .evaluate span a{
+     color: black;
+ }
+#context .container .inner_box .row1 .evaluate span a:hover{
+    color: forestgreen;
+    text-decoration: none;
+}
+#context .container .inner_box .row1 .evaluate .evaluate-count{
+    display: inline-block;
+    opacity: 0.7;
+    text-align: right;
+    vertical-align: middle;
+}
+#context .container .inner_box .row1 .evaluate .star-1{
+    background-position-y:-64px;
+}
+#context .container .inner_box .row1 .evaluate .star-2{
+    background-position-y:-48px;
+}
+#context .container .inner_box .row1 .evaluate .star-3{
+    background-position-y:-32px;
+}
+#context .container .inner_box .row1 .evaluate .star-4{
+    background-position-y:-16px;
+}
+#context .container .inner_box .row1 .evaluate .star-5{
+    background-position-y:0px;
+}
+#context .container .inner_box .row1 .evaluate .star-6{
+    background-position-y:-80px;
+}
+#context .container .inner_box .row2{
+    padding:0 20px 0 20px;
+}
+#context .container .inner_box .row2 .col-md-9 a{
+    font-size: 13px;
+    color: #424242;
+}
+#context .container .inner_box .row2 .col-md-9 .tab-content{
+    margin-top: 20px;
+}
+#context .container .inner_box .row2 .col-md-9 .tab-content tr{
+    border-bottom: 1px solid lightgray;
+}
+#context .container .inner_box .row2 .col-md-9 .tab-content tr td{
+    padding: 10px 50px;
+    font-size: 13px;
+}
+#context .container .inner_box .row2 .col-md-9 .tab-content .tab-pane1{
+    font-size: 13px;
+}
+#context .container .inner_box .row2 .col-md-9 .tab-content .tab-pane_1{
+    color: #999;
+    padding: 20px;
+    font-size: 13px;
+}
+#context .container .inner_box .row2 .col-md-3{
+    padding:0 15px 0 0;
+}
+#context .container .inner_box .row2 .col-md-3 .panel-heading h3{
+    padding:0 5px;
+    color: gray;
+}
+#context .container .inner_box .row2 .col-md-3 .panel-body{
+    padding: 5px 15px 15px 20px;
+}
+#context .container .inner_box .row2 .col-md-3 .panel-body .row3{
+    padding: 10px;
+}
+#context .container .inner_box .row2 .col-md-3 .panel-body .row3 .row3_1{
+    height: 1px;
+    padding: 0;
+    background: lightgray;
+}
+#context .container .inner_box .row2 .col-md-3 .panel-body .col-lg-7{
+    padding-bottom: 5px;
+}
+#context .container .inner_box .row2 .col-md-3 .panel-body .col-lg-5{
+    padding: 15px 0 0 0;
+}
+#context .container .inner_box .row2 .col-md-3 .panel-body .col-lg-5 a{
+    font-size: 16px;
+    color: black;
+}
+#context .container .inner_box .row2 .col-md-3 .panel-body .col-lg-5 p{
+    font-size: 13px;
+    color: gray;
+}
+#context .container .inner_box .row2 .col-md-3 .panel-body .col-lg-5 a:hover{
+    text-decoration: none;
+    color: forestgreen;
+}
+#context .container .inner_box .row2 .col-md-3 .panel-body .col-lg-5 {
+     color: gray;
+        line-height: 25px;
+ }
+#context .container .inner_box .row2 .col-md-3 .panel-body .col-lg-12{
+    font-size: 13px;
+    padding: 20px 0;
+    border-top: 1px solid lightgray;
+}
+
+
+
+
+
+
+/*媒体查询*/
+@media (max-width: 992px) {
+    .header{
+        border: none !important;
+    }
+    #context .container .inner_box .row2 .col-md-3{
+        padding:0 15px 0 15px;
+    }
+    .inner_box{
+        padding: 15px !important;
+        margin-bottom: 20px !important;
+    }
+    #context .container .inner_box .row1,#context .container .inner_box .row2{
+        padding: 10px;
+    }
+    #context .container .inner_box .row2 .col-md-9 .tab-content tr td{
+        padding: 10px 45px;
+        font-size: 13px;
+    }
+}
