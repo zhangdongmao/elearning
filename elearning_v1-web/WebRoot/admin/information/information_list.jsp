@@ -29,20 +29,18 @@
 
 
 <script type="text/javascript">
+	function add(){
+		window.location.href = "<%=path%>/information/add";
+	};
 
-	function edit(cu_id){
-		window.location.href = "<%=path%>/course/edit/list?curId="+cu_id;
+	function edit(inforId){
+		alert(inforId);
+		window.location.href = "<%=path%>/information/edit/before?infor_id="+inforId;
 	}
 	
-	function del(cu_id){
-		window.location.href = "<%=path%>/course/del?curId="+cu_id;
+	function del(inforId){
+		window.location.href = "<%=path%>/information/del?infor_id="+inforId;
 	}; 
-	function add(cu_id){
-		
-		window.location.href = "<%=path%>/course/add/list?curId="+cu_id;
-	};
-	
-	
 </script>
 
 </head>
@@ -55,7 +53,7 @@
 		<div class="row">
 			<div class="col-md-2 col-md-offset-1">
 				<button type="button" onclick="add()"
-								class="btn btn-primary ">添加</button>
+					class="btn btn-primary ">添加</button>
 			</div>
 		</div>
 		&nbsp;
@@ -73,7 +71,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${ifDto}" var="i">
+				<c:forEach items="${infors}" var="i">
 					<tr>
 						<td>${i.id}</td>
 						<td>${i.informationType.name}</td>
@@ -85,14 +83,11 @@
 						<td>
 
 							<button type="button" onclick="edit(${i.id })"
-								class="btn  btn-primary ">
-								编辑
-								
+								class="btn  btn-primary ">编辑
 							</button> &nbsp;&nbsp;
 
 							<button type="button" onclick="del(${i.id })"
-								class="btn  btn-primary ">
-								删除
+								class="btn  btn-primary ">删除
 							</button>
 
 						</td>
@@ -106,4 +101,3 @@
 
 </body>
 </html>
-
