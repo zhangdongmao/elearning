@@ -11,13 +11,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>企业在线学习平台</title>
 
-    <link rel="stylesheet" href="<%=basePath%>bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<%=basePath%>public_css/index.css">
-    <script src="<%=basePath%>bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="<%=basePath%>bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="<%=basePath%>index/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<%=basePath%>index/public_css/index.css">
+    <script src="<%=basePath%>index/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="<%=basePath%>index/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
-    <link rel="stylesheet" href="<%=basePath%>public_css/headerAndFooter.css">
-    <link rel="stylesheet" href="<%=basePath%>public_css/public.css">
+    <link rel="stylesheet" href="<%=basePath%>index/public_css/headerAndFooter.css">
+    <link rel="stylesheet" href="<%=basePath%>index/public_css/public.css">
 
 </head>
 <body style="background: #ebebeb">

@@ -16,15 +16,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
 <link rel="stylesheet"
-	href="<%=basePath %>bower_components/bootstrap/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="<%=basePath %>public_css/index.css">
-<link rel="stylesheet" href="<%=basePath %>public_css/public.css">
-<script src="<%=basePath %>bower_components/jquery/dist/jquery.min.js"></script>
+	href="<%=basePath %>index/bower_components/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="<%=basePath %>index/public_css/index.css">
+<link rel="stylesheet" href="<%=basePath %>index/public_css/public.css">
+<script src="<%=basePath %>index/bower_components/jquery/dist/jquery.min.js"></script>
 <script
-	src="<%=basePath %>bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	src="<%=basePath %>index/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
 <link rel="stylesheet"
-	href="<%=basePath %>public_css/headerAndFooter.css">
+	href="<%=basePath %>index/public_css/headerAndFooter.css">
 
 
 </head>
@@ -170,7 +170,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<div class="col-md-4 col-sm-6">
 								<div class="course-box">
 									<a href="course_des.html" class="course-img"> <img
-										src="<%=basePath%>assets/img/img001.jpg" alt="">
+										src="<%=basePath%>index/assets/img/img001.jpg" alt="">
 										<h3>${courses.curName}</h3>
 									</a>
 									<p class="curIntroduce">${courses.curIntroduce}</p>

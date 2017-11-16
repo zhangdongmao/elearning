@@ -46,12 +46,6 @@ public class CourseController {
 	@Autowired
 	private ICurTypeService courseTypeService;
 
-	//@RequestMapping(path="/list",method=RequestMethod.GET)
-	//@ResponseBody()
-	//public List<CurCourse> listCourses(){
-	//不能直接返回pojo，会出现no session的异常。
-
-
 	@RequestMapping(value="/list")
 	public String listCourses(Model model){
 
@@ -69,7 +63,7 @@ public class CourseController {
 		List<CurTypeDto> types = courseTypeService.list();
 		model.addAttribute("teachers",teachers);
 		model.addAttribute("types",types);
-		return "/admin/course/add";
+		return "/admin/course/add2";
 	}
 
 
@@ -120,42 +114,12 @@ public class CourseController {
 		return "/admin/result";
 	}
 
-	// 3.ajax请求
-		@RequestMapping("/upload3")
-		@ResponseBody
-		//MultipartHttpServletRequest -- 封装以后的request对象，包含了上传的文件的内容
-		public String upload3(HttpServletRequest request, HttpSession session) throws IllegalStateException, IOException {
-			if (request instanceof MultipartHttpServletRequest) {
-				MultipartHttpServletRequest mulRequest = (MultipartHttpServletRequest) request;
-
-				// 普通表单数据
-				Map<String, String[]> dataMap = mulRequest.getParameterMap();
-				String[] userName = dataMap.get("userName");
-				System.out.println("----userName----" + userName);
-
-				// 文件表单数据 -- 不管多少个文件，都通过次对象获取。key是表单的名字
-				Map<String, MultipartFile> fileMap = mulRequest.getFileMap();
-				
-				MultipartFile file1 = fileMap.get("curPhoto");
-				MultipartFile file2 = fileMap.get("file2");
-
-				// 文件保存路径
-				String realPath = request.getServletContext().getRealPath("/upload");
-				File fileSave = new File(realPath, file1.getOriginalFilename());
-
-				file1.transferTo(fileSave);
-
-				String imgePath = "upload/" + file1.getOriginalFilename();
-
-				return "{\"resultCode\":\"1\",\"imgePath\":\"" + imgePath + "\"}";
-			}
-			return "{\"resultCode\":\"-11\"}";
-		}
+	
 	//保存课程功能
 	@RequestMapping("/saveCourse")
 	public String saveCourse(@RequestParam("photo") CommonsMultipartFile upload,
 			HttpSession session, CurCourseDto course,String teacherName,String courseType) throws Exception{
-		System.out.println("-----------------pass-----------------------");
+		
 		System.out.println(teacherName);
 		System.out.println(courseType);
 		System.out.println(course.getCurName());

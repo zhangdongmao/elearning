@@ -36,6 +36,6 @@ public class CourseIndexController {
 		}
 		
 		model.addAttribute("courses",courses);
-		return "/wkCourse/course";
+		return "/index/wkCourse/course";
 	}
 }

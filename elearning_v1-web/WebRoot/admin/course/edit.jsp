@@ -60,8 +60,6 @@
 
 							<form action="<%=path%>/course/edit" method="get"
 								class="form-horizontal" enctype="multipart/form-data">
-								<input type="text" name="curPhoto" id="curPhoto">
-								<input type="text" name="recommend" id="recommend">
 								<input type="hidden" name="id" value="${cur.getId() }">
 								 <input type="hidden"name="teacherId" value="${teacher.getId() }"> 
 								 <input type="hidden" name="typeId" value="${type.getId() }">
@@ -122,8 +120,8 @@
 									<div class="form-group">
 										<label class="col-xs-1 control-label">课程章节：</label>
 										<div class="col-xs-6 input-group">
-											<input name="browser_count" value="" type="text"
-												class="form-control" placeholder="0">
+											<button type="button" class="btn btn-primary" data-toggle="modal" 
+											data-target="#exampleModal" data-whatever="@mdo">添加章节</button>
 										</div>
 									</div>
 

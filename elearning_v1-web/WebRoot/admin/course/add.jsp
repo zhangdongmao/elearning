@@ -320,7 +320,7 @@ $("#btnPhoto").click(function(){
 				var formDataStr =  $("#formSave").serialize();
 				var teacherName = $("#select2 option:selected")
 				var typeName = $("#select1 option:selected")
-				alert(1);
+				
 				$.getJSON("<%=path%>/course/saveCourse?"+formDataStr,function(data){
 					/* $('#myModal').modal("hide");//隐藏模态框. */
 					if(data.code=='200'){

@@ -11,13 +11,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>企业在线学习平台</title>
-    <link rel="stylesheet" href="<%=basePath%>index/bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<%=basePath%>index/public_css/index.css">
-    <link rel="stylesheet" href="<%=basePath%>index/public_css/public.css">
-    <script src="<%=basePath%>index/bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="<%=basePath%>index/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="public_css/index.css">
+    <link rel="stylesheet" href="public_css/public.css">
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
-    <link rel="stylesheet" href="<%=basePath%>index/public_css/headerAndFooter.css">
+    <link rel="stylesheet" href="public_css/headerAndFooter.css">
 </head>
 <body style="background: #ebebeb">
 
@@ -44,8 +44,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <li class=" headerNav"><a href="wkInformation/information.html">资讯</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="<%=basePath%>login.jsp">登录</a></li>
-                    <li><a href="#">注册</a></li>
+                    <li><a href="#">我的课堂</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">
+                            <span class="headerDropdownImg"><img src="assets/img/avatar.jpg"
+                                                                 class="img-circle headerDropdownImg"></span>
+                            普通学员
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">个人中心</a></li>
+                            <li><a href="#">账号设置</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">退出</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="glyphicon glyphicon-bullhorn hidden-lt-ie8"></span>
+                            <span class="badge badge-important">19</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="glyphicon glyphicon-envelope hidden-lt-ie8"></span></a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -299,7 +322,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 <div class="col-md-3 col-sm-6">
                                     <div class="course-box">
                                         <a href="javascript:void(0)" class="course-img">
-                                            <img src="<%=basePath%>index/assets/img/img001.jpg" alt="">
+                                            <img src="assets/img/img001.jpg" alt="">
                                             <h3>学习平台演示教程</h3>
                                         </a>
                                         <p class="course-des">本节为演示课程，其中收集了3D、mp4、flash、scorm、网页等各种形式的...</p>
@@ -318,7 +341,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 <div class="col-md-3 col-sm-6">
                                     <div class="course-box">
                                         <a href="javascript:void(0)" class="course-img">
-                                            <img src="<%=basePath%>index/assets/img/img001.jpg" alt="">
+                                            <img src="assets/img/img001.jpg" alt="">
                                             <h3>学习平台演示教程</h3>
                                         </a>
                                         <p class="course-des">本节为演示课程，其中收集了3D、mp4、flash、scorm、网页等各种形式的...</p>

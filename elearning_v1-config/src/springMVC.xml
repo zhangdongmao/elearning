@@ -56,6 +56,15 @@
 		</mvc:message-converters>
 	</mvc:annotation-driven>
 
+	 <!-- 配置拦截器 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/knowledge/**"/>
+			<bean class="com.cms.index.controller.SecurityInterceptor"></bean>
+			
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
 	<!-- conversionService 负责数据类型的转换 -->
 	<bean id="conversionService"
 		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
