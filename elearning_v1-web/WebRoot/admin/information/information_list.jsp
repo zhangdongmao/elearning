@@ -29,19 +29,18 @@
 
 
 <script type="text/javascript">
+	function add(){
+		window.location.href = "<%=path%>/information/add";
+	};
 
 	function edit(inforId){
-		window.location.href = "<%=path%>/information/edit?infor_id="+inforId;
+		alert(inforId);
+		window.location.href = "<%=path%>/information/edit/before?infor_id="+inforId;
 	}
 	
 	function del(inforId){
 		window.location.href = "<%=path%>/information/del?infor_id="+inforId;
 	}; 
-	function add(){
-		window.location.href = "<%=path%>/information/add";
-	};
-	
-	
 </script>
 
 </head>
@@ -72,10 +71,10 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${infor}" var="i">
+				<c:forEach items="${infors}" var="i">
 					<tr>
 						<td>${i.id}</td>
-						<td>${itName}</td>
+						<td>${i.informationType.name}</td>
 						<td>${i.title}</td>
 						<td>${i.contents}</td>
 						<td>${i.releaseTime}</td>

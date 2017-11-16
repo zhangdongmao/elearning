@@ -66,7 +66,7 @@ public class Information implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "information_type_id", nullable = false)
+	@JoinColumn(name = "information_type_id")
 
 	public InformationType getInformationType() {
 		return this.informationType;
@@ -96,7 +96,7 @@ public class Information implements java.io.Serializable {
 		this.contents = contents;
 	}
 
-	@Column(name = "release_time", nullable = false, length = 50)
+	@Column(name = "release_time",length = 50)
 
 	public String getReleaseTime() {
 		return this.releaseTime;
