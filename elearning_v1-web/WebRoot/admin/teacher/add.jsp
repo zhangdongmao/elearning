@@ -59,9 +59,8 @@
 						</div>
 						<!-- /.box-header -->
 						<div class="box-body">
-							<form class="form-horizontal" id="formSave"
+							<form class="form-horizontal" id="formSave" method="post"
 								enctype="multipart/form-data">
-							
 								<div class="box-body">
 									<div class="form-group">
 										<label class="col-xs-1 control-label">讲师姓名：</label>
@@ -70,7 +69,6 @@
 												placeholder="">
 										</div>
 									</div>
-									
 									<div class="form-group">
 										<label class="col-xs-1 control-label">讲师介绍：</label>
 										<div class="col-xs-10 input-group">
@@ -79,7 +77,7 @@
 										</div>
 									</div>
 
-									
+
 									<div class="form-group">
 										<label class="col-xs-1 control-label">讲师职位：</label>
 										<div class="col-xs-6 input-group">
@@ -90,38 +88,34 @@
 									<div class="form-group">
 										<label class="col-xs-1 control-label">讲师等级：</label>
 										<div class="col-xs-6 input-group">
-											<input name="level" type="text" value=""
-												class="form-control" placeholder="">
+											<input name="level" type="text" value="" class="form-control"
+												placeholder="">
 										</div>
 									</div>
-									
+
 									<div class="form-group">
 										<label class="col-xs-1 control-label">讲师图片：</label>
 										<div class="col-xs-6 input-group">
 											<div class="row">
 												<div class="col-xs-6">
-													<div id="mySwitchB" class="switch has-switch switch-mini">
-														<input type="checkbox" data-size="mini" id="switchB"
-															data-on-color="primary" data-on-text="已确认"
-															data-off-text="未确认" data-off-color="warning">确认添加图片
-													</div>
-													<input id="teacherPhoto" name="teacherPhoto" type="file"
-														class="form-control" placeholder="">
+													<input id="selectImg" name="teacherPhoto" type="file"
+													 class="form-control" placeholder="">
 												</div>
 												<div class="col-xs-6">
-													<img width="150px" id="myPhoto">
+													<img style="width: 180px;height: 135px" id="selectImgView"
+														src="<%=basePath %>upload/${cu.getTeacherPhoto()}">
 												</div>
 											</div>
 										</div>
 									</div>
 
+
 									<div class="form-group">
 										<label class="col-xs-1 control-label">用户表昵称：</label>
 										<div class="col-xs-6 input-group">
-											<select  id="select1" name="uacUserinfor" class="form-control">
+											<select id="select1" name="userInfor" class="form-control">
 												<c:forEach items="${users}" var="users">
-													<option value=""
-														<c:if  test="${users.nickname  eq  user.getNickname()}"> selected="selected"</c:if>>${users.nickname}</option>
+													<option id="nickname">${users.nickname}</option>
 												</c:forEach>
 											</select>
 										</div>
@@ -144,21 +138,22 @@
 									<div class="form-group">
 										<label class="col-xs-1 control-label">讲师角色：</label>
 										<div class="col-xs-6 input-group">
-											<select id="select2" name="uacRole" class="form-control">
+											<select id="select2" name="role" class="form-control">
 												<c:forEach items="${role }" var="role">
 													<option id="name">${role.name}</option>
 												</c:forEach>
 											</select>
 										</div>
 									</div>
-									
-									
+
+
 								</div>
 								<!-- /.box-body -->
-								<div class="box-footer">
-									<button id="btnSave" type="button" class="btn btn-default">添加数据</button>
-								</div>
 								<!-- /.box-footer -->
+							</form>
+							<div class="box-footer">
+								<button id="btnSave" type="button" class="btn btn-default">添加数据</button>
+							</div>
 						</div>
 						<!-- /.box-body -->
 					</div>
@@ -206,15 +201,30 @@
 
 
 	$(function() {
-	$('#mySwitchA input').on('switchChange.bootstrapSwitch', function(event, state) {
-			var a=$('#recommend').val(state);
-			
-		});
+
 		$('#mySwitchB input').on('switchChange.bootstrapSwitch', function(event, state) {
-			var a=$('#isPhoto').val(state);
-			
+			var a = $('#teacherPhoto').val(state);
+
 		});
-	
+
+
+		//        选择图片
+		$('#selectImg').bind('change', function() {
+			//兼容性
+			var $file = $(this);
+			var fileObj = $file[0];
+			var windowURL = window.URL || window.webkitURL;
+			dataURL = windowURL.createObjectURL(fileObj.files[0]);
+			if (fileObj && fileObj.files && fileObj.files[0]) {
+				dataURL = windowURL.createObjectURL(fileObj.files[0]);
+			} else {
+				dataURL = $file.val();
+			}
+			//返回结果
+			$('#selectImgView').attr('src', dataURL);
+		});
+
+
 
 		//初始化富文本
 		var ue = UM.getEditor('UMeditor', {
@@ -228,25 +238,29 @@
 			]
 		});
 	});
-
 	$(function() {
-
 		$("#btnSave").click(function() {
 
-			var formDataStr = $("#formSave").serialize();
-			var nickname = $("#select2 option:selected")
-			var nickname = $("#select1 option:selected")
-			
-			
-
-			$.getJSON("<%=path%>/teacher/saveTeacher?" + formDataStr, function(data) {
-				/* $('#myModal').modal("hide");//隐藏模态框. */
-				if (data.code == '200') {
-					alert("保存成功!"); //先有，后改进
-					//刷新页面列表
-					listTeacher();
-				} else
-					alert("保存失败!失败原因:" + data.message); //先有，后改进
+			var formDataStr = $("#formSave")[0];
+			var formData = new FormData(formDataStr);
+			var url = "<%=basePath%>teacher/saveTeacher";
+			alert(url);
+			$.ajax({
+				url : url,  /*这是处理文件上传的servlet*/
+				type : 'post',
+				data : formData,
+            	contentType:false,
+				async : false,
+				cache : false,
+				processData : false,
+				success : function(returndata) {
+					console.log(returndata);
+				window.location.href = "<%=path%>/teacher/list";	
+					
+				},
+				error : function(returndata) {
+					console.log(returndata);
+				}
 			});
 		});
 	})

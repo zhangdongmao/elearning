@@ -1,7 +1,5 @@
 package com.cms.dto;
 
-import com.cms.beans.UacRole;
-import com.cms.beans.UacUserinfor;
 
 public class CurTeacherDto {
 	
@@ -10,15 +8,17 @@ public class CurTeacherDto {
 	private String teacherIntroduce;
 	private String position;
 	private String level;
-	private String teacherPhoto;
 	private String username;
 	private String password;
+	
+	
 	public Integer getId() {
 		return id;
 	}
 	public void setId(Integer id) {
 		this.id = id;
 	}
+	
 	public String getName() {
 		return name;
 	}
@@ -43,12 +43,6 @@ public class CurTeacherDto {
 	public void setLevel(String level) {
 		this.level = level;
 	}
-	public String getTeacherPhoto() {
-		return teacherPhoto;
-	}
-	public void setTeacherPhoto(String teacherPhoto) {
-		this.teacherPhoto = teacherPhoto;
-	}
 	public String getUsername() {
 		return username;
 	}
@@ -63,8 +57,10 @@ public class CurTeacherDto {
 	}
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return super.toString();
+		return "CurTeacherDto [id=" + id + ", name=" + name + ", teacherIntroduce=" + teacherIntroduce
+				+ ", position=" + position + ", level=" + level + ", username="
+				+ username + ", password=" + password + "]";
 	}
+	
 	
 }

@@ -58,10 +58,10 @@
 						<!-- /.box-header -->
 						<div class="box-body">
 
-							<form action="<%=path%>/teacher/edit" method="get"
+							<form action="<%=path%>/teacher/edit" method="post" id="asdfg"
 								class="form-horizontal" enctype="multipart/form-data">
 								<input type="hidden" name="id" value="${cur.getId() }">
-								<input type="hidden" name="teacherPhoto" value="${cur.getTeacherPhoto() }"> 
+								<input type="hidden" name="teacherPhoto" id="teacherPhoto"> 
 								<input type="hidden" name="roleId" value="${role.getId() }">
 								 <input type="hidden" name="userId" value="${user.getId() }">
 
@@ -103,14 +103,19 @@
 										</div>
 									</div>
 									
+									
+									
 									<div class="form-group">
 										<label class="col-xs-1 control-label">讲师图片：</label>
 										<div class="col-xs-6 input-group">
 											<div class="row">
 												<div class="col-xs-6">
-													<div class="switch switch-mini">
-													<input type="checkbox" data-size="mini" id="switchB" data-on-text="确认" data-off-text="不确认"
-														name="isPhoto"data-on-color="primary" data-off-color="warning">确认修改图片 
+													<div id="mySwitchB" class="switch has-switch switch-mini">
+													<input type="checkbox" data-size="mini" id="switchB" 
+													${cu.getTeacherPhoto() eq 'true'?"checked":""}
+													data-on-color="primary"data-on-text="已确认" data-off-text="不确认"
+														data-off-color="warning">确认修改图片
+													</div>
 													<input id="selectImg" name="photo" type="file"class="form-control" placeholder="0">
 													</div>
 												</div>
@@ -227,7 +232,6 @@
 	
 
 	$(function() {
-	/* $('switch').bootstrapSwitch('setState',false); */
 		$('input.switch').bootstrapSwitch({
 					
                     "onColor" : "success",
@@ -237,19 +241,11 @@
                     "size" : "mini"
                 });
 		
-		/* $('#switchA.switch').bootstrapSwitch({  
-				alert(1);
-                onText:'打开',  
-                offText:'关闭'  
-            });  */
-		//设置日期插件
-		/* $('#datetimepicker1').datetimepicker({
-			format : 'YYYY-MM-DD',
-			locale : moment.locale('zh-cn')
-		}); */
-
-
-		//        选择图片
+		$('#mySwitchB input').on('switchChange.bootstrapSwitch', function(event, state) {
+			var a=$('#teacherPhoto').val(state);
+			
+		}); 
+		//     选择图片
 		$('#selectImg').bind('change', function() {
 			//兼容性
 			var $file = $(this);

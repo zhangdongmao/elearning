@@ -28,8 +28,10 @@
 
 <script type="text/javascript">
 	function add(cu_id){
+		
 		window.location.href = "<%=path%>/teacher/add/list?curId="+cu_id;
-	}
+	};
+	
 	function edit(cu_id){
 		window.location.href = "<%=path%>/teacher/edit/list?curId="+cu_id;
 	}
@@ -54,7 +56,8 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-2 col-md-offset-1">
-				<a href="<%=path%>/admin/teacher/add.jsp">添加讲师信息</a>
+				<button type="button" onclick="add(${cu.id })"
+								class="btn btn-primary ">添加讲师信息</button>
 			</div>
 		</div>
 		<table class="table table-bordered table-hover">
