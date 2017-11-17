@@ -63,7 +63,7 @@ public class Knowledge implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id", nullable = false)
 
 	public UacUserinfor getUacUserinfor() {
@@ -74,7 +74,7 @@ public class Knowledge implements java.io.Serializable {
 		this.uacUserinfor = uacUserinfor;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "knowledge_type_id", nullable = false)
 
 	public KnowledgeType getKnowledgeType() {

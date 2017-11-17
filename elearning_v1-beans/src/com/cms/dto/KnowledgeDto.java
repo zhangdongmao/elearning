@@ -1,13 +1,30 @@
 package com.cms.dto;
 
-import com.cms.beans.KnowledgeType;
-import com.cms.beans.UacUserinfor;
-
 public class KnowledgeDto {
 	private Integer id;
 	private String name;
 	private String updateTime;
 	private String browserCount;
+	private String ktname;
+	private String nickname;
+	
+	@Override
+	public String toString() {
+		return "KnowledgeDto [id=" + id + ", name=" + name + ", updateTime=" + updateTime + ", browserCount="
+				+ browserCount + ", ktname=" + ktname + ", nickname=" + nickname + "]";
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+	public String getKtname() {
+		return ktname;
+	}
+	public void setKtname(String ktname) {
+		this.ktname = ktname;
+	}
 	public Integer getId() {
 		return id;
 	}
@@ -32,10 +49,8 @@ public class KnowledgeDto {
 	public void setBrowserCount(String browserCount) {
 		this.browserCount = browserCount;
 	}
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return super.toString();
-	}
+	
+	
+	
 	
 }

@@ -1,4 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -22,37 +24,74 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	src="<%=path%>/bootstrap-3.3.7/js/bootstrap.min.js"></script>
 <link type="text/css" rel="stylesheet"
 	href="<%=path%>/bootstrap-3.3.7/css/bootstrap.min.css">
-
-
 <script type="text/javascript">
 $(function(){
-	listCourse();
-	alert(1);
-	function edit(cu_id){
-		window.location.href = "<%=path%>/knowledge/edit/list?knowledgeId="+knowledge_id;
+	listKnowledge();
+		
+		//保存知识类型: 1.监听保存按钮事件 2.提交数据到服务器进行保存的处理,提示保存结果 3.关闭保存窗口.
+			$("#btnSave").click(function(){
+			alert(111);
+				var formDataStr =  $("#formSave").serialize();
+				alert(formDataStr);
+				$.getJSON("<%=path%>/knowledge/saveKnowledge?"+formDataStr,function(data){
+					alert(222);
+					$('#myModal').modal("hide");//隐藏模态框.
+					if(data.code=='200'){
+						alert("保存成功!");//先有，后改进
+						//刷新页面列表
+						listKnowledge();
+						//$("#formSave").reset();//不能使用jq对象调用dom对象的方法
+						$("#formSave")[0].reset();//重置表单窗口 -- jq对象是一个伪数组，第0个数据就是对应的DOM对象
+					}else
+						alert("保存失败!失败原因:"+data.message);//先有，后改进
+				});
+			});
+	})
+	
+	function listKnowledge(){
+		$.getJSON("knowledge/list",function(data){
+			var knowledgeData = $("#knowledgeData");
+			knowledgeData.empty();
+			for(var i=0; i<data.length;i++){
+				var tr = "<tr>"+
+    				"<td>"+data[i].id+"</td>"+
+    				"<td>"+data[i].ktname+"</td>"+
+    				"<td>"+data[i].name+"</td>"+
+    				"<td>"+data[i].nickname+"</td>"+
+    				"<td>"+data[i].updateTime+"</td>"+
+    				"<td>"+data[i].browserCount+"</td>"+
+    				"<td>"+
+					"<a class='btn btn-primary' href='javascript:edit("+data[i].id+")'>编辑</a> &nbsp;&nbsp;"+
+					"<a class='btn btn-primary' href='javascript:del("+data[i].id+")'>删除</a> &nbsp;&nbsp;"+
+					"</td>"+
+    				"</tr>";
+    			knowledgeData.append(tr);	
+			}
+		})
+	}
+	function listktname(){
+		$.getJSON("knowledge/list",function(data){
+		var ktname = $("#ktname");
+		ktname.empty();
+		var kn = data.ktname;
+		ktname.append(kn);
+		)}
 	}
 	
-	function del(){
-	window.location.href = "<%=path%>/knowledge/del?knowledgeId="+knowledge_id;
-	};
+	function del(klId){
+		$.getJSON("<%=path%>/knowledge/del",{klId:klId},function(data){
+				if(data.code=='200'){
+					alert("知识删除成功!");
+					//刷新页面列表
+					listKnowledge();
+				}else
+					alert("知识删除失败!失败原因:"+data.message);//先有，后改进
+			});
+	} 
 	
-	function listCourse(){
-				$.getJSON("<%=path%>/knowledge/list",function(data){
-					var courseData = $("#courseData");
-					/* courseData.empty(); */
-					for(var i=0; i<data.length;i++){
-						var tr = "<tr>"+
-		    				"<td>"+data[i].id+"</td>"+
-		    				"<td>"+data[i].name+"</td>"+
-		    				"<td>"+data[i].updateTime+"</td>"+
-		    				"<td>"+data[i].browserCount+"</td>"+
-		    				
-		    				"</tr>";
-		    			courseData.append(tr);
-					}
-				});
-			}
-	})
+	function edit(klId){
+		window.location.href = "<%=path%>/knowledge/edit/list?knowledgeId="+knowledge_id;
+	}
 	
 </script>
 
@@ -65,42 +104,108 @@ $(function(){
 	<div class="container">
 		<div class="row">
 			<div class="col-md-2 col-md-offset-1">
-				<a href="<%=path%>/admin/course/add.jsp">添加课程</a>
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">添加知识</button>
 			</div>
 		</div>
 		<table class="table table-bordered table-hover">
 			<thead>
 				<tr>
 					<td>id</td>
+					<td>知识类型名称</td>
 					<td>知识名称</td>
+					<td>用户昵称</td>
 					<td>更新时间</td>
 					<td>点击量</td>
+					<td>操作</td>
 				</tr>
 			</thead>
-			<tbody id="courseData">
-				<%-- <c:forEach items="${courses}" var="cu">--%>
-					<%-- <input type="hidden" name="id" value="${cu.curType.id}"> 
+			<tbody id="knowledgeData">
+				<%-- <c:forEach items="${kd}" var="kd">
 					<tr>
-						<td id="cuId">${cu.id}</td>
-						<td>${cu.code}</td>
-						<td>${cu.curName}</td>
+						<td>${kd.id}</td>
+						<td>${kd.name}</td>
+						<td>${kd.updateTime}</td>
+						<td>${kd.browserCount}</td>
 						<td>
 
-							<button type="button" onclick="edit(${cu.id })"
-								class="btn  btn-default ">编辑</button> &nbsp;&nbsp;
+							<button type="button" onclick="edit(${kd.id })"
+								class="btn  btn-primary ">
+								编辑
+								
+							</button> &nbsp;&nbsp;
 
-							<button type="button" onclick="del(${cu.id })"
-								class="btn  btn-default ">删除</button>
+							<button type="button" onclick="del(${klId })"
+								class="btn  btn-primary ">
+								删除
+							</button>
 
 						</td>
-					</tr> --%>
-				<%-- </c:forEach> --%>
+					</tr>
+				</c:forEach> --%>
 			</tbody>
 		</table>
-
-
 	</div>
+	
+	<!-- 添加知识 -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">添加知识</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal" id="formSave">
+						<div class="form-group">
+							<label for="inputEmail3" class="col-sm-2 control-label">知识类型</label>
+							<div class="col-sm-10">
+							<select id="ktname">
+								
+							</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputEmail3" class="col-sm-2 control-label">知识名称</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="name"
+									name="name" placeholder="知识名称">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputEmail3" class="col-sm-2 control-label">用户id</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="uacUserinfor"
+									name="uacUserinfor" placeholder="用户id">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputPassword3" class="col-sm-2 control-label">更新时间</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="updateTime" name="updateTime"
+									placeholder="更新时间">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputPassword3" class="col-sm-2 control-label">点击量</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="browserCount" name="browserCount"
+									placeholder="点击量">
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" id="btnSave" class="btn btn-primary">保存</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	
 
 </body>
 </html>
-

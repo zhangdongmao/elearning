@@ -1,7 +1,5 @@
 package com.cms.dto;
 
-import com.cms.beans.Register;
-
 public class UacUserinforDto {
 	private Integer id;
 	private String loginTimes;
