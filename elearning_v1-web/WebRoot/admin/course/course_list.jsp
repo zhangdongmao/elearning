@@ -27,7 +27,20 @@
 <link type="text/css" rel="stylesheet"
 	href="<%=path%>/bootstrap-3.3.7/css/bootstrap.min.css">
 
-
+<style>
+	.chapterTdShow{
+	display:block;
+	
+	
+}
+.chapterTdOff{
+	display:none;
+	
+	font-size:70px;
+	
+}
+	
+</style>
 <script type="text/javascript">
 
 	function edit(cu_id){
@@ -42,6 +55,31 @@
 		window.location.href = "<%=path%>/course/add/list?curId="+cu_id;
 	};
 	
+		function show(){
+		var chapterTr=document.getElementsByClassName('chapterShow');
+		var chapterTdShow=document.getElementsByClassName('chapterTdShow');
+		var chapterTdOff=document.getElementsByClassName('chapterTdOff');
+			console.log(chapterTdShow.length);
+			for(i=0;i<=29;i++){
+				chapterTdShow[i].style.display='none';
+			}
+			
+	}
+	function getChapter(cuId){
+			
+		$.getJSON("<%=basePath%>chapter/list?cuId="+cuId,function(data){
+			alert(1);
+			var list=$('#list');
+			for(i=0;i<data.length;i++){
+				var tr="<tr>"+
+					"<td>"+data[i]+"</td>"+
+					"</tr>";
+					list.append(tr);
+			}
+		
+		
+		})
+	}
 	
 </script>
 
@@ -68,7 +106,7 @@
 					<td>操作</td>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody id="list">
 				<c:forEach items="${courseDto}" var="cu">
 					<tr>
 						<td>${cu.id}</td>
@@ -85,17 +123,27 @@
 							<button type="button" onclick="del(${cu.id })"
 								class="btn  btn-primary ">
 								删除
-							</button>
-
+							</button> &nbsp;&nbsp;
+							<button type="button" onclick="getChapter(${cu.id })"
+								class="btn  btn-primary ">
+								查看章节
+							</button> &nbsp;&nbsp;
+							
+							<button type="button" class="btn btn-primary" data-toggle="modal" 
+							data-target="#exampleModal" data-whatever="">添加章节</button>
+						
+						
+						
 						</td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
+		
 
 
 	</div>
-
+<jsp:include page="/admin/js.jsp"></jsp:include>
 </body>
 </html>
 

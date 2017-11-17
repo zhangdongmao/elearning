@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>培训</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../public_css/public.css">
+    <link rel="stylesheet" href="../public_css/headerAndFooter.css">
+    <link rel="stylesheet" href="css/train.css">
+
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="js/trainData.js"></script>
+    <script src="js/train.js"></script>
+</head>
+<body>
+<!--头部开始-->
+<header class="header">
+
+    <div class="nav navbar-default navbar-static-top">
+        <div class="container navContainer">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle " data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../index.html"><img class="logoImg" src="../assets/img/logo.png"></a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-left">
+                    <li class=" headerNav"><a href="../index.html">首页</a></li>
+                    <li class=" headerNav"><a href="../wkCourse/course.html">课程</a></li>
+                    <li class=" headerNav"><a href="../wkPlan/plan.html">计划</a></li>
+                    <li class=" headerNav active"><a href="train.html">培训</a></li>
+                    <li class=" headerNav"><a href="../wkKnowledge/knowledge.html">知识</a></li>
+                    <li class=" headerNav"><a href="../wkLecturer/lectuer.html">讲师</a></li>
+                    <li class=" headerNav"><a href="../wkInformation/information.html">资讯</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">我的课堂</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">
+                            <span class="headerDropdownImg"><img src="../assets/img/avatar.jpg"
+                                                                 class="img-circle headerDropdownImg"></span>
+                            普通学员
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">个人中心</a></li>
+                            <li><a href="#">账号设置</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">退出</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="glyphicon glyphicon-bullhorn hidden-lt-ie8"></span>
+                            <span class="badge badge-important">19</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="glyphicon glyphicon-envelope hidden-lt-ie8"></span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</header>
+<!--头部结束-->
+<!--内容区开始-->
+<div class="content">
+    <div class="container navContainer">
+        <div class="outerRowBox">
+            <div class="row">
+                <!--左边列内容-->
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <div class="well well-sm">
+                        <form action="" class="form formSearch">
+                            <!--<input type="text" id="s" name="s">-->
+                            <div class="input-group">
+                                <input type="text" name="keyword" class="form-control">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="submit">
+                                        <i class="fa faSearch"></i>
+                                        搜索
+                                    </button>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.well -->
+                    <div class="clearfix"></div>
+                    <ul class="nav nav-pills nav-stacked" id="childNav">
+                        <li class="active">
+                            <a href="#" id="showAll">全部</a>
+                        </li>
+                        <li>
+                            <a href="#" id="showTypeOne">IT技能培训<span class="badge badge-default pull-right">4</span></a>
+                        </li>
+                        <li>
+                            <a href="#" id="showTypeTwo">沟通技巧<span class="badge badge-default pull-right">1</span></a>
+                        </li>
+                        <li>
+                            <a href="#" id="showTypeThree">管理类课程<span class="badge badge-default pull-right">1</span></a>
+                        </li>
+                        <li>
+                            <a href="#" id="showTypeFour">销售营销<span class="badge badge-default pull-right">1</span></a>
+                        </li>
+                    </ul>
+                </div>
+                <!--右边列内容-->
+                <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                    <!--课程列表-->
+                    <ul class="courseList">
+
+                        <!--<li class="courseItem clearfix">-->
+                            <!--<div class="row">-->
+                                <!--<div class="col-lg-offset-0 col-lg-3 col-md-offset-0 col-md-3 col-sm-offset-4 col-sm-3 col-xs-offset-2 col-xs-6">-->
+                                    <!--<div class="itemLogoBox">-->
+                                        <!--<a href="#">-->
+                                            <!--<img class="itemLogo" src="../assets/img/TRAINING_64.png" alt="">-->
+                                        <!--</a>-->
+                                    <!--</div>-->
+                                    <!--<div class="clearfix"></div>-->
+                                    <!--<div class="text-center itemBottomText">-->
+                                        <!--审批状态：-->
+                                        <!--<span class="label label-default">待审批</span>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">-->
+                                    <!--<div class="itemBody">-->
+                                        <!--<div class="itemTitle">-->
+                                            <!--<a href="" target="_blank">-->
+                                                <!--<strong>Office入门与精通</strong>-->
+                                            <!--</a>-->
+                                        <!--</div>-->
+                                        <!--<div class="clearfix"></div>-->
+                                        <!--<br>-->
+                                        <!--<div class="itemContent">-->
+                                            <!--<table>-->
+                                                <!--<tr>-->
+                                                    <!--<td>课程编号：20150716230902</td>-->
+                                                    <!--<td>-->
+                                                        <!--<span class="f-1">课程类别：IT技能培训</span>-->
+                                                        <!--&lt;!&ndash; /.f-1 &ndash;&gt;-->
+                                                    <!--</td>-->
+                                                <!--</tr>-->
+                                                <!--<tr>-->
+                                                    <!--<td>-->
+                                                        <!--<span class="f-1">课程讲师：马克思</span>-->
+                                                    <!--</td>-->
+                                                    <!--<td>-->
+                                                        <!--<span>发布时间：</span>-->
+                                                        <!--<span>2015-07-17</span>-->
+                                                    <!--</td>-->
+                                                <!--</tr>-->
+                                                <!--<tr>-->
+                                                    <!--<td>-->
+                                                        <!--<span>课程学分：2</span>-->
+                                                    <!--</td>-->
+                                                    <!--<td>-->
+                                                        <!--<span>培训课时：2.00</span>-->
+                                                    <!--</td>-->
+                                                <!--</tr>-->
+                                                <!--<tr>-->
+                                                    <!--<td>-->
+                                                        <!--<span>培训时间：2015-07-16 23:09至 2017-12-23 23:09</span>-->
+                                                    <!--</td>-->
+                                                    <!--<td>-->
+                                                        <!--<span>报名时间：2015-07-16至 2020-12-31</span>-->
+                                                    <!--</td>-->
+                                                <!--</tr>-->
+                                                <!--<tr>-->
+                                                    <!--<td>-->
+                                                        <!--<span>学员名额：0</span>-->
+                                                    <!--</td>-->
+                                                    <!--<td>-->
+                                                        <!--<span>报名状态：申请中…… </span>-->
+                                                    <!--</td>-->
+                                                <!--</tr>-->
+                                            <!--</table>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</li>-->
+
+                        <!--<li class="courseItem clearfix">-->
+                            <!--<div class="row">-->
+                                <!--<div class="col-lg-offset-0 col-lg-3 col-md-offset-0 col-md-3 col-sm-offset-4 col-sm-3 col-xs-offset-4 col-xs-3">-->
+                                    <!--<div class="itemLogoBox">-->
+                                        <!--<a href="#">-->
+                                            <!--<img class="itemLogo" src="../assets/img/4.jpg" alt="">-->
+                                        <!--</a>-->
+                                    <!--</div>-->
+                                    <!--<div class="clearfix"></div>-->
+                                    <!--<div class="text-center itemBottomText">-->
+                                        <!--<a target="_self" href="#" class="btn btn-sm btn-success">我要报名                                                    </a>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">-->
+                                    <!--<div class="itemBody">-->
+                                        <!--<div class="itemTitle">-->
+                                            <!--<a href="" target="_blank">-->
+                                                <!--<strong>Office高级</strong>-->
+                                            <!--</a>-->
+                                        <!--</div>-->
+                                        <!--<div class="clearfix"></div>-->
+                                        <!--<br>-->
+                                        <!--<div class="itemContent">-->
+                                            <!--<table>-->
+                                                <!--<tr>-->
+                                                    <!--<td>课程编号：20150716230737</td>-->
+                                                    <!--<td>-->
+                                                        <!--<span class="f-1">课程类别：销售营销</span>-->
+                                                        <!--&lt;!&ndash; /.f-1 &ndash;&gt;-->
+                                                    <!--</td>-->
+                                                <!--</tr>-->
+                                                <!--<tr>-->
+                                                    <!--<td>-->
+                                                        <!--<span class="f-1">课程讲师：王北京</span>-->
+                                                    <!--</td>-->
+                                                    <!--<td>-->
+                                                        <!--<span>发布时间：</span>-->
+                                                        <!--<span>2015-07-17</span>-->
+                                                    <!--</td>-->
+                                                <!--</tr>-->
+                                                <!--<tr>-->
+                                                    <!--<td>-->
+                                                        <!--<span>课程学分：2</span>-->
+                                                    <!--</td>-->
+                                                    <!--<td>-->
+                                                        <!--<span>培训课时：2.00</span>-->
+                                                    <!--</td>-->
+                                                <!--</tr>-->
+                                                <!--<tr>-->
+                                                    <!--<td>-->
+                                                        <!--<span>培训时间：2015-07-16 23:09至 2017-12-23 23:07</span>-->
+                                                    <!--</td>-->
+                                                    <!--<td>-->
+                                                        <!--<span>报名时间：2015-07-16至 2020-12-31</span>-->
+                                                    <!--</td>-->
+                                                <!--</tr>-->
+                                                <!--<tr>-->
+                                                    <!--<td>-->
+                                                        <!--<span>学员名额：0</span>-->
+                                                    <!--</td>-->
+                                                    <!--<td>-->
+                                                        <!--<span>报名状态：开放报名 </span>-->
+                                                    <!--</td>-->
+                                                <!--</tr>-->
+                                            <!--</table>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</li>-->
+
+                        <!--<li class="courseItem clearfix">-->
+                            <!--<div class="row">-->
+                                <!--<div class="col-lg-offset-0 col-lg-3 col-md-offset-0 col-md-3 col-sm-offset-4 col-sm-3 col-xs-offset-4 col-xs-3">-->
+                                    <!--<div class="itemLogoBox">-->
+                                        <!--<a href="#">-->
+                                            <!--<img class="itemLogo" src="../assets/img/TRAINING_62.png" alt="">-->
+                                        <!--</a>-->
+                                    <!--</div>-->
+                                    <!--<div class="clearfix"></div>-->
+                                    <!--<div class="text-center itemBottomText">-->
+                                        <!--<a target="_self" href="#" class="btn btn-sm btn-success">我要报名                                                    </a>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">-->
+                                    <!--<div class="itemBody">-->
+                                        <!--<div class="itemTitle">-->
+                                            <!--<a href="" target="_blank">-->
+                                                <!--<strong>Photoshop体验</strong>-->
+                                            <!--</a>-->
+                                        <!--</div>-->
+                                        <!--<div class="clearfix"></div>-->
+                                        <!--<br>-->
+                                        <!--<div class="itemContent">-->
+                                            <!--<table>-->
+                                                <!--<tr>-->
+                                                    <!--<td>课程编号：20150716230520</td>-->
+                                                    <!--<td>-->
+                                                        <!--<span class="f-1">课程类别：IT技能培训</span>-->
+                                                        <!--&lt;!&ndash; /.f-1 &ndash;&gt;-->
+                                                    <!--</td>-->
+                                                <!--</tr>-->
+                                                <!--<tr>-->
+                                                    <!--<td>-->
+                                                        <!--<span class="f-1">课程讲师：Mike</span>-->
+                                                    <!--</td>-->
+                                                    <!--<td>-->
+                                                        <!--<span>发布时间：</span>-->
+                                                        <!--<span>2015-07-17</span>-->
+                                                    <!--</td>-->
+                                                <!--</tr>-->
+                                                <!--<tr>-->
+                                                    <!--<td>-->
+                                                        <!--<span>课程学分：2</span>-->
+                                                    <!--</td>-->
+                                                    <!--<td>-->
+                                                        <!--<span>培训课时：1.00</span>-->
+                                                    <!--</td>-->
+                                                <!--</tr>-->
+                                                <!--<tr>-->
+                                                    <!--<td>-->
+                                                        <!--<span>培训时间：2015-07-16 23:05至 2017-12-23 23:05</span>-->
+                                                    <!--</td>-->
+                                                    <!--<td>-->
+                                                        <!--<span>报名时间：2015-07-16至 2020-12-31</span>-->
+                                                    <!--</td>-->
+                                                <!--</tr>-->
+                                                <!--<tr>-->
+                                                    <!--<td>-->
+                                                        <!--<span>学员名额：0</span>-->
+                                                    <!--</td>-->
+                                                    <!--<td>-->
+                                                        <!--<span>报名状态：开放报名</span>-->
+                                                    <!--</td>-->
+                                                <!--</tr>-->
+                                            <!--</table>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</li>-->
+
+                        <!--<li class="courseItem clearfix">-->
+                            <!--<div class="row">-->
+                                <!--<div class="col-lg-offset-0 col-lg-3 col-md-offset-0 col-md-3 col-sm-offset-4 col-sm-3 col-xs-offset-4 col-xs-3">-->
+                                    <!--<div class="itemLogoBox">-->
+                                        <!--<a href="#">-->
+                                            <!--<img class="itemLogo" src="../assets/img/TRAINING_61.png" alt="">-->
+                                        <!--</a>-->
+                                    <!--</div>-->
+                                    <!--<div class="clearfix"></div>-->
+                                    <!--<div class="text-center itemBottomText">-->
+                                        <!--<a target="_self" href="#" class="btn btn-sm btn-success">我要报名                                                    </a>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">-->
+                                    <!--<div class="itemBody">-->
+                                        <!--<div class="itemTitle">-->
+                                            <!--<a href="" target="_blank">-->
+                                                <!--<strong>Photoshop精通</strong>-->
+                                            <!--</a>-->
+                                        <!--</div>-->
+                                        <!--<div class="clearfix"></div>-->
+                                        <!--<br>-->
+                                        <!--<div class="itemContent">-->
+                                            <!--<table>-->
+                                                <!--<tr>-->
+                                                    <!--<td>课程编号：20150716230410</td>-->
+                                                    <!--<td>-->
+                                                        <!--<span class="f-1">课程类别：沟通技巧</span>-->
+                                                        <!--&lt;!&ndash; /.f-1 &ndash;&gt;-->
+                                                    <!--</td>-->
+                                                <!--</tr>-->
+                                                <!--<tr>-->
+                                                    <!--<td>-->
+                                                        <!--<span class="f-1">课程讲师：李明</span>-->
+                                                    <!--</td>-->
+                                                    <!--<td>-->
+                                                        <!--<span>发布时间：</span>-->
+                                                        <!--<span>2015-07-17</span>-->
+                                                    <!--</td>-->
+                                                <!--</tr>-->
+                                                <!--<tr>-->
+                                                    <!--<td>-->
+                                                        <!--<span>课程学分：6</span>-->
+                                                    <!--</td>-->
+                                                    <!--<td>-->
+                                                        <!--<span>培训课时：2.00</span>-->
+                                                    <!--</td>-->
+                                                <!--</tr>-->
+                                                <!--<tr>-->
+                                                    <!--<td>-->
+                                                        <!--<span>培训时间：2015-07-16 23:09至 2017-12-23 23:09</span>-->
+                                                    <!--</td>-->
+                                                    <!--<td>-->
+                                                        <!--<span>报名时间：2015-07-16至 2020-12-31</span>-->
+                                                    <!--</td>-->
+                                                <!--</tr>-->
+                                                <!--<tr>-->
+                                                    <!--<td>-->
+                                                        <!--<span>学员名额：0</span>-->
+                                                    <!--</td>-->
+                                                    <!--<td>-->
+                                                        <!--<span>报名状态：开放报名</span>-->
+                                                    <!--</td>-->
+                                                <!--</tr>-->
+                                            <!--</table>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</li>-->
+
+                        <!--<li class="courseItem clearfix">-->
+                            <!--<div class="row">-->
+                                <!--<div class="col-lg-offset-0 col-lg-3 col-md-offset-0 col-md-3 col-sm-offset-4 col-sm-3 col-xs-offset-4 col-xs-3">-->
+                                    <!--<div class="itemLogoBox">-->
+                                        <!--<a href="#">-->
+                                            <!--<img class="itemLogo" src="../assets/img/TRAINING_60.png" alt="">-->
+                                        <!--</a>-->
+                                    <!--</div>-->
+                                    <!--<div class="clearfix"></div>-->
+                                    <!--<div class="text-center itemBottomText">-->
+                                        <!--<a target="_self" href="#" class="btn btn-sm btn-success">我要报名                                                    </a>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">-->
+                                    <!--<div class="itemBody">-->
+                                        <!--<div class="itemTitle">-->
+                                            <!--<a href="" target="_blank">-->
+                                                <!--<strong>Photoshop进阶</strong>-->
+                                            <!--</a>-->
+                                        <!--</div>-->
+                                        <!--<div class="clearfix"></div>-->
+                                        <!--<br>-->
+                                        <!--<div class="itemContent">-->
+                                            <!--<table>-->
+                                                <!--<tr>-->
+                                                    <!--<td>课程编号：20150716225738</td>-->
+                                                    <!--<td>-->
+                                                        <!--<span class="f-1">课程类别：IT技能培训</span>-->
+                                                        <!--&lt;!&ndash; /.f-1 &ndash;&gt;-->
+                                                    <!--</td>-->
+                                                <!--</tr>-->
+                                                <!--<tr>-->
+                                                    <!--<td>-->
+                                                        <!--<span class="f-1">课程讲师：Mike</span>-->
+                                                    <!--</td>-->
+                                                    <!--<td>-->
+                                                        <!--<span>发布时间：</span>-->
+                                                        <!--<span>2015-07-17</span>-->
+                                                    <!--</td>-->
+                                                <!--</tr>-->
+                                                <!--<tr>-->
+                                                    <!--<td>-->
+                                                        <!--<span>课程学分：5</span>-->
+                                                    <!--</td>-->
+                                                    <!--<td>-->
+                                                        <!--<span>培训课时：1.00</span>-->
+                                                    <!--</td>-->
+                                                <!--</tr>-->
+                                                <!--<tr>-->
+                                                    <!--<td>-->
+                                                        <!--<span>培训时间：2015-07-16 23:09至 2017-12-23 23:09</span>-->
+                                                    <!--</td>-->
+                                                    <!--<td>-->
+                                                        <!--<span>报名时间：2015-07-16至 2020-12-31</span>-->
+                                                    <!--</td>-->
+                                                <!--</tr>-->
+                                                <!--<tr>-->
+                                                    <!--<td>-->
+                                                        <!--<span>学员名额：0</span>-->
+                                                    <!--</td>-->
+                                                    <!--<td>-->
+                                                        <!--<span>报名状态：开放报名 </span>-->
+                                                    <!--</td>-->
+                                                <!--</tr>-->
+                                            <!--</table>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</li>-->
+
+                        <!--<li class="courseItem clearfix">-->
+                            <!--<div class="row">-->
+                                <!--<div class="col-lg-offset-0 col-lg-3 col-md-offset-0 col-md-3 col-sm-offset-4 col-sm-3 col-xs-offset-4 col-xs-3">-->
+                                    <!--<div class="itemLogoBox">-->
+                                        <!--<a href="#">-->
+                                            <!--<img class="itemLogo" src="../assets/img/6.jpg" alt="">-->
+                                        <!--</a>-->
+                                    <!--</div>-->
+                                    <!--<div class="clearfix"></div>-->
+                                    <!--<div class="text-center itemBottomText">-->
+                                        <!--<a target="_self" href="#" class="btn btn-sm btn-success">我要报名                                                    </a>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">-->
+                                    <!--<div class="itemBody">-->
+                                        <!--<div class="itemTitle">-->
+                                            <!--<a href="" target="_blank">-->
+                                                <!--<strong>Photoshop入门</strong>-->
+                                            <!--</a>-->
+                                        <!--</div>-->
+                                        <!--<div class="clearfix"></div>-->
+                                        <!--<br>-->
+                                        <!--<div class="itemContent">-->
+                                            <!--<table>-->
+                                                <!--<tr>-->
+                                                    <!--<td>课程编号：20150716224548</td>-->
+                                                    <!--<td>-->
+                                                        <!--<span class="f-1">课程类别：IT技能培训</span>-->
+                                                        <!--&lt;!&ndash; /.f-1 &ndash;&gt;-->
+                                                    <!--</td>-->
+                                                <!--</tr>-->
+                                                <!--<tr>-->
+                                                    <!--<td>-->
+                                                        <!--<span class="f-1">课程讲师：Mike</span>-->
+                                                    <!--</td>-->
+                                                    <!--<td>-->
+                                                        <!--<span>发布时间：</span>-->
+                                                        <!--<span>2015-07-17</span>-->
+                                                    <!--</td>-->
+                                                <!--</tr>-->
+                                                <!--<tr>-->
+                                                    <!--<td>-->
+                                                        <!--<span>课程学分：4</span>-->
+                                                    <!--</td>-->
+                                                    <!--<td>-->
+                                                        <!--<span>培训课时：1.00</span>-->
+                                                    <!--</td>-->
+                                                <!--</tr>-->
+                                                <!--<tr>-->
+                                                    <!--<td>-->
+                                                        <!--<span>培训时间：2015-07-16 23:09至 2017-12-23 23:09</span>-->
+                                                    <!--</td>-->
+                                                    <!--<td>-->
+                                                        <!--<span>报名时间：2015-07-16至 2020-12-31</span>-->
+                                                    <!--</td>-->
+                                                <!--</tr>-->
+                                                <!--<tr>-->
+                                                    <!--<td>-->
+                                                        <!--<span>学员名额：0</span>-->
+                                                    <!--</td>-->
+                                                    <!--<td>-->
+                                                        <!--<span>报名状态：开放报名</span>-->
+                                                    <!--</td>-->
+                                                <!--</tr>-->
+                                            <!--</table>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</li>-->
+
+                        <!--<li class="courseItem clearfix">-->
+                            <!--<div class="row">-->
+                                <!--<div class="col-lg-offset-0 col-lg-3 col-md-offset-0 col-md-3 col-sm-offset-4 col-sm-3 col-xs-offset-4 col-xs-3">-->
+                                    <!--<div class="itemLogoBox">-->
+                                        <!--<a href="#">-->
+                                            <!--<img class="itemLogo" src="../assets/img/8.jpg" alt="">-->
+                                        <!--</a>-->
+                                    <!--</div>-->
+                                    <!--<div class="clearfix"></div>-->
+                                    <!--<div class="text-center itemBottomText">-->
+                                        <!--<a target="_self" href="#" class="btn btn-sm btn-success">我要报名                                                    </a>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">-->
+                                    <!--<div class="itemBody">-->
+                                        <!--<div class="itemTitle">-->
+                                            <!--<a href="" target="_blank">-->
+                                                <!--<strong>WEB开发培训</strong>-->
+                                            <!--</a>-->
+                                        <!--</div>-->
+                                        <!--<div class="clearfix"></div>-->
+                                        <!--<br>-->
+                                        <!--<div class="itemContent">-->
+                                            <!--<table>-->
+                                                <!--<tr>-->
+                                                    <!--<td>课程编号：201305200047000</td>-->
+                                                    <!--<td>-->
+                                                        <!--<span class="f-1">课程类别：管理类课程</span>-->
+                                                        <!--&lt;!&ndash; /.f-1 &ndash;&gt;-->
+                                                    <!--</td>-->
+                                                <!--</tr>-->
+                                                <!--<tr>-->
+                                                    <!--<td>-->
+                                                        <!--<span class="f-1">课程讲师：李勇</span>-->
+                                                    <!--</td>-->
+                                                    <!--<td>-->
+                                                        <!--<span>发布时间：</span>-->
+                                                        <!--<span>2016-03-22</span>-->
+                                                    <!--</td>-->
+                                                <!--</tr>-->
+                                                <!--<tr>-->
+                                                    <!--<td>-->
+                                                        <!--<span>课程学分：3</span>-->
+                                                    <!--</td>-->
+                                                    <!--<td>-->
+                                                        <!--<span>培训课时：2.00</span>-->
+                                                    <!--</td>-->
+                                                <!--</tr>-->
+                                                <!--<tr>-->
+                                                    <!--<td>-->
+                                                        <!--<span>培训时间：2015-07-16 23:09至 2017-12-23 23:09</span>-->
+                                                    <!--</td>-->
+                                                    <!--<td>-->
+                                                        <!--<span>报名时间：2015-07-16至 2020-12-31</span>-->
+                                                    <!--</td>-->
+                                                <!--</tr>-->
+                                                <!--<tr>-->
+                                                    <!--<td>-->
+                                                        <!--<span>学员名额：0</span>-->
+                                                    <!--</td>-->
+                                                    <!--<td>-->
+                                                        <!--<span>报名状态：开放报名</span>-->
+                                                    <!--</td>-->
+                                                <!--</tr>-->
+                                            <!--</table>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</li>-->
+
+                    </ul>
+                    <div class="clearfix"></div>
+                    <!--分页按钮-->
+                    <div class="bottomBtn">
+                        <ul class="pagination">
+                            <li class="active"><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">下一页</a></li>
+                        </ul>
+						<span>
+                            记录总数:
+                            <b>7</b>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--内容区结束-->
+
+<!--脚注部分开始-->
+<div class="footer">
+    <div class="container navContainer">
+        <div class="footer-links">
+            <ul class="site-footer-links">
+                <li><a href="#">关于我们</a></li>
+                <li><a href="#">联系我们</a></li>
+                <li><a href="#">帮助</a></li>
+                <li>
+                    <a href="#">
+                        下载客户端
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!--清除浮动-->
+        <div class="clearfix"></div>
+        <div class="footer-copyright">
+            Powered by
+            <a href="http://www.jingjichang.com.cn" target="_blank">在线学习平台</a>
+            ©2013-2017            &nbsp;
+        </div>
+    </div>
+</div>
+<!--脚注部分结束-->
+
+
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+#home .context1{
+    padding: 15px 20px;
+    margin: 0 0 20px;
+    font-size: 17.5px;
+    border-left: 5px solid #eee;
+}
+#home .context1 span{
+    font-size: 18px;
+    padding: 10px 0;
+    color: #449d44;
+}
+#home .context2 p{
+    font-family: 'microsoft yahei';
+    font-size: 16px;
+    background-color: #FFFFFF;
+    text-indent: 32px;
+}
+#home .border1{
+    margin: 40px 0 20px 0;
+    border-top: 1px solid lightgray;
+}
+#home .context3 p{
+    font-family: 'microsoft yahei';
+    font-size: 13px;
+    background-color: #FFFFFF;
+}

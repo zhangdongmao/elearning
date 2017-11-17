@@ -1,0 +1,22 @@
+#context .inner_box .row2 .col-md-9 form .form-group {
+    padding: 10px 0 0 20px;
+}
+
+#context .inner_box .row2 .col-md-9 form #img_box {
+    line-height: 13px;
+}
+
+#context .inner_box .row2 .col-md-9 form .red {
+    color: red;
+}
+
+#context .inner_box .row2 .col-md-9 .form-group{
+    padding: 0 20px 0 0 ;
+}
+
+#textarea_box .col-sm-10 span{
+    color: gray;
+}
+#context .inner_box .row2 .col-md-9 .form-group label{
+    padding: 0;
+}

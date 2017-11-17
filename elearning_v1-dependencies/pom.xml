@@ -22,7 +22,8 @@
 		<standard.version>1.1.2</standard.version>
 		<dbcp2.version>2.1.1</dbcp2.version>
 		<pool2.vresion>2.4.2</pool2.vresion>
-		<fileupload>1.2.2</fileupload>
+		<fileupload.version>1.2.2</fileupload.version>
+		<io.version>2.2</io.version>
 	</properties>
 
 
@@ -30,9 +31,15 @@
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>${io.version}</version>
+			</dependency>
+
+			<dependency>
 				<groupId>commons-fileupload</groupId>
 				<artifactId>commons-fileupload</artifactId>
-				<version>${fileupload}</version>
+				<version>${fileupload.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.commons</groupId>

@@ -1,11 +1,14 @@
 package com.cms.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import org.springframework.beans.BeanUtils;
@@ -13,7 +16,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.cms.beans.CurCourse;
 import com.cms.beans.CurTeacher;
@@ -38,12 +46,6 @@ public class CourseController {
 	@Autowired
 	private ICurTypeService courseTypeService;
 
-	//@RequestMapping(path="/list",method=RequestMethod.GET)
-	//@ResponseBody()
-	//public List<CurCourse> listCourses(){
-	//不能直接返回pojo，会出现no session的异常。
-
-
 	@RequestMapping(value="/list")
 	public String listCourses(Model model){
 
@@ -61,7 +63,7 @@ public class CourseController {
 		List<CurTypeDto> types = courseTypeService.list();
 		model.addAttribute("teachers",teachers);
 		model.addAttribute("types",types);
-		return "/admin/course/add";
+		return "/admin/course/add2";
 	}
 
 
@@ -112,61 +114,41 @@ public class CourseController {
 		return "/admin/result";
 	}
 
-
+	
 	//保存课程功能
 	@RequestMapping("/saveCourse")
-	@ResponseBody // 返回json数据
-	public ResponseDto saveCourse(HttpServletRequest req, CurCourseDto course,String teacherName,String courseType) throws IOException, ServletException{
-		Part part = req.getPart("photo");
-		ResponseDto response = new ResponseDto();
-		String fileName = "";
+	public String saveCourse(@RequestParam("photo") CommonsMultipartFile upload,
+			HttpSession session, CurCourseDto course,String teacherName,String courseType) throws Exception{
+		
+		System.out.println(teacherName);
+		System.out.println(courseType);
+		System.out.println(course.getCurName());
+		String onlyName="";
 		try {
+			// 得到原始的文件名
+			String fileName = upload.getOriginalFilename();
+			// 得到文件的后缀名
+			String extendName = fileName.substring(fileName.lastIndexOf("."));
+			// 重写命名为唯一的文件名
+			onlyName = UUID.randomUUID().toString() + extendName;
+			// 得到上传到服务器上的图片文件夹的全路径:C:/apache-tomcat-7.0.47/webapps/SpringMVC_001/upload
+			String realyPath = session.getServletContext().getRealPath("/upload");
 
-			// 重建文件名称
-			// 1:根据不同的文件类型组装出一个全新的文件名，且不能重复UUID
-			fileName = UUID.randomUUID().toString();
-			// 2:上传的是什么类型的文件
-			String fileExtension = part.getHeader("Content-Type");
-			if (fileExtension.equalsIgnoreCase("image/tiff")) {
-				fileName += ".tif";
+			File saveDir = new File(realyPath);
+			if (!saveDir.exists()) {
+				saveDir.mkdir();
 			}
-			if (fileExtension.equalsIgnoreCase("image/fax")) {
-				fileName += ".fax";
-			}
-			if (fileExtension.equalsIgnoreCase("image/gif")) {
-				fileName += ".gif";
-			}
-			if (fileExtension.equalsIgnoreCase("image/x-icon")) {
-				fileName += ".ico";
-			}
-			if (fileExtension.equalsIgnoreCase("image/jpeg")) {
-				fileName += ".jpg";
-			}
-			if (fileExtension.equalsIgnoreCase("image/pnetvue")) {
-				fileName += ".net";
-			}
-			if (fileExtension.equalsIgnoreCase("image/png")) {
-				fileName += ".png";
-			}
-			if (fileExtension.equalsIgnoreCase("image/vnd.rn-realpix")) {
-				fileName += ".rp";
-			}
-			if (fileExtension.equalsIgnoreCase("image/vnd.wap.wbmp")) {
-				fileName += ".wbmp";
-			}
-
-			if (fileExtension.equalsIgnoreCase("image/bmp")) {
-				fileName += ".bmp";
-			}
-			//3:文件存哪里
-			String savePath = req.getServletContext().getRealPath("/upload");
-			part.write(savePath + "/" + fileName);
+			File saveFile = new File(saveDir, onlyName);
+			upload.transferTo(saveFile);
 		} catch (Exception e) {
 			e.printStackTrace();
-			response.setCode("422");
-			response.setMessage("图片上传失败!");
+			
 		}
+		
 
+		
+		
+		// 获取文件保存路径
 		try {
 			String teacherHsql="from CurTeacher t where t.name=?";
 			String typeHsql="from CurType c where c.name=?";
@@ -180,16 +162,16 @@ public class CourseController {
 			BeanUtils.copyProperties(course, curCourse);
 			curCourse.setCurType(curType);
 			curCourse.setCurTeacher(curTeacher);
-			curCourse.setCurPhoto(fileName);
+			curCourse.setCurPhoto(onlyName);
 			courseService.save(curCourse);
-			response.setCode("200");
-			response.setMessage("保存成功");
+			/*response.setCode("200");
+			response.setMessage("保存成功");*/
 		} catch (Exception e) {
 			e.printStackTrace();
-			response.setCode("422");
-			response.setMessage("保存失败:");
+			/*response.setCode("422");
+			response.setMessage("保存失败:");*/
 		} 
-		
-		return response;
+
+		return "/admin/result";
 	}
 }

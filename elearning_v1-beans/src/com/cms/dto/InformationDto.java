@@ -1,7 +1,5 @@
 package com.cms.dto;
 
-import com.cms.beans.InformationType;
-
 public class InformationDto {
 	private Integer id;
 	private String title;

@@ -1,0 +1,73 @@
+
+/*头部样式开始*/
+.header{
+    min-height: 44px;
+    border: 1px solid #DDD;
+    border-bottom: 3px solid #DDD;
+    border-radius: 4px;
+}
+
+.logoImg{
+    height: 36px;
+    margin-top: -8px;
+}
+.headerNav{
+    height: 56px;
+}
+.headerNav>a{
+    padding-top: 18px;
+    padding-bottom: 18px;
+}
+.headerDropdownImg{
+    width: 27px;
+    height: 27px;
+}
+/*头部样式结束*/
+/*脚注样式开始*/
+.footer{
+    /*background-color: #f5f5f5; */
+    background-color: #f5f5f5;
+    border-top: 1px solid #E5E5E5;
+    color: #666;
+    text-align: center;
+    padding: 40px 0;
+    /*width: 100%;*/
+}
+.footer a{
+    color: #666;
+    font-size: 13px;
+}
+.footer a:hover{
+    color: #9d9d9d;
+    text-decoration: none;
+}
+.footer .footer-links{
+    margin-bottom: 10px;
+}
+.footer .footer-links .site-footer-links{
+    display: inline-block;
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+}
+.site-footer-links li {
+    display: inline-block;
+    margin-right: 20px;
+}
+/*脚注样式结束*/
+
+/*媒体查询 当屏幕宽度最大为768px时*/
+@media (min-width:768px) {
+    header{
+        font-size: 15px;
+    }
+}
+
+
+@media (min-width: 992px) {
+    header{
+        font-size: 15px;
+    }
+}
+
+

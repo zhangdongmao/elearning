@@ -7,8 +7,6 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
 <base href="<%=basePath%>">
@@ -30,45 +28,21 @@
 
 <script type="text/javascript">
 	function add(cu_id){
+		
 		window.location.href = "<%=path%>/teacher/add/list?curId="+cu_id;
-	}
+	};
+	
 	function edit(cu_id){
 		window.location.href = "<%=path%>/teacher/edit/list?curId="+cu_id;
 	}
 	
 	function del(cu_id){
-	alert(111);
+	alert("确定删除");
 	window.location.href = "<%=path%>/teacher/del?curId="+cu_id;
 	};
-	function listTeacher(){
-				$.getJSON("<%=path%>/teacher/list",function(data){
-					var teacherData = $("#teacherData");
-					/* courseData.empty(); */
-					for(var i=0; i<data.length;i++){
-						var tr = "<tr>"+
-		    				"<td>"+data[i].id+"</td>"+
-		    				
-		    				"<td>"+data[i].name+"</td>"+
-		    				"<td>"+data[i].teacherIntroduce+"</td>"+
-		    				"<td>"+data[i].position+"</td>"+
-		    				"<td>"+data[i].level+"</td>"+
-		    				"<td>"+data[i].teacherPhoto+"</td>"+
-		    				
-		    				"<td>"+data[i].username+"</td>"+
-		    				"<td>"+data[i].password+"</td>"+
-		    				
-		    				
-		    				"</tr>";
-		    			teacherData.append(tr);
-					}
-				});
-			}
-$(function(){
+	
+   $(function(){
 	listTeacher();
-	alert(1);
-
-	
-	
 	})
 	
 </script>
@@ -82,7 +56,8 @@ $(function(){
 	<div class="container">
 		<div class="row">
 			<div class="col-md-2 col-md-offset-1">
-				<a href="<%=path%>/admin/teacher/add.jsp">添加课程</a>
+				<button type="button" onclick="add(${cu.id })"
+								class="btn btn-primary ">添加讲师信息</button>
 			</div>
 		</div>
 		<table class="table table-bordered table-hover">
@@ -101,7 +76,7 @@ $(function(){
 					<td>操作</td>
 				</tr>
 			</thead>
-			<tbody id="courseData">
+			<tbody id="teacherData">
 				<c:forEach items="${teacher}" var="cu">
 					
 					<tr>
@@ -135,4 +110,3 @@ $(function(){
 
 </body>
 </html>
-

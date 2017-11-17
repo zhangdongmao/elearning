@@ -1,0 +1,122 @@
+@charset "UTF-8";
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-size: 13px;
+    font-family:'Microsoft YaHei', Arial;
+    color: black;
+    background: #ebebeb !important;
+}
+/*头部样式开始*/
+.nav-pills>li.active>a{
+    color: #fff !important;
+}
+a {
+    color: #555 !important;
+    text-decoration: none;
+}
+/*头部样式结束*/
+
+/*内容样式开始*/
+#context{
+    width: 100%;
+}
+#context .container{
+    padding: 20px 15px;
+}
+#context .container .inner_box{
+    background: #fdfdfe;
+    -webkit-border-radius:4px ;
+    -moz-border-radius:4px ;
+    border-radius:5px ;
+    padding:10px 10px;
+}
+#context .container .inner_box .row .col-lg-10 .well{
+    padding: 9px;
+}
+#context .container .inner_box .row .col-lg-10 .well .btn{
+    width: 58px;
+}
+#inner_box{
+    padding: 10px 15px;
+}
+#inner_box .col-lg-2 ul{
+    border: 1px solid lightgray;
+    border-radius: 5px;
+}
+#inner_box .col-lg-2 ul li{
+    border-bottom: 1px solid lightgray;
+    border-radius: 0;
+    margin: 0;
+}
+#inner_box .col-lg-2 ul li:first-child a{
+     border-top-right-radius: 5px;
+     border-top-left-radius: 5px;
+ }
+#inner_box .col-lg-2 ul li:last-child a{
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+#inner_box .col-lg-2 ul li a{
+    border-radius: 0;
+}
+#inner_box .col-lg-2 ul li a span{
+    color: black;
+    font-size: 13px;
+}
+#inner_box .col-lg-2 ul li:last-child{
+    border: none;
+}
+#inner_box , .tab-content th{
+    font-size: 13px;
+}
+#inner_box .tab-content tbody td a:hover{
+    color: #2db92d !important;
+    text-decoration: none;
+}
+#settings .col-lg-10 .pagination .active a{
+    color: white !important;
+}
+#inner_box .tab-content .col-lg-10 .text-right{
+    padding:0 15px 15px 15px;
+}
+#settings .col-lg-10 .text-right{
+    padding:0 15px 0 15px !important;
+}
+#settings .col-lg-10 .pagination{
+    margin: 0 0 10px 0;
+}
+.footer{
+    padding: 30px 20px !important;
+}
+.footer  a{
+    font-size: 13px;
+}
+
+
+
+
+
+/*内容样式结束*/
+@media (max-width: 992px) {
+    #context .container {
+        padding: 20px 0 20px 0;
+    }
+    #context .container .inner_box{
+        padding:20px 5px;
+    }
+    #inner_box .col-lg-10 .well{
+        margin-top: 20px;
+    }
+    .inner_box{
+        padding: 15px !important;
+    }
+}
+
+
+
+
+
+

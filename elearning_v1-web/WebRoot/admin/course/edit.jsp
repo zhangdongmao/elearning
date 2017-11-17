@@ -60,8 +60,6 @@
 
 							<form action="<%=path%>/course/edit" method="get"
 								class="form-horizontal" enctype="multipart/form-data">
-								<input type="text" name="curPhoto" id="curPhoto">
-								<input type="text" name="recommend" id="recommend">
 								<input type="hidden" name="id" value="${cur.getId() }">
 								 <input type="hidden"name="teacherId" value="${teacher.getId() }"> 
 								 <input type="hidden" name="typeId" value="${type.getId() }">
@@ -122,8 +120,8 @@
 									<div class="form-group">
 										<label class="col-xs-1 control-label">课程章节：</label>
 										<div class="col-xs-6 input-group">
-											<input name="browser_count" value="" type="text"
-												class="form-control" placeholder="0">
+											<button type="button" class="btn btn-primary" data-toggle="modal" 
+											data-target="#exampleModal" data-whatever="@mdo">添加章节</button>
 										</div>
 									</div>
 
@@ -211,7 +209,7 @@
 										<label class="col-xs-1 control-label">课程介绍：</label>
 										<div class="col-xs-10 input-group">
 											<script style="height:400px;width:1000px" id="UMeditor"
-												name="introduce" type="text/plain">${cur.getCurIntroduce()}</script>
+												name="curIntroduce" type="text/plain">${cur.getCurIntroduce()}</script>
 										</div>
 									</div>
 
@@ -295,37 +293,7 @@
 			var a=$('#curPhoto').val(state);
 			
 		});
-		/* $('#mySwitchB input').on('switchChange.bootstrapSwitch', function(event, state) {
-			var dataObjB = {};
-			dataObjB['id'] = this.id;
-			dataObjB['name'] = this.name;
-			dataObj['recommend'] = this.recommend;
-		}); */
-
-		/* $('#mySwitch').on('switch-change', function (e, data) {
-    var $el = $(data.el)
-      , value = data.value;
-    console.log(e, $el, value);
-}); */
-		/* $('input.switch').on('switchChange.bootstrapSwitch', function(event, state) {
-                    var dataObj ={};
-                    dataObj['id'] = this.id;
-                    dataObj['name'] = this.name;
-                    dataObj['level'] = state;
-                     $.get("/business/news/ajaxupdatelevel", dataObj, function (data) {
-                        data=JSON.parse(data);
-                        layer.msg(data.message,{time:1000});
-                    });
-                }); */
-
-		/* 	$('#switchB').on('switch-change', function (e, data) {
-		    var $el = $(data.el)
-		      , value = data.value;
-		      alert(e);
-		      alert($el);
-		      alert(value);
-		    console.log(e, $el, value); 
-		});*/
+		
 
 
 		//设置日期插件

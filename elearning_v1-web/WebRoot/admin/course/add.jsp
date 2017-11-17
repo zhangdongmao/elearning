@@ -22,11 +22,18 @@
 <link
 	href="<%=basePath%>res/bootstrap-datetimepicker/css/bootstrap-datetimepicker-standalone.css"
 	rel="stylesheet">
+<link href="<%=basePath%>admin/css/highlight.css" rel="stylesheet">
+
+<link
+	href="https://unpkg.com/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.css"
+	rel="stylesheet">
+<link href="https://getbootstrap.com/assets/css/docs.min.css"
+	rel="stylesheet">
+<link href="<%=basePath%>admin/css/main.css" rel="stylesheet">
 
 
-	
-		
-	
+
+
 
 
 </head>
@@ -53,8 +60,10 @@
 						</div>
 						<!-- /.box-header -->
 						<div class="box-body">
-						<form class="form-horizontal" id="formSave" enctype="multipart/form-data">
-							
+							<form class="form-horizontal" id="formSave" action="<%=path%>/course/saveCourse" method="post" 
+								enctype="multipart/form-data">
+								
+								<input type="hidden" name="recommend" id="recommend">
 								<div class="box-body">
 									<div class="form-group">
 										<label class="col-xs-1 control-label">课程编号：</label>
@@ -134,8 +143,14 @@
 									</div>
 									<div class="form-group">
 										<label class="col-xs-1 control-label">推荐课程：</label>
-										<div class="switch" data-on="primary" data-off="info">
-											
+										<div id="mySwitchA" class="switch has-switch switch-mini">
+											<div class="switch-on switch-animate">
+												<input id="switchA" type="checkbox" 
+												 ${cur.getRecommend() eq 'true'?"checked":""}
+												data-on-color="primary"data-off-color="warning"
+												data-on-text="已推荐" data-off-text="未推荐" 
+												 data-size="mini">
+											</div>
 										</div>
 									</div>
 									<div class="form-group">
@@ -159,9 +174,14 @@
 										<div class="col-xs-6 input-group">
 											<div class="row">
 												<div class="col-xs-6">
-													<input type="checkbox" name="isPhoto" value="true">确认修改图片
+													<div id="mySwitchB" class="switch has-switch switch-mini">
+														<input type="checkbox" data-size="mini" id="switchB"
+														${cur.getCurPhoto() eq 'true'?"checked":""}
+															 data-on-color="primary"data-on-text="已确认" data-off-text="未确认"
+															data-off-color="warning">确认修改图片
+													</div>
 													<input id="selectImg" name="photo" type="file"
-														class="form-control" placeholder="0">
+														class="form-control" placeholder="">
 												</div>
 												<div class="col-xs-6">
 													<img style="width: 180px;height: 135px" id="selectImgView"
@@ -175,18 +195,17 @@
 										<label class="col-xs-1 control-label">课程介绍：</label>
 										<div class="col-xs-10 input-group">
 											<script style="height:400px;width:1000px" id="UMeditor"
-												name="introduce" type="text/plain">${cur.getCurIntroduce()}</script>
+												name="curIntroduce" type="text/plain">${cur.getCurIntroduce()}</script>
 										</div>
 									</div>
 
 								</div>
 								<!-- /.box-body -->
 								<div class="box-footer">
-									<button id="btnSave" type="button" class="btn btn-default">添加数据</button>
+									<button  type="submit" class="btn btn-default">添加数据</button>
 								</div>
 								<!-- /.box-footer -->
 							</form>
-
 						</div>
 						<!-- /.box-body -->
 					</div>
@@ -203,7 +222,10 @@
 	</div>
 	<!-- ./wrapper -->
 	<jsp:include page="/admin/js.jsp"></jsp:include>
-
+	<script src="<%=basePath%>admin/js/highlight.js"></script>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="https://unpkg.com/bootstrap-switch"></script>
+	<script src="<%=basePath%>admin/js/main.js"></script>
 	<script
 		src="<%=basePath%>res/bootstrap-datetimepicker/js/moment.min.js"></script>
 	<script
@@ -228,12 +250,31 @@
 
 
 <script>
-
+$("#btnPhoto").click(function(){
+			
+			var formDataStr =  $("#formSave");
+			
+				window.location.href = "<%=path%>/upload/upload2?"+formDataStr;
+			})
+	
 
 	$(function() {
-
+		$('#mySwitchA input').on('switchChange.bootstrapSwitch', function(event, state) {
+			var a=$('#recommend').val(state);
+			
+		});
+		$('#mySwitchB input').on('switchChange.bootstrapSwitch', function(event, state) {
+			var a=$('#curPhoto').val(state);
+			
+		});
+		
+		
 		//设置日期插件
 		$('#datetimepicker1').datetimepicker({
+			format : 'YYYY-MM-DD',
+			locale : moment.locale('zh-cn')
+		});
+		$('#datetimepicker2').datetimepicker({
 			format : 'YYYY-MM-DD',
 			locale : moment.locale('zh-cn')
 		});
@@ -268,12 +309,18 @@
 		});
 	});
 	
+	
 	$(function(){
-		
+			
+			
+			
+			
 			$("#btnSave").click(function(){
+			
 				var formDataStr =  $("#formSave").serialize();
 				var teacherName = $("#select2 option:selected")
 				var typeName = $("#select1 option:selected")
+				
 				$.getJSON("<%=path%>/course/saveCourse?"+formDataStr,function(data){
 					/* $('#myModal').modal("hide");//隐藏模态框. */
 					if(data.code=='200'){
@@ -282,7 +329,7 @@
 						//刷新页面列表
 						listCourse();
 					}else
-						alert("保存失败!失败原因:"+data.message);//先有，后改进
+						alert("保存失败!");
 				});
 			});
 		})

@@ -91,6 +91,7 @@ public class KnowledgeTypeControllor {
 		ResponseDto response = new ResponseDto();
 		try {
 			// 得到数据库中最新的数据
+			System.out.println(KnowledgeType.getName());
 			KnowledgeType kt = knowledgeTypeService.get(KnowledgeType.getId());
 			// 修改页面中修改的字段，避免覆盖数据库中的其他字段的数据
 			kt.setName(KnowledgeType.getName());
