@@ -21,9 +21,9 @@ public class KnowledgeServiceImpl extends BaseServiceImpl<Knowledge> implements 
 	private IKnowledgeDao Knowledge;
 
 	@Autowired
-	public void setKnowledgeDao(IKnowledgeDao KnowledgeDto) {
-		this.Knowledge = KnowledgeDto;
-		this.setBaseDao(KnowledgeDto);
+	public void setKnowledgeDao(IKnowledgeDao knowledgeDto) {
+		this.Knowledge = knowledgeDto;
+		this.setBaseDao(knowledgeDto);
 	}
 	
 	@Override
@@ -31,23 +31,23 @@ public class KnowledgeServiceImpl extends BaseServiceImpl<Knowledge> implements 
 		String hsql = "from Knowledge";
 		
 		// 获取数据
-		List<Knowledge> Knowledge = this.list(hsql);
+		List<Knowledge> knowledge = this.list(hsql);
 		
-		if (Knowledge == null) {
+		if (knowledge == null) {
 			System.out.println("-------------null------------------");
 		}
 		
 		// 将pojo的数据转换成dto，使用BeanUtils.copyProperties 可以简化
-		List<KnowledgeDto> KnowledgeDtos = new ArrayList();
-		for (int i = 0; i < Knowledge.size(); i++) {
+		List<KnowledgeDto> knowledgeDtos = new ArrayList();
+		for (int i = 0; i < knowledge.size(); i++) {
 			KnowledgeDto knowledgeDto = new KnowledgeDto();
-			BeanUtils.copyProperties(Knowledge.get(i), knowledgeDto);
-			knowledgeDto.setKtname(Knowledge.get(i).getKnowledgeType().getName());
-			knowledgeDto.setNickname(Knowledge.get(i).getUacUserinfor().getNickname());
-			KnowledgeDtos.add(knowledgeDto);
+			BeanUtils.copyProperties(knowledge.get(i), knowledgeDto);
+			knowledgeDto.setKtname(knowledge.get(i).getKnowledgeType().getName());
+			knowledgeDto.setNickname(knowledge.get(i).getUacUserinfor().getNickname());
+			knowledgeDtos.add(knowledgeDto);
 		}
-		System.out.println(KnowledgeDtos);
-		return KnowledgeDtos;
+		System.out.println(knowledgeDtos);
+		return knowledgeDtos;
 	}
 
 	@Override
