@@ -15,6 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.cms.beans.CurCourse;
 
+import com.cms.beans.CurCourse;
+
 public class BaseDaoImpl<T> extends HibernateDaoSupport implements IBaseDao<T>  {
 	private Class<T> entityClass;
 	
