@@ -208,22 +208,6 @@
 		});
 
 
-		//        选择图片
-		$('#selectImg').bind('change', function() {
-			//兼容性
-			var $file = $(this);
-			var fileObj = $file[0];
-			var windowURL = window.URL || window.webkitURL;
-			dataURL = windowURL.createObjectURL(fileObj.files[0]);
-			if (fileObj && fileObj.files && fileObj.files[0]) {
-				dataURL = windowURL.createObjectURL(fileObj.files[0]);
-			} else {
-				dataURL = $file.val();
-			}
-			//返回结果
-			$('#selectImgView').attr('src', dataURL);
-		});
-
 
 
 		//初始化富文本
@@ -244,7 +228,7 @@
 			var formDataStr = $("#formSave")[0];
 			var formData = new FormData(formDataStr);
 			var url = "<%=basePath%>teacher/saveTeacher";
-			alert(url);
+			alert("添加成功");
 			$.ajax({
 				url : url,  /*这是处理文件上传的servlet*/
 				type : 'post',
@@ -254,7 +238,7 @@
 				cache : false,
 				processData : false,
 				success : function(returndata) {
-					console.log(returndata);
+				
 				window.location.href = "<%=path%>/teacher/list";	
 					
 				},
